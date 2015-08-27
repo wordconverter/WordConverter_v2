@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{129C7E71-DCBE-4D0E-B013-BAC6984C7018}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WindowsFormsApplication4</RootNamespace>
+    <AssemblyName>WordConverter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql, Version=2.2.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql.EntityFramework">
+      <HintPath>..\packages\Npgsql.EntityFramework.2.2.5\lib\net45\Npgsql.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CommonFunction.cs" />
+    <Compile Include="Common\LinqExtension.cs" />
+    <Compile Include="Common\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\StringExtensions.cs" />
+    <Compile Include="Const\Constant.cs" />
+    <Compile Include="Const\MessageConst.cs" />
+    <Compile Include="Forms\DbConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DbConnect.Designer.cs">
+      <DependentUpon>DbConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialog\ProgressDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialog\ProgressDialog.Designer.cs" />
+    <Compile Include="Form1.cs" />
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Henshu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Henshu.Designer.cs">
+      <DependentUpon>Henshu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Ichiran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Ichiran.Designer.cs">
+      <DependentUpon>Ichiran.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Kojin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Kojin.Designer.cs">
+      <DependentUpon>Kojin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Shinsei.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Shinsei.Designer.cs">
+      <DependentUpon>Shinsei.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserKanri.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserKanri.Designer.cs">
+      <DependentUpon>UserKanri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IBo.cs" />
+    <Compile Include="Interface\IService.cs" />
+    <Compile Include="Models\HenshuWordBo.cs" />
+    <Compile Include="Models\IchiranWordBo.cs" />
+    <Compile Include="Models\InBo\HenshuInBo.cs" />
+    <Compile Include="Models\InBo\IchiranBoCreateServiceInBo.cs" />
+    <Compile Include="Models\InBo\IchiranInitServiceInBo.cs" />
+    <Compile Include="Models\InBo\IkkatsuRegistBtnServiceInBo.cs" />
+    <Compile Include="Models\InBo\IkkatsuTorokuReadFileServiceInBo.cs" />
+    <Compile Include="Models\InBo\IkkatsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\InBo\ShinseiInitInBo.cs" />
+    <Compile Include="Models\InBo\ShinseiShinseiServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuAddServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuDeleteServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuRegistServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuSearchServiceInBo.cs" />
+    <Compile Include="Models\InBo\TanitsuTorokuServiceInBo.cs" />
+    <Compile Include="Models\InBo\UserKanriAddServiceInBo.cs" />
+    <Compile Include="Models\InBo\UserKanriRegistServiceInBo.cs" />
+    <Compile Include="Models\InBo\UserKanriSearchServiceInBo.cs" />
+    <Compile Include="Models\OutBo\IchiranBoCreateServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\IchiranInitServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuRegistBtnServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuTorokuReadFileServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\IkkatsuTorokuServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\ShinseiInitOutBo.cs" />
+    <Compile Include="Models\OutBo\ShinseiShinseiServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuAddServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuDeleteServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuRegistServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuSearchServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\TanitsuTorokuServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\UserKanriAddServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\UserKanriRegistServiceOutBo.cs" />
+    <Compile Include="Models\OutBo\UserKanriSearchServiceOutBo.cs" />
+    <Compile Include="Models\ShinseiBo.cs" />
+    <Compile Include="Models\UserBo.cs" />
+    <Compile Include="Models\UserInfoBo.cs" />
+    <Compile Include="Models\WordDicDispBo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Entity\UserMst.cs" />
+    <Compile Include="Models\Dao\UserRepository.cs" />
+    <Compile Include="Models\Dao\MyContext.cs" />
+    <Compile Include="Models\Entity\WordDic.cs" />
+    <Compile Include="Models\Entity\WordShinsei.cs" />
+    <Compile Include="Services\IchiranBoCreateService.cs" />
+    <Compile Include="Services\IchiranInitService.cs" />
+    <Compile Include="Services\IkkatsuRegistBtnService.cs" />
+    <Compile Include="Services\IkkatsuTorokuInitService.cs" />
+    <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />
+    <Compile Include="Services\ShinseiInitService.cs" />
+    <Compile Include="Services\ShinseiShinseiService.cs" />
+    <Compile Include="Services\TanitsuTorokuAddService.cs" />
+    <Compile Include="Services\TanitsuTorokuDeleteService.cs" />
+    <Compile Include="Services\TanitsuTorokuRegistService.cs" />
+    <Compile Include="Services\TanitsuTorokuSearchService.cs" />
+    <Compile Include="Services\TanitsuTorokuService.cs" />
+    <Compile Include="Services\UserKanriAddService.cs" />
+    <Compile Include="Services\UserKanriRegistService.cs" />
+    <Compile Include="Services\UserKanriSearchService.cs" />
+    <Compile Include="Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings1.settings</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dialog\ProgressDialog.resx" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DbConnect.resx">
+      <DependentUpon>DbConnect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Henshu.resx">
+      <DependentUpon>Henshu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Ichiran.resx">
+      <DependentUpon>Ichiran.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Kojin.resx">
+      <DependentUpon>Kojin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Shinsei.resx">
+      <DependentUpon>Shinsei.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserKanri.resx">
+      <DependentUpon>UserKanri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Settings1.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
