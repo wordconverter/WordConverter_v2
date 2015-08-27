@@ -47,9 +47,9 @@ namespace WordConverter_v2.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.clear = new System.Windows.Forms.Button();
-            this.empId = new WordConverter_v2.Common.NumericTextBox();
             this.kensu = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.empId = new WordConverter_v2.Common.NumericTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.userKanriDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -182,9 +182,9 @@ namespace WordConverter_v2.Forms
             this.label3.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(26, 21);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 17);
+            this.label3.Size = new System.Drawing.Size(64, 17);
             this.label3.TabIndex = 10;
-            this.label3.Text = "社員ID";
+            this.label3.Text = "ユーザーID";
             // 
             // errorProvider1
             // 
@@ -201,15 +201,6 @@ namespace WordConverter_v2.Forms
             this.clear.Text = "クリア";
             this.clear.UseVisualStyleBackColor = true;
             this.clear.Click += new System.EventHandler(this.clear_Click);
-            // 
-            // empId
-            // 
-            this.empId.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.empId.Location = new System.Drawing.Point(93, 18);
-            this.empId.Name = "empId";
-            this.empId.Size = new System.Drawing.Size(149, 22);
-            this.empId.TabIndex = 1;
-            this.empId.Validated += new System.EventHandler(this.empId_Validated);
             // 
             // kensu
             // 
@@ -229,6 +220,15 @@ namespace WordConverter_v2.Forms
             this.label5.Size = new System.Drawing.Size(41, 17);
             this.label5.TabIndex = 26;
             this.label5.Text = "件数：";
+            // 
+            // empId
+            // 
+            this.empId.ImeMode = System.Windows.Forms.ImeMode.Disable;
+            this.empId.Location = new System.Drawing.Point(93, 18);
+            this.empId.Name = "empId";
+            this.empId.Size = new System.Drawing.Size(149, 22);
+            this.empId.TabIndex = 1;
+            this.empId.Validated += new System.EventHandler(this.empId_Validated);
             // 
             // UserKanri
             // 

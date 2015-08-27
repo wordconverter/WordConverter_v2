@@ -37,6 +37,8 @@ namespace WordConverter_v2.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.kensu = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,6 +52,8 @@ namespace WordConverter_v2.Forms
             this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
             this.ronrimei1TextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.kensuIkkatsu = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ikkatsuRegistBtn = new System.Windows.Forms.Button();
             this.ikkatsuDataGridView = new System.Windows.Forms.DataGridView();
@@ -57,10 +61,6 @@ namespace WordConverter_v2.Forms
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.kensu = new System.Windows.Forms.Label();
-            this.kensuIkkatsu = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -110,6 +110,25 @@ namespace WordConverter_v2.Forms
             this.tabPage1.Size = new System.Drawing.Size(737, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
+            // 
+            // kensu
+            // 
+            this.kensu.AutoSize = true;
+            this.kensu.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.kensu.Location = new System.Drawing.Point(640, 118);
+            this.kensu.Name = "kensu";
+            this.kensu.Size = new System.Drawing.Size(0, 17);
+            this.kensu.TabIndex = 25;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label5.Location = new System.Drawing.Point(602, 118);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 17);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "件数：";
             // 
             // label3
             // 
@@ -272,6 +291,25 @@ namespace WordConverter_v2.Forms
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "一括登録";
             // 
+            // kensuIkkatsu
+            // 
+            this.kensuIkkatsu.AutoSize = true;
+            this.kensuIkkatsu.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.kensuIkkatsu.Location = new System.Drawing.Point(640, 118);
+            this.kensuIkkatsu.Name = "kensuIkkatsu";
+            this.kensuIkkatsu.Size = new System.Drawing.Size(0, 17);
+            this.kensuIkkatsu.TabIndex = 27;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Location = new System.Drawing.Point(602, 118);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(41, 17);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "件数：";
+            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
@@ -285,9 +323,9 @@ namespace WordConverter_v2.Forms
             // 
             this.ikkatsuRegistBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.ikkatsuRegistBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.ikkatsuRegistBtn.Location = new System.Drawing.Point(410, 399);
+            this.ikkatsuRegistBtn.Location = new System.Drawing.Point(272, 398);
             this.ikkatsuRegistBtn.Name = "ikkatsuRegistBtn";
-            this.ikkatsuRegistBtn.Size = new System.Drawing.Size(174, 30);
+            this.ikkatsuRegistBtn.Size = new System.Drawing.Size(177, 30);
             this.ikkatsuRegistBtn.TabIndex = 15;
             this.ikkatsuRegistBtn.Text = "登録";
             this.ikkatsuRegistBtn.UseVisualStyleBackColor = false;
@@ -364,44 +402,6 @@ namespace WordConverter_v2.Forms
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(602, 118);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 17);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "件数：";
-            // 
-            // kensu
-            // 
-            this.kensu.AutoSize = true;
-            this.kensu.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.kensu.Location = new System.Drawing.Point(640, 118);
-            this.kensu.Name = "kensu";
-            this.kensu.Size = new System.Drawing.Size(0, 17);
-            this.kensu.TabIndex = 25;
-            // 
-            // kensuIkkatsu
-            // 
-            this.kensuIkkatsu.AutoSize = true;
-            this.kensuIkkatsu.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.kensuIkkatsu.Location = new System.Drawing.Point(640, 118);
-            this.kensuIkkatsu.Name = "kensuIkkatsu";
-            this.kensuIkkatsu.Size = new System.Drawing.Size(0, 17);
-            this.kensuIkkatsu.TabIndex = 27;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label7.Location = new System.Drawing.Point(602, 118);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(41, 17);
-            this.label7.TabIndex = 26;
-            this.label7.Text = "件数：";
             // 
             // Henshu
             // 

@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\CommonFunction.cs" />
+    <Compile Include="Common\EventDatum.cs" />
     <Compile Include="Common\LinqExtension.cs" />
     <Compile Include="Common\NumericTextBox.cs">
       <SubType>Component</SubType>
