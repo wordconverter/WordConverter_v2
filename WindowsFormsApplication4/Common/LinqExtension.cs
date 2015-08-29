@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using WordConverter_v2.Models;
+using WordConvTool.Const;
 
 namespace WordConverter_v2.Common
 {
@@ -25,7 +26,7 @@ namespace WordConverter_v2.Common
 
             if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
                 !String.IsNullOrEmpty(keyword[1].ToString()) &&
-                keyword[2].ToString().ToIntType() != -1 && 
+                keyword[2].ToString().ToIntType() != -1 &&
                 keyword[2].ToString().ToIntType() != 2)
             {
                 predict = x => x.emp_id == empId && x.user_name.Contains(userName) && x.kengen == kengen;
@@ -71,7 +72,9 @@ namespace WordConverter_v2.Common
                 return source.Where(predict);
             }
 
-            if (keyword[2].ToString().ToIntType() != -1 && keyword[2].ToString().ToIntType() != 2)
+            if (keyword[2].ToString().ToIntType() == (int)KengenKbn.一般
+                || keyword[2].ToString().ToIntType() == (int)KengenKbn.管理
+                || keyword[2].ToString().ToIntType() == (int)KengenKbn.メーリングリスト)
             {
                 predict = x => x.kengen == kengen;
                 return source.Where(predict);

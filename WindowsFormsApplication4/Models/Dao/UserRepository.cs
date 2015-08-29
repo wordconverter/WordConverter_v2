@@ -16,6 +16,11 @@ namespace WordConverter_v2.Models.Dao
             return context.UserMst.ToList();
         }
 
+        public UserMst FindUserMstByUserId(long userId)
+        {
+            return context.UserMst.ToList().Single(x => x.user_id == userId);
+        }
+
         public List<WordShinsei> FindAllWordShinsei()
         {
             return context.WordShinsei.ToList();

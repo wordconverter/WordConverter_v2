@@ -118,6 +118,7 @@
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\MailService.cs" />
     <Compile Include="Forms\Shinsei.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +182,8 @@
     <Compile Include="Services\IkkatsuRegistBtnService.cs" />
     <Compile Include="Services\IkkatsuTorokuInitService.cs" />
     <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />
+    <Compile Include="Services\MailServiceInBo.cs" />
+    <Compile Include="Services\MailServiceOutBo.cs" />
     <Compile Include="Services\ShinseiInitService.cs" />
     <Compile Include="Services\ShinseiShinseiService.cs" />
     <Compile Include="Services\TanitsuTorokuAddService.cs" />

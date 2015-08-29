@@ -11,6 +11,15 @@ using WordConverter_v2.Models.OutBo;
 using WordConverter_v2.Services;
 using WordConvTool.Const;
 using System.Linq;
+using System.Net.Mail;
+using System.Text;
+using System.IO;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.Net;
+using WindowsFormsApplication4.Forms;
+using WindowsFormsApplication4.Services;
 
 namespace WordConverter_v2.Forms
 {
@@ -176,6 +185,7 @@ namespace WordConverter_v2.Forms
         {
             if (!this.shouninPreCheck(this.shinseiDataGridView1)) { return; }
 
+            List<WordDic> shinseiWordDicList = new List<WordDic>();
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
                 if (shinseiDataGridView1.Rows[i].Cells[0].Value == null
@@ -200,10 +210,33 @@ namespace WordConverter_v2.Forms
                     word.cre_date = System.DateTime.Now.ToString();
                     context.WordDic.Add(word);
                     context.SaveChanges();
+                    shinseiWordDicList.Add(word);
                 }
             }
             MessageBox.Show(MessageConst.CONF_002);
+            
+            MailService mailService = new MailService();
+            MailServiceInBo inBo = new MailServiceInBo();
+            inBo.shinseiWordDicList = shinseiWordDicList;
+            mailService.setInBo(inBo);
+            MailServiceOutBo outBo = mailService.execute();
+
             this.Shinsei_Load(sender, e);
+        }
+
+        // Configファイルの読み込み
+        private Dictionary<string, string> ReadConfig()
+        {
+            var configs = new Dictionary<string, string>();
+
+            ConfigurationManager.OpenExeConfiguration(@Process.GetCurrentProcess().MainModule.FileName);
+
+            foreach (var key in ConfigurationManager.AppSettings.AllKeys)
+            {
+                configs[key] = ConfigurationManager.AppSettings[key];
+            }
+
+            return configs;
         }
 
         /// <summary>

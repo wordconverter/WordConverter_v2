@@ -28,7 +28,8 @@ namespace WordConvTool.Const
     public enum KengenKbn
     {
         管理 = 0,
-        一般 = 1
+        一般 = 1,
+        メーリングリスト = 2
     }
 
     public enum SankaKahi

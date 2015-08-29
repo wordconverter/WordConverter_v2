@@ -33,8 +33,8 @@ namespace WordConverter_v2.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.userKanriDataGridView1 = new System.Windows.Forms.DataGridView();
             this.regist = new System.Windows.Forms.Button();
             this.delete = new System.Windows.Forms.Button();
@@ -59,28 +59,28 @@ namespace WordConverter_v2.Forms
             this.userKanriDataGridView1.AllowUserToResizeColumns = false;
             this.userKanriDataGridView1.AllowUserToResizeRows = false;
             this.userKanriDataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userKanriDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userKanriDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.userKanriDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userKanriDataGridView1.Location = new System.Drawing.Point(36, 168);
+            this.userKanriDataGridView1.Location = new System.Drawing.Point(22, 176);
             this.userKanriDataGridView1.Name = "userKanriDataGridView1";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Green;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.userKanriDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Green;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.userKanriDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.userKanriDataGridView1.RowHeadersVisible = false;
             this.userKanriDataGridView1.RowTemplate.Height = 21;
-            this.userKanriDataGridView1.Size = new System.Drawing.Size(838, 235);
+            this.userKanriDataGridView1.Size = new System.Drawing.Size(826, 235);
             this.userKanriDataGridView1.TabIndex = 6;
             this.userKanriDataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             this.userKanriDataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -90,9 +90,9 @@ namespace WordConverter_v2.Forms
             // 
             this.regist.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.regist.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.regist.Location = new System.Drawing.Point(292, 422);
+            this.regist.Location = new System.Drawing.Point(269, 432);
             this.regist.Name = "regist";
-            this.regist.Size = new System.Drawing.Size(143, 25);
+            this.regist.Size = new System.Drawing.Size(156, 25);
             this.regist.TabIndex = 7;
             this.regist.Text = "登録";
             this.regist.UseVisualStyleBackColor = false;
@@ -102,9 +102,9 @@ namespace WordConverter_v2.Forms
             // 
             this.delete.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.delete.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.delete.Location = new System.Drawing.Point(470, 422);
+            this.delete.Location = new System.Drawing.Point(447, 432);
             this.delete.Name = "delete";
-            this.delete.Size = new System.Drawing.Size(143, 25);
+            this.delete.Size = new System.Drawing.Size(156, 25);
             this.delete.TabIndex = 8;
             this.delete.Text = "削除";
             this.delete.UseVisualStyleBackColor = true;
@@ -112,9 +112,9 @@ namespace WordConverter_v2.Forms
             // 
             // userName
             // 
-            this.userName.Location = new System.Drawing.Point(163, 48);
+            this.userName.Location = new System.Drawing.Point(153, 47);
             this.userName.Name = "userName";
-            this.userName.Size = new System.Drawing.Size(331, 22);
+            this.userName.Size = new System.Drawing.Size(320, 22);
             this.userName.TabIndex = 2;
             this.userName.Validated += new System.EventHandler(this.userName_Validated);
             // 
@@ -122,9 +122,9 @@ namespace WordConverter_v2.Forms
             // 
             this.search.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.search.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.search.Location = new System.Drawing.Point(185, 124);
+            this.search.Location = new System.Drawing.Point(207, 127);
             this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(127, 23);
+            this.search.Size = new System.Drawing.Size(132, 23);
             this.search.TabIndex = 4;
             this.search.Text = "検索";
             this.search.UseVisualStyleBackColor = false;
@@ -134,9 +134,9 @@ namespace WordConverter_v2.Forms
             // 
             this.add.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.add.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.add.Location = new System.Drawing.Point(503, 124);
+            this.add.Location = new System.Drawing.Point(525, 127);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(127, 23);
+            this.add.Size = new System.Drawing.Size(132, 23);
             this.add.TabIndex = 5;
             this.add.Text = "追加";
             this.add.UseVisualStyleBackColor = true;
@@ -149,10 +149,11 @@ namespace WordConverter_v2.Forms
             this.kengen.Items.AddRange(new object[] {
             "管理",
             "一般",
+            "メーリングリスト",
             ""});
-            this.kengen.Location = new System.Drawing.Point(163, 80);
+            this.kengen.Location = new System.Drawing.Point(153, 79);
             this.kengen.Name = "kengen";
-            this.kengen.Size = new System.Drawing.Size(216, 23);
+            this.kengen.Size = new System.Drawing.Size(149, 23);
             this.kengen.TabIndex = 3;
             this.kengen.Validated += new System.EventHandler(this.kengen_Validated);
             // 
@@ -160,7 +161,7 @@ namespace WordConverter_v2.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(96, 52);
+            this.label1.Location = new System.Drawing.Point(83, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 17);
             this.label1.TabIndex = 8;
@@ -170,7 +171,7 @@ namespace WordConverter_v2.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(96, 84);
+            this.label2.Location = new System.Drawing.Point(83, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 17);
             this.label2.TabIndex = 9;
@@ -180,7 +181,7 @@ namespace WordConverter_v2.Forms
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(96, 22);
+            this.label3.Location = new System.Drawing.Point(83, 21);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 17);
             this.label3.TabIndex = 10;
@@ -194,9 +195,9 @@ namespace WordConverter_v2.Forms
             // 
             this.clear.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.clear.Font = new System.Drawing.Font("メイリオ", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.clear.Location = new System.Drawing.Point(344, 124);
+            this.clear.Location = new System.Drawing.Point(366, 127);
             this.clear.Name = "clear";
-            this.clear.Size = new System.Drawing.Size(127, 23);
+            this.clear.Size = new System.Drawing.Size(132, 23);
             this.clear.TabIndex = 11;
             this.clear.Text = "クリア";
             this.clear.UseVisualStyleBackColor = true;
@@ -206,7 +207,7 @@ namespace WordConverter_v2.Forms
             // 
             this.kensu.AutoSize = true;
             this.kensu.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.kensu.Location = new System.Drawing.Point(801, 145);
+            this.kensu.Location = new System.Drawing.Point(783, 147);
             this.kensu.Name = "kensu";
             this.kensu.Size = new System.Drawing.Size(0, 17);
             this.kensu.TabIndex = 27;
@@ -215,7 +216,7 @@ namespace WordConverter_v2.Forms
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(763, 145);
+            this.label5.Location = new System.Drawing.Point(745, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 17);
             this.label5.TabIndex = 26;
@@ -224,9 +225,9 @@ namespace WordConverter_v2.Forms
             // empId
             // 
             this.empId.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.empId.Location = new System.Drawing.Point(163, 19);
+            this.empId.Location = new System.Drawing.Point(153, 18);
             this.empId.Name = "empId";
-            this.empId.Size = new System.Drawing.Size(211, 22);
+            this.empId.Size = new System.Drawing.Size(148, 22);
             this.empId.TabIndex = 1;
             this.empId.Validated += new System.EventHandler(this.empId_Validated);
             // 
@@ -235,7 +236,7 @@ namespace WordConverter_v2.Forms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(908, 464);
+            this.ClientSize = new System.Drawing.Size(872, 481);
             this.Controls.Add(this.kensu);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.clear);
