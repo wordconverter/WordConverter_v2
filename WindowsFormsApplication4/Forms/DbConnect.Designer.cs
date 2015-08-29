@@ -51,6 +51,7 @@
             this.sqliteOpenFileBtn = new System.Windows.Forms.Button();
             this.sqliteDbFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.sqliteConnectableDbPath = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -227,6 +228,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage2.Controls.Add(this.sqliteConnectableDbPath);
             this.tabPage2.Controls.Add(this.label6);
             this.tabPage2.Controls.Add(this.sqliteSaveBtn);
             this.tabPage2.Controls.Add(this.sqliteTestConnectBtn);
@@ -287,14 +289,26 @@
             // 
             // sqliteDbFilePath
             // 
+            this.sqliteDbFilePath.BackColor = System.Drawing.Color.White;
             this.sqliteDbFilePath.Location = new System.Drawing.Point(62, 45);
             this.sqliteDbFilePath.Name = "sqliteDbFilePath";
+            this.sqliteDbFilePath.ReadOnly = true;
             this.sqliteDbFilePath.Size = new System.Drawing.Size(342, 19);
             this.sqliteDbFilePath.TabIndex = 0;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // sqliteConnectableDbPath
+            // 
+            this.sqliteConnectableDbPath.AutoSize = true;
+            this.sqliteConnectableDbPath.Location = new System.Drawing.Point(356, 162);
+            this.sqliteConnectableDbPath.Name = "sqliteConnectableDbPath";
+            this.sqliteConnectableDbPath.Size = new System.Drawing.Size(117, 12);
+            this.sqliteConnectableDbPath.TabIndex = 5;
+            this.sqliteConnectableDbPath.Text = "sqlite接続可能文字列";
+            this.sqliteConnectableDbPath.Visible = false;
             // 
             // DbConnect
             // 
@@ -342,5 +356,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.Label dbConnectablePath;
+        private System.Windows.Forms.Label sqliteConnectableDbPath;
     }
 }

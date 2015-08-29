@@ -202,5 +202,17 @@ namespace WordConverter_v2 {
                 this["KojinRiyou"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SqliteDbPath {
+            get {
+                return ((string)(this["SqliteDbPath"]));
+            }
+            set {
+                this["SqliteDbPath"] = value;
+            }
+        }
     }
 }

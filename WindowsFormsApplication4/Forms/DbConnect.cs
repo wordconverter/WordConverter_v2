@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -87,6 +88,8 @@ namespace WordConverter_v2.Forms
             else
             {
                 this.tabControl1.SelectedIndex = (int)DbKbn.個人;
+                this.sqliteDbFilePath.Text = WordConverter_v2.Settings1.Default.SqliteDbPath;
+                this.sqliteSaveBtn.Visible = false;
             }
         }
 
@@ -117,6 +120,8 @@ namespace WordConverter_v2.Forms
             }
             else
             {
+                this.sqliteDbFilePath.Text = WordConverter_v2.Settings1.Default.SqliteDbPath;
+                this.sqliteSaveBtn.Visible = false;
             }
         }
 
@@ -164,22 +169,20 @@ namespace WordConverter_v2.Forms
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Data Source=" + this.sqliteDbFilePath.Text);
-            sb.Append(";foreign keys=true;" + this.dbUserId.Text);
+            sb.Append(";foreign keys=true;");
 
             try
             {
-                using (NpgsqlConnection cn = new NpgsqlConnection(sb.ToString()))
+                using (SQLiteConnection cn = new SQLiteConnection(sb.ToString()))
                 {
                     cn.Open();
+                    SQLiteCommand cmd = cn.CreateCommand();
+                    cmd.CommandText = "SELECT * FROM WORD_DIC";
+                    cmd.ExecuteReader();
                     MessageBox.Show("DB接続に成功しました！！");
-                    this.dbConnectablePath.Text = sb.ToString();
-                    this.serverName.Enabled = false;
-                    this.dbName.Enabled = false;
-                    this.dbPortNo.Enabled = false;
-                    this.dbUserId.Enabled = false;
-                    this.dbPassword.Enabled = false;
-                    this.saveBtn.Visible = true;
-                    this.testConnectBtn.Visible = false;
+                    this.sqliteConnectableDbPath.Text = sb.ToString();
+                    this.sqliteSaveBtn.Visible = true;
+                    this.sqliteDbFilePath.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -190,7 +193,10 @@ namespace WordConverter_v2.Forms
 
         private void sqliteSaveBtn_Click(object sender, EventArgs e)
         {
-
+            CommonFunction common = new CommonFunction();
+            common.setSqliteDbPath(this.sqliteConnectableDbPath.Text);
+            WordConverter_v2.Settings1.Default.SqliteDbPath = this.sqliteConnectableDbPath.Text;
+            MessageBox.Show("DB接続設定を保存しました。");
         }
 
         private void sqliteOpenFileBtn_Click(object sender, EventArgs e)
@@ -202,6 +208,7 @@ namespace WordConverter_v2.Forms
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 this.sqliteDbFilePath.Text = ofd.FileName;
+                this.sqliteSaveBtn.Visible = false;
             }
         }
     }
