@@ -94,6 +94,7 @@
     <Compile Include="Forms\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\InBo\DbConnectInBo.cs" />
     <Compile Include="Forms\Henshu.cs">
       <SubType>Form</SubType>
     </Compile>

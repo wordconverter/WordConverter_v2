@@ -49,7 +49,7 @@
             this.sqliteSaveBtn = new System.Windows.Forms.Button();
             this.sqliteTestConnectBtn = new System.Windows.Forms.Button();
             this.sqliteOpenFileBtn = new System.Windows.Forms.Button();
-            this.dbFilePath = new System.Windows.Forms.TextBox();
+            this.sqliteDbFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -231,7 +231,7 @@
             this.tabPage2.Controls.Add(this.sqliteSaveBtn);
             this.tabPage2.Controls.Add(this.sqliteTestConnectBtn);
             this.tabPage2.Controls.Add(this.sqliteOpenFileBtn);
-            this.tabPage2.Controls.Add(this.dbFilePath);
+            this.tabPage2.Controls.Add(this.sqliteDbFilePath);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -259,6 +259,7 @@
             this.sqliteSaveBtn.TabIndex = 3;
             this.sqliteSaveBtn.Text = "保存";
             this.sqliteSaveBtn.UseVisualStyleBackColor = false;
+            this.sqliteSaveBtn.Click += new System.EventHandler(this.sqliteSaveBtn_Click);
             // 
             // sqliteTestConnectBtn
             // 
@@ -270,6 +271,7 @@
             this.sqliteTestConnectBtn.TabIndex = 2;
             this.sqliteTestConnectBtn.Text = "テスト接続";
             this.sqliteTestConnectBtn.UseVisualStyleBackColor = false;
+            this.sqliteTestConnectBtn.Click += new System.EventHandler(this.sqliteTestConnectBtn_Click);
             // 
             // sqliteOpenFileBtn
             // 
@@ -281,13 +283,14 @@
             this.sqliteOpenFileBtn.TabIndex = 1;
             this.sqliteOpenFileBtn.Text = "参照";
             this.sqliteOpenFileBtn.UseVisualStyleBackColor = false;
+            this.sqliteOpenFileBtn.Click += new System.EventHandler(this.sqliteOpenFileBtn_Click);
             // 
-            // dbFilePath
+            // sqliteDbFilePath
             // 
-            this.dbFilePath.Location = new System.Drawing.Point(62, 45);
-            this.dbFilePath.Name = "dbFilePath";
-            this.dbFilePath.Size = new System.Drawing.Size(342, 19);
-            this.dbFilePath.TabIndex = 0;
+            this.sqliteDbFilePath.Location = new System.Drawing.Point(62, 45);
+            this.sqliteDbFilePath.Name = "sqliteDbFilePath";
+            this.sqliteDbFilePath.Size = new System.Drawing.Size(342, 19);
+            this.sqliteDbFilePath.TabIndex = 0;
             // 
             // openFileDialog1
             // 
@@ -332,7 +335,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox dbFilePath;
+        private System.Windows.Forms.TextBox sqliteDbFilePath;
         private System.Windows.Forms.Button sqliteOpenFileBtn;
         private System.Windows.Forms.Button sqliteSaveBtn;
         private System.Windows.Forms.Button sqliteTestConnectBtn;

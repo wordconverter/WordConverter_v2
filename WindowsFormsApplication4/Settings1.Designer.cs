@@ -178,5 +178,29 @@ namespace WordConverter_v2 {
                 this["DbFilePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FukusuRiyou {
+            get {
+                return ((bool)(this["FukusuRiyou"]));
+            }
+            set {
+                this["FukusuRiyou"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool KojinRiyou {
+            get {
+                return ((bool)(this["KojinRiyou"]));
+            }
+            set {
+                this["KojinRiyou"] = value;
+            }
+        }
     }
 }

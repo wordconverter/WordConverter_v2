@@ -17,6 +17,7 @@ namespace WordConverter_v2.Forms
     {
         private static CommonFunction common = new CommonFunction();
         private static readonly DbConnect _instance = new DbConnect();
+        private DbConnectInBo inBo;
 
         public static DbConnect Instance
         {
@@ -29,6 +30,12 @@ namespace WordConverter_v2.Forms
         private DbConnect()
         {
             InitializeComponent();
+        }
+
+        public void moveDbConnect(DbConnectInBo dbConnectInBo)
+        {
+            this.inBo = dbConnectInBo;
+            this.tabControl1.SelectedIndex = this.inBo.selectedIndex;
             this.Show();
             this.Activate();
         }
@@ -72,6 +79,20 @@ namespace WordConverter_v2.Forms
 
         private void DbConnect_Load(object sender, EventArgs e)
         {
+            if (this.inBo.selectedIndex == (int)DbKbn.複数人)
+            {
+                this.showPostgresSetthing(this);
+
+            }
+            else
+            {
+                this.tabControl1.SelectedIndex = (int)DbKbn.個人;
+            }
+        }
+
+        private void showPostgresSetthing(DbConnect dbConnect)
+        {
+            this.tabControl1.SelectedIndex = (int)DbKbn.複数人;
             this.serverName.Text = WordConverter_v2.Settings1.Default.ServerName;
             this.dbName.Text = WordConverter_v2.Settings1.Default.DbName;
             this.dbPortNo.Text = WordConverter_v2.Settings1.Default.DbPortNo;
@@ -85,12 +106,18 @@ namespace WordConverter_v2.Forms
             sb.Append(";Database=" + this.dbName.Text);
             this.dbConnectablePath.Text = sb.ToString();
             this.saveBtn.Visible = false;
-            
         }
+
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-
+            if (this.tabControl1.SelectedIndex == (int)DbKbn.複数人)
+            {
+                this.showPostgresSetthing(this);
+            }
+            else
+            {
+            }
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -125,6 +152,57 @@ namespace WordConverter_v2.Forms
             Login form = Login.Instance;
             form.Show();
             form.Activate();
+        }
+
+
+        internal void setInBo(DbConnectInBo inBo)
+        {
+            this.inBo = inBo;
+        }
+
+        private void sqliteTestConnectBtn_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Data Source=" + this.sqliteDbFilePath.Text);
+            sb.Append(";foreign keys=true;" + this.dbUserId.Text);
+
+            try
+            {
+                using (NpgsqlConnection cn = new NpgsqlConnection(sb.ToString()))
+                {
+                    cn.Open();
+                    MessageBox.Show("DB接続に成功しました！！");
+                    this.dbConnectablePath.Text = sb.ToString();
+                    this.serverName.Enabled = false;
+                    this.dbName.Enabled = false;
+                    this.dbPortNo.Enabled = false;
+                    this.dbUserId.Enabled = false;
+                    this.dbPassword.Enabled = false;
+                    this.saveBtn.Visible = true;
+                    this.testConnectBtn.Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("DB接続失敗");
+            }
+        }
+
+        private void sqliteSaveBtn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sqliteOpenFileBtn_Click(object sender, EventArgs e)
+        {
+            //OpenFileDialogクラスのインスタンスを作成
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            //ダイアログを表示する
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                this.sqliteDbFilePath.Text = ofd.FileName;
+            }
         }
     }
 }
