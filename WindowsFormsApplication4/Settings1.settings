@@ -1,6 +1,45 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WordConverter_v2" GeneratedClassName="Settings1">
+  <Profiles />
+  <Settings>
+    <Setting Name="UserId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">999</Value>
+    </Setting>
+    <Setting Name="DataSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Pascal" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Camel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Snake" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DispNumber" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HotKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Ctrl + Q</Value>
+    </Setting>
+    <Setting Name="ServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">localhost</Value>
+    </Setting>
+    <Setting Name="DbName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="DbUserId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="DbPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">postgres</Value>
+    </Setting>
+    <Setting Name="DbPortNo" Type="System.String" Scope="User">
+      <Value Profile="(Default)">5432</Value>
+    </Setting>
+    <Setting Name="DbFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>

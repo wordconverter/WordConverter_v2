@@ -7,8 +7,8 @@
     <ProjectGuid>{129C7E71-DCBE-4D0E-B013-BAC6984C7018}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WindowsFormsApplication4</RootNamespace>
-    <AssemblyName>WordConverter</AssemblyName>
+    <RootNamespace>WordConverter_v2</RootNamespace>
+    <AssemblyName>WordConverter_v2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -182,8 +182,8 @@
     <Compile Include="Services\IkkatsuRegistBtnService.cs" />
     <Compile Include="Services\IkkatsuTorokuInitService.cs" />
     <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />
-    <Compile Include="Services\MailServiceInBo.cs" />
-    <Compile Include="Services\MailServiceOutBo.cs" />
+    <Compile Include="Models\InBo\MailServiceInBo.cs" />
+    <Compile Include="Models\OutBo\MailServiceOutBo.cs" />
     <Compile Include="Services\ShinseiInitService.cs" />
     <Compile Include="Services\ShinseiShinseiService.cs" />
     <Compile Include="Services\TanitsuTorokuAddService.cs" />
@@ -235,6 +235,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

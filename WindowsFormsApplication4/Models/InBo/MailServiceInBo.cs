@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace WindowsFormsApplication4.Services
+namespace WordConverter_v2.Models.InBo
 {
     public class MailServiceInBo
     {
-        public List<WordConverter_v2.Models.Entity.WordDic> shinseiWordDicList { get; set; }
+        public string messageBody { get; set; }
+
+        public string messageSubject { get; set; }
     }
 }

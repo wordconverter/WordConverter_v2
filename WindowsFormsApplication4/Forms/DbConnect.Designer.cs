@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.serverName = new System.Windows.Forms.TextBox();
+            this.dbPortNo = new System.Windows.Forms.TextBox();
+            this.dbName = new System.Windows.Forms.TextBox();
+            this.dbUserId = new System.Windows.Forms.TextBox();
+            this.dbPassword = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,52 +42,54 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dbConnectablePath = new System.Windows.Forms.Label();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.sqliteSaveBtn = new System.Windows.Forms.Button();
             this.sqliteTestConnectBtn = new System.Windows.Forms.Button();
             this.sqliteOpenFileBtn = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.dbFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // textBox1
+            // serverName
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(236, 19);
-            this.textBox1.TabIndex = 0;
+            this.serverName.Location = new System.Drawing.Point(110, 13);
+            this.serverName.Name = "serverName";
+            this.serverName.Size = new System.Drawing.Size(236, 19);
+            this.serverName.TabIndex = 0;
             // 
-            // textBox2
+            // dbPortNo
             // 
-            this.textBox2.Location = new System.Drawing.Point(432, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(73, 19);
-            this.textBox2.TabIndex = 1;
+            this.dbPortNo.Location = new System.Drawing.Point(432, 12);
+            this.dbPortNo.Name = "dbPortNo";
+            this.dbPortNo.Size = new System.Drawing.Size(73, 19);
+            this.dbPortNo.TabIndex = 1;
             // 
-            // textBox3
+            // dbName
             // 
-            this.textBox3.Location = new System.Drawing.Point(110, 48);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(236, 19);
-            this.textBox3.TabIndex = 2;
+            this.dbName.Location = new System.Drawing.Point(110, 48);
+            this.dbName.Name = "dbName";
+            this.dbName.Size = new System.Drawing.Size(236, 19);
+            this.dbName.TabIndex = 2;
             // 
-            // textBox4
+            // dbUserId
             // 
-            this.textBox4.Location = new System.Drawing.Point(110, 83);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(236, 19);
-            this.textBox4.TabIndex = 3;
+            this.dbUserId.Location = new System.Drawing.Point(110, 83);
+            this.dbUserId.Name = "dbUserId";
+            this.dbUserId.Size = new System.Drawing.Size(236, 19);
+            this.dbUserId.TabIndex = 3;
             // 
-            // textBox5
+            // dbPassword
             // 
-            this.textBox5.Location = new System.Drawing.Point(110, 118);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(236, 19);
-            this.textBox5.TabIndex = 4;
+            this.dbPassword.Location = new System.Drawing.Point(110, 118);
+            this.dbPassword.Name = "dbPassword";
+            this.dbPassword.Size = new System.Drawing.Size(236, 19);
+            this.dbPassword.TabIndex = 4;
             // 
             // label1
             // 
@@ -115,9 +117,9 @@
             this.label3.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label3.Location = new System.Drawing.Point(18, 85);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(64, 17);
+            this.label3.Size = new System.Drawing.Size(79, 17);
             this.label3.TabIndex = 7;
-            this.label3.Text = "ユーザーID";
+            this.label3.Text = "DBユーザーID";
             // 
             // label4
             // 
@@ -145,7 +147,7 @@
             this.testConnectBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.testConnectBtn.Location = new System.Drawing.Point(58, 162);
             this.testConnectBtn.Name = "testConnectBtn";
-            this.testConnectBtn.Size = new System.Drawing.Size(144, 23);
+            this.testConnectBtn.Size = new System.Drawing.Size(114, 23);
             this.testConnectBtn.TabIndex = 10;
             this.testConnectBtn.Text = "テスト接続";
             this.testConnectBtn.UseVisualStyleBackColor = false;
@@ -155,9 +157,9 @@
             // 
             this.saveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.saveBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.saveBtn.Location = new System.Drawing.Point(236, 162);
+            this.saveBtn.Location = new System.Drawing.Point(334, 162);
             this.saveBtn.Name = "saveBtn";
-            this.saveBtn.Size = new System.Drawing.Size(144, 23);
+            this.saveBtn.Size = new System.Drawing.Size(114, 23);
             this.saveBtn.TabIndex = 11;
             this.saveBtn.Text = "保存";
             this.saveBtn.UseVisualStyleBackColor = false;
@@ -174,21 +176,24 @@
             this.tabControl1.Size = new System.Drawing.Size(541, 237);
             this.tabControl1.TabIndex = 12;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage1.Controls.Add(this.dbConnectablePath);
+            this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.saveBtn);
-            this.tabPage1.Controls.Add(this.textBox1);
+            this.tabPage1.Controls.Add(this.serverName);
             this.tabPage1.Controls.Add(this.testConnectBtn);
-            this.tabPage1.Controls.Add(this.textBox2);
+            this.tabPage1.Controls.Add(this.dbPortNo);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.textBox3);
+            this.tabPage1.Controls.Add(this.dbName);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.textBox4);
+            this.tabPage1.Controls.Add(this.dbUserId);
             this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.textBox5);
+            this.tabPage1.Controls.Add(this.dbPassword);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -197,6 +202,28 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Postgres";
             // 
+            // dbConnectablePath
+            // 
+            this.dbConnectablePath.AutoSize = true;
+            this.dbConnectablePath.Location = new System.Drawing.Point(390, 89);
+            this.dbConnectablePath.Name = "dbConnectablePath";
+            this.dbConnectablePath.Size = new System.Drawing.Size(63, 12);
+            this.dbConnectablePath.TabIndex = 13;
+            this.dbConnectablePath.Text = "接続OKパス";
+            this.dbConnectablePath.Visible = false;
+            // 
+            // clearBtn
+            // 
+            this.clearBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.clearBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.clearBtn.Location = new System.Drawing.Point(196, 162);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(114, 23);
+            this.clearBtn.TabIndex = 12;
+            this.clearBtn.Text = "クリア";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
@@ -204,7 +231,7 @@
             this.tabPage2.Controls.Add(this.sqliteSaveBtn);
             this.tabPage2.Controls.Add(this.sqliteTestConnectBtn);
             this.tabPage2.Controls.Add(this.sqliteOpenFileBtn);
-            this.tabPage2.Controls.Add(this.textBox6);
+            this.tabPage2.Controls.Add(this.dbFilePath);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -232,7 +259,6 @@
             this.sqliteSaveBtn.TabIndex = 3;
             this.sqliteSaveBtn.Text = "保存";
             this.sqliteSaveBtn.UseVisualStyleBackColor = false;
-            this.sqliteSaveBtn.Click += new System.EventHandler(this.sqliteSaveBtn_Click);
             // 
             // sqliteTestConnectBtn
             // 
@@ -244,7 +270,6 @@
             this.sqliteTestConnectBtn.TabIndex = 2;
             this.sqliteTestConnectBtn.Text = "テスト接続";
             this.sqliteTestConnectBtn.UseVisualStyleBackColor = false;
-            this.sqliteTestConnectBtn.Click += new System.EventHandler(this.sqliteTestConnectBtn_Click);
             // 
             // sqliteOpenFileBtn
             // 
@@ -256,14 +281,13 @@
             this.sqliteOpenFileBtn.TabIndex = 1;
             this.sqliteOpenFileBtn.Text = "参照";
             this.sqliteOpenFileBtn.UseVisualStyleBackColor = false;
-            this.sqliteOpenFileBtn.Click += new System.EventHandler(this.sqliteOpenFileBtn_Click);
             // 
-            // textBox6
+            // dbFilePath
             // 
-            this.textBox6.Location = new System.Drawing.Point(62, 45);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(342, 19);
-            this.textBox6.TabIndex = 0;
+            this.dbFilePath.Location = new System.Drawing.Point(62, 45);
+            this.dbFilePath.Name = "dbFilePath";
+            this.dbFilePath.Size = new System.Drawing.Size(342, 19);
+            this.dbFilePath.TabIndex = 0;
             // 
             // openFileDialog1
             // 
@@ -276,8 +300,11 @@
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(572, 243);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "DbConnect";
             this.Text = "DB接続文字列設定";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DbConnect_FormClosing);
+            this.Load += new System.EventHandler(this.DbConnect_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -289,11 +316,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox serverName;
+        private System.Windows.Forms.TextBox dbPortNo;
+        private System.Windows.Forms.TextBox dbName;
+        private System.Windows.Forms.TextBox dbUserId;
+        private System.Windows.Forms.TextBox dbPassword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -305,10 +332,12 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox dbFilePath;
         private System.Windows.Forms.Button sqliteOpenFileBtn;
         private System.Windows.Forms.Button sqliteSaveBtn;
         private System.Windows.Forms.Button sqliteTestConnectBtn;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Label dbConnectablePath;
     }
 }

@@ -18,8 +18,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Net;
-using WindowsFormsApplication4.Forms;
-using WindowsFormsApplication4.Services;
 
 namespace WordConverter_v2.Forms
 {
@@ -214,15 +212,37 @@ namespace WordConverter_v2.Forms
                 }
             }
             MessageBox.Show(MessageConst.CONF_002);
-            
-            MailService mailService = new MailService();
-            MailServiceInBo inBo = new MailServiceInBo();
-            inBo.shinseiWordDicList = shinseiWordDicList;
-            mailService.setInBo(inBo);
-            MailServiceOutBo outBo = mailService.execute();
+            if (!this.mailSend(shinseiWordDicList, (int)ShinseiKbn.承認)) { return; }
 
             this.Shinsei_Load(sender, e);
         }
+
+        private bool mailSend(List<WordDic> shinseiWordDicList, int shinseiKbn)
+        {
+            string messageBody = "単語の承認・却下が完了しました。" + System.Environment.NewLine + System.Environment.NewLine;
+            string messageSubject = "承認・却下完了";
+            foreach (WordDic obj in shinseiWordDicList)
+            {
+                messageBody += ((ShinseiKbn)shinseiKbn).ToString() +  "・・・  論理名1：" + obj.ronri_name1 + "、論理名2：" + obj.ronri_name2 + "、物理名：" + obj.butsuri_name + " " + System.Environment.NewLine;
+            }
+
+            MailService mailService = new MailService();
+            MailServiceInBo inBo = new MailServiceInBo();
+            inBo.messageSubject = messageSubject;
+            inBo.messageBody = messageBody;
+            mailService.setInBo(inBo);
+            MailServiceOutBo outBo = mailService.execute();
+
+            if (!string.IsNullOrEmpty(outBo.errorMessage))
+            {
+                MessageBox.Show(outBo.errorMessage);
+                return false;
+            }
+
+            MessageBox.Show(MessageConst.CONF_008);
+            return true;
+        }
+
 
         // Configファイルの読み込み
         private Dictionary<string, string> ReadConfig()
@@ -285,6 +305,7 @@ namespace WordConverter_v2.Forms
         {
             if (!this.kyakkaPreCheck(this.shinseiDataGridView1)) { return; }
 
+            List<WordDic> kyakkaWordDicList = new List<WordDic>();
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
                 if (shinseiDataGridView1.Rows[i].Cells[0].Value == null
@@ -299,9 +320,15 @@ namespace WordConverter_v2.Forms
                     w.cre_date = System.DateTime.Now.ToString();
                     w.status = 2;
                     context.SaveChanges();
+                    WordDic word = new WordDic();
+                    word.ronri_name1 = this.shinseiDataGridView1.Rows[i].Cells["ronri_name1"].Value.ToString();
+                    word.ronri_name2 = this.shinseiDataGridView1.Rows[i].Cells["ronri_name2"].Value.ToString();
+                    word.butsuri_name = this.shinseiDataGridView1.Rows[i].Cells["butsuri_name"].Value.ToString();
+                    kyakkaWordDicList.Add(word);
                 }
             }
             MessageBox.Show(MessageConst.CONF_003);
+            if (!this.mailSend(kyakkaWordDicList, (int)ShinseiKbn.却下)) { return; }
             this.Shinsei_Load(sender, e);
         }
 

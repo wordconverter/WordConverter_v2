@@ -41,7 +41,7 @@ namespace WordConverter_v2.Forms
             ShowInTaskbar = false;
             WindowState = FormWindowState.Minimized;
 
-            Login form = new Login();
+            Login form = Login.Instance;
             form.Show();
 
         }

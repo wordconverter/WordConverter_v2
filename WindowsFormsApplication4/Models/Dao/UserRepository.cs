@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WordConverter_v2.Models.Entity;
+using WordConvTool.Const;
 
 namespace WordConverter_v2.Models.Dao
 {
@@ -18,7 +19,17 @@ namespace WordConverter_v2.Models.Dao
 
         public UserMst FindUserMstByUserId(long userId)
         {
-            return context.UserMst.ToList().Single(x => x.user_id == userId);
+            return context.UserMst.ToList().Single(x => x.user_id == userId && x.delete_flg == 0);
+        }
+
+        public UserMst FindMailingListUser()
+        {
+            IEnumerable<UserMst> users = context.UserMst.ToList().Where(x => x.kengen == (int)KengenKbn.メーリングリスト && x.delete_flg == 0);
+            if (users.Count() == 0)
+            {
+                return new UserMst();
+            }
+            return context.UserMst.ToList().Single(x => x.kengen == (int)KengenKbn.メーリングリスト && x.delete_flg == 0);
         }
 
         public List<WordShinsei> FindAllWordShinsei()
