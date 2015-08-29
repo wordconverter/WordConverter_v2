@@ -174,7 +174,7 @@ namespace WordConverter_v2.Forms
         /// <param name="e"></param>
         private void shounin_Click(object sender, EventArgs e)
         {
-            int upCount = 0;
+            if (!this.shouninPreCheck(this.shinseiDataGridView1)) { return; }
 
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
@@ -199,19 +199,48 @@ namespace WordConverter_v2.Forms
                     word.user_id = BaseForm.UserInfo.userId;
                     word.cre_date = System.DateTime.Now.ToString();
                     context.WordDic.Add(word);
-
                     context.SaveChanges();
-
-                    upCount++;
                 }
+            }
+            MessageBox.Show(MessageConst.CONF_002);
+            this.Shinsei_Load(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
+        private bool shouninPreCheck(DataGridView dataGridView)
+        {
+            int upCount = 0;
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
+                upCount++;
             }
             if (upCount == 0)
             {
                 MessageBox.Show(MessageConst.ERR_004);
-                return;
+                return false;
             }
-            MessageBox.Show(MessageConst.CONF_002);
-            this.Shinsei_Load(sender, e);
+
+            DialogResult result = MessageBox.Show(
+                MessageConst.CONF_006,
+                "承認確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -221,7 +250,7 @@ namespace WordConverter_v2.Forms
         /// <param name="e"></param>
         private void kyakka_Click(object sender, EventArgs e)
         {
-            int upCount = 0;
+            if (!this.kyakkaPreCheck(this.shinseiDataGridView1)) { return; }
 
             for (int i = 0; i < shinseiDataGridView1.Rows.Count; i++)
             {
@@ -238,15 +267,41 @@ namespace WordConverter_v2.Forms
                     w.status = 2;
                     context.SaveChanges();
                 }
+            }
+            MessageBox.Show(MessageConst.CONF_003);
+            this.Shinsei_Load(sender, e);
+        }
+
+        private bool kyakkaPreCheck(DataGridView dataGridView)
+        {
+            int upCount = 0;
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
                 upCount++;
             }
             if (upCount == 0)
             {
                 MessageBox.Show(MessageConst.ERR_004);
-                return;
+                return false;
             }
-            MessageBox.Show(MessageConst.CONF_003);
-            this.Shinsei_Load(sender, e);
+
+            DialogResult result = MessageBox.Show(
+                MessageConst.CONF_007,
+                "却下確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         private void Shinsei_FormClosing(object sender, FormClosingEventArgs e)

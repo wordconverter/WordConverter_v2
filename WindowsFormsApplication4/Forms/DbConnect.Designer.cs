@@ -63,7 +63,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(424, 12);
+            this.textBox2.Location = new System.Drawing.Point(432, 12);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(73, 19);
             this.textBox2.TabIndex = 1;
@@ -133,7 +133,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.Location = new System.Drawing.Point(355, 13);
+            this.label5.Location = new System.Drawing.Point(363, 13);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(63, 17);
             this.label5.TabIndex = 9;
@@ -143,7 +143,7 @@
             // 
             this.testConnectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.testConnectBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.testConnectBtn.Location = new System.Drawing.Point(105, 162);
+            this.testConnectBtn.Location = new System.Drawing.Point(58, 162);
             this.testConnectBtn.Name = "testConnectBtn";
             this.testConnectBtn.Size = new System.Drawing.Size(144, 23);
             this.testConnectBtn.TabIndex = 10;
@@ -155,7 +155,7 @@
             // 
             this.saveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.saveBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.saveBtn.Location = new System.Drawing.Point(283, 162);
+            this.saveBtn.Location = new System.Drawing.Point(236, 162);
             this.saveBtn.Name = "saveBtn";
             this.saveBtn.Size = new System.Drawing.Size(144, 23);
             this.saveBtn.TabIndex = 11;
@@ -216,7 +216,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(18, 24);
+            this.label6.Location = new System.Drawing.Point(41, 24);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 17);
             this.label6.TabIndex = 4;
@@ -226,7 +226,7 @@
             // 
             this.sqliteSaveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.sqliteSaveBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteSaveBtn.Location = new System.Drawing.Point(258, 108);
+            this.sqliteSaveBtn.Location = new System.Drawing.Point(253, 108);
             this.sqliteSaveBtn.Name = "sqliteSaveBtn";
             this.sqliteSaveBtn.Size = new System.Drawing.Size(138, 23);
             this.sqliteSaveBtn.TabIndex = 3;
@@ -238,7 +238,7 @@
             // 
             this.sqliteTestConnectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.sqliteTestConnectBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteTestConnectBtn.Location = new System.Drawing.Point(79, 108);
+            this.sqliteTestConnectBtn.Location = new System.Drawing.Point(74, 108);
             this.sqliteTestConnectBtn.Name = "sqliteTestConnectBtn";
             this.sqliteTestConnectBtn.Size = new System.Drawing.Size(138, 23);
             this.sqliteTestConnectBtn.TabIndex = 2;
@@ -250,7 +250,7 @@
             // 
             this.sqliteOpenFileBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.sqliteOpenFileBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteOpenFileBtn.Location = new System.Drawing.Point(398, 45);
+            this.sqliteOpenFileBtn.Location = new System.Drawing.Point(421, 45);
             this.sqliteOpenFileBtn.Name = "sqliteOpenFileBtn";
             this.sqliteOpenFileBtn.Size = new System.Drawing.Size(75, 23);
             this.sqliteOpenFileBtn.TabIndex = 1;
@@ -260,7 +260,7 @@
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(39, 45);
+            this.textBox6.Location = new System.Drawing.Point(62, 45);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(342, 19);
             this.textBox6.TabIndex = 0;
