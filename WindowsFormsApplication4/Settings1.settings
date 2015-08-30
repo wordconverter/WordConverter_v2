@@ -5,9 +5,6 @@
     <Setting Name="UserId" Type="System.String" Scope="User">
       <Value Profile="(Default)">999</Value>
     </Setting>
-    <Setting Name="DataSource" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="Pascal" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -38,16 +35,13 @@
     <Setting Name="DbPortNo" Type="System.String" Scope="User">
       <Value Profile="(Default)">5432</Value>
     </Setting>
-    <Setting Name="DbFilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="FukusuRiyou" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="KojinRiyou" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="SqliteDbPath" Type="System.String" Scope="User">
+    <Setting Name="SqliteContextString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

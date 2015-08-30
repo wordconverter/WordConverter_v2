@@ -37,18 +37,6 @@ namespace WordConverter_v2 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DataSource {
-            get {
-                return ((string)(this["DataSource"]));
-            }
-            set {
-                this["DataSource"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool Pascal {
             get {
@@ -169,18 +157,6 @@ namespace WordConverter_v2 {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string DbFilePath {
-            get {
-                return ((string)(this["DbFilePath"]));
-            }
-            set {
-                this["DbFilePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool FukusuRiyou {
             get {
@@ -206,12 +182,12 @@ namespace WordConverter_v2 {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SqliteDbPath {
+        public string SqliteContextString {
             get {
-                return ((string)(this["SqliteDbPath"]));
+                return ((string)(this["SqliteContextString"]));
             }
             set {
-                this["SqliteDbPath"] = value;
+                this["SqliteContextString"] = value;
             }
         }
     }

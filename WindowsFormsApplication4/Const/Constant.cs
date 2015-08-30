@@ -38,7 +38,7 @@ namespace WordConvTool.Const
         不参加 = 1
     }
 
-    public enum DbKbn
+    public enum StartUpMode
     {
         複数人 = 0,
         個人 = 1

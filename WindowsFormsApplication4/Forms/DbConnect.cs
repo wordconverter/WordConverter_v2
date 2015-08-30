@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordConverter_v2.Common;
+using WordConverter_v2.Models.Dao;
+using WordConverter_v2.Models.Entity;
 using WordConvTool.Const;
 
 namespace WordConverter_v2.Forms
@@ -62,7 +64,7 @@ namespace WordConverter_v2.Forms
                 {
                     cn.Open();
                     MessageBox.Show("DB接続に成功しました！！");
-                    this.dbConnectablePath.Text = sb.ToString();
+                    this.postgresDbConnectablePath.Text = sb.ToString();
                     this.serverName.Enabled = false;
                     this.dbName.Enabled = false;
                     this.dbPortNo.Enabled = false;
@@ -74,66 +76,77 @@ namespace WordConverter_v2.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("DB接続失敗");
+                StringBuilder eSb = new StringBuilder();
+                eSb.AppendLine("DB接続失敗");
+                eSb.AppendLine(ex.Message);
+                MessageBox.Show(eSb.ToString());
             }
         }
 
         private void DbConnect_Load(object sender, EventArgs e)
         {
-            if (this.inBo.selectedIndex == (int)DbKbn.複数人)
+            if (this.inBo.selectedIndex == (int)StartUpMode.複数人)
             {
                 this.showPostgresSetthing(this);
 
             }
             else
             {
-                this.tabControl1.SelectedIndex = (int)DbKbn.個人;
-                this.sqliteDbFilePath.Text = WordConverter_v2.Settings1.Default.SqliteDbPath;
+                this.tabControl1.SelectedIndex = (int)StartUpMode.個人;
+                this.sqliteDbFilePath.Text = this.getSqliteDbFilePath();
                 this.sqliteSaveBtn.Visible = false;
             }
         }
 
         private void showPostgresSetthing(DbConnect dbConnect)
         {
-            this.tabControl1.SelectedIndex = (int)DbKbn.複数人;
+            this.tabControl1.SelectedIndex = (int)StartUpMode.複数人;
             this.serverName.Text = WordConverter_v2.Settings1.Default.ServerName;
             this.dbName.Text = WordConverter_v2.Settings1.Default.DbName;
             this.dbPortNo.Text = WordConverter_v2.Settings1.Default.DbPortNo;
             this.dbUserId.Text = WordConverter_v2.Settings1.Default.DbUserId;
             this.dbPassword.Text = WordConverter_v2.Settings1.Default.DbPassword;
+
             StringBuilder sb = new StringBuilder();
             sb.Append("Server=" + this.serverName.Text);
             sb.Append(";Port=" + this.dbPortNo.Text);
             sb.Append(";User Id=" + this.dbUserId.Text);
             sb.Append(";Password=" + this.dbPassword.Text);
             sb.Append(";Database=" + this.dbName.Text);
-            this.dbConnectablePath.Text = sb.ToString();
+            this.postgresDbConnectablePath.Text = sb.ToString();
+
             this.saveBtn.Visible = false;
         }
 
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            if (this.tabControl1.SelectedIndex == (int)DbKbn.複数人)
+            if (this.tabControl1.SelectedIndex == (int)StartUpMode.複数人)
             {
                 this.showPostgresSetthing(this);
             }
             else
             {
-                this.sqliteDbFilePath.Text = WordConverter_v2.Settings1.Default.SqliteDbPath;
+                this.sqliteDbFilePath.Text = this.getSqliteDbFilePath();
                 this.sqliteSaveBtn.Visible = false;
             }
         }
 
-        private void saveBtn_Click(object sender, EventArgs e)
+        private string getSqliteDbFilePath()
+        {
+            String dbPath = WordConverter_v2.Settings1.Default.SqliteContextString;
+            dbPath = dbPath.Replace("Data Source=", "");
+            dbPath = dbPath.Replace(";foreign keys=true;", "");
+            return dbPath;
+        }
+
+        private void postgresSaveBtn_Click(object sender, EventArgs e)
         {
             WordConverter_v2.Settings1.Default.ServerName = this.serverName.Text;
             WordConverter_v2.Settings1.Default.DbName = this.dbName.Text;
             WordConverter_v2.Settings1.Default.DbPortNo = this.dbPortNo.Text;
             WordConverter_v2.Settings1.Default.DbUserId = this.dbUserId.Text;
             WordConverter_v2.Settings1.Default.DbPassword = this.dbPassword.Text;
-            CommonFunction common = new CommonFunction();
-            common.setPostgresDbPath(this.dbConnectablePath.Text);
             WordConverter_v2.Settings1.Default.Save();
             MessageBox.Show("DB接続設定を保存しました。");
         }
@@ -170,6 +183,9 @@ namespace WordConverter_v2.Forms
             StringBuilder sb = new StringBuilder();
             sb.Append("Data Source=" + this.sqliteDbFilePath.Text);
             sb.Append(";foreign keys=true;");
+            CommonFunction common = new CommonFunction();
+            string dbConnectionString = common.getDbConnectionString();
+            string dbProviderName = common.getDbProviderName();
 
             try
             {
@@ -179,6 +195,11 @@ namespace WordConverter_v2.Forms
                     SQLiteCommand cmd = cn.CreateCommand();
                     cmd.CommandText = "SELECT * FROM WORD_DIC";
                     cmd.ExecuteReader();
+
+                    common.setSqliteDbContextPath(sb.ToString());
+                    UserRepository rep = new UserRepository();
+                    UserMst fromUser = rep.FindUserMstByUserId(999);
+
                     MessageBox.Show("DB接続に成功しました！！");
                     this.sqliteConnectableDbPath.Text = sb.ToString();
                     this.sqliteSaveBtn.Visible = true;
@@ -188,14 +209,14 @@ namespace WordConverter_v2.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("DB接続失敗");
+                common.resetDbContextPath(dbConnectionString, dbProviderName);
             }
         }
 
         private void sqliteSaveBtn_Click(object sender, EventArgs e)
         {
-            CommonFunction common = new CommonFunction();
-            common.setSqliteDbPath(this.sqliteConnectableDbPath.Text);
-            WordConverter_v2.Settings1.Default.SqliteDbPath = this.sqliteConnectableDbPath.Text;
+            WordConverter_v2.Settings1.Default.SqliteContextString = this.sqliteConnectableDbPath.Text;
+            WordConverter_v2.Settings1.Default.Save();
             MessageBox.Show("DB接続設定を保存しました。");
         }
 

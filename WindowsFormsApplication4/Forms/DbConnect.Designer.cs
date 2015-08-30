@@ -42,16 +42,16 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dbConnectablePath = new System.Windows.Forms.Label();
+            this.postgresDbConnectablePath = new System.Windows.Forms.Label();
             this.clearBtn = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label6 = new System.Windows.Forms.Label();
-            this.sqliteSaveBtn = new System.Windows.Forms.Button();
-            this.sqliteTestConnectBtn = new System.Windows.Forms.Button();
-            this.sqliteOpenFileBtn = new System.Windows.Forms.Button();
-            this.sqliteDbFilePath = new System.Windows.Forms.TextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.sqliteConnectableDbPath = new System.Windows.Forms.Label();
+            this.sqliteDbFilePath = new System.Windows.Forms.TextBox();
+            this.sqliteOpenFileBtn = new System.Windows.Forms.Button();
+            this.sqliteTestConnectBtn = new System.Windows.Forms.Button();
+            this.sqliteSaveBtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -164,7 +164,7 @@
             this.saveBtn.TabIndex = 11;
             this.saveBtn.Text = "保存";
             this.saveBtn.UseVisualStyleBackColor = false;
-            this.saveBtn.Click += new System.EventHandler(this.saveBtn_Click);
+            this.saveBtn.Click += new System.EventHandler(this.postgresSaveBtn_Click);
             // 
             // tabControl1
             // 
@@ -182,7 +182,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.tabPage1.Controls.Add(this.dbConnectablePath);
+            this.tabPage1.Controls.Add(this.postgresDbConnectablePath);
             this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.saveBtn);
@@ -203,15 +203,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Postgres";
             // 
-            // dbConnectablePath
+            // postgresDbConnectablePath
             // 
-            this.dbConnectablePath.AutoSize = true;
-            this.dbConnectablePath.Location = new System.Drawing.Point(390, 89);
-            this.dbConnectablePath.Name = "dbConnectablePath";
-            this.dbConnectablePath.Size = new System.Drawing.Size(63, 12);
-            this.dbConnectablePath.TabIndex = 13;
-            this.dbConnectablePath.Text = "接続OKパス";
-            this.dbConnectablePath.Visible = false;
+            this.postgresDbConnectablePath.AutoSize = true;
+            this.postgresDbConnectablePath.Location = new System.Drawing.Point(390, 89);
+            this.postgresDbConnectablePath.Name = "postgresDbConnectablePath";
+            this.postgresDbConnectablePath.Size = new System.Drawing.Size(63, 12);
+            this.postgresDbConnectablePath.TabIndex = 13;
+            this.postgresDbConnectablePath.Text = "接続OKパス";
+            this.postgresDbConnectablePath.Visible = false;
             // 
             // clearBtn
             // 
@@ -241,61 +241,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SQLite";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label6.Location = new System.Drawing.Point(41, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(89, 17);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "DBファイルパス";
-            // 
-            // sqliteSaveBtn
-            // 
-            this.sqliteSaveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.sqliteSaveBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteSaveBtn.Location = new System.Drawing.Point(253, 108);
-            this.sqliteSaveBtn.Name = "sqliteSaveBtn";
-            this.sqliteSaveBtn.Size = new System.Drawing.Size(138, 23);
-            this.sqliteSaveBtn.TabIndex = 3;
-            this.sqliteSaveBtn.Text = "保存";
-            this.sqliteSaveBtn.UseVisualStyleBackColor = false;
-            this.sqliteSaveBtn.Click += new System.EventHandler(this.sqliteSaveBtn_Click);
-            // 
-            // sqliteTestConnectBtn
-            // 
-            this.sqliteTestConnectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.sqliteTestConnectBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteTestConnectBtn.Location = new System.Drawing.Point(74, 108);
-            this.sqliteTestConnectBtn.Name = "sqliteTestConnectBtn";
-            this.sqliteTestConnectBtn.Size = new System.Drawing.Size(138, 23);
-            this.sqliteTestConnectBtn.TabIndex = 2;
-            this.sqliteTestConnectBtn.Text = "テスト接続";
-            this.sqliteTestConnectBtn.UseVisualStyleBackColor = false;
-            this.sqliteTestConnectBtn.Click += new System.EventHandler(this.sqliteTestConnectBtn_Click);
-            // 
-            // sqliteOpenFileBtn
-            // 
-            this.sqliteOpenFileBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.sqliteOpenFileBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.sqliteOpenFileBtn.Location = new System.Drawing.Point(421, 45);
-            this.sqliteOpenFileBtn.Name = "sqliteOpenFileBtn";
-            this.sqliteOpenFileBtn.Size = new System.Drawing.Size(75, 23);
-            this.sqliteOpenFileBtn.TabIndex = 1;
-            this.sqliteOpenFileBtn.Text = "参照";
-            this.sqliteOpenFileBtn.UseVisualStyleBackColor = false;
-            this.sqliteOpenFileBtn.Click += new System.EventHandler(this.sqliteOpenFileBtn_Click);
-            // 
-            // sqliteDbFilePath
-            // 
-            this.sqliteDbFilePath.BackColor = System.Drawing.Color.White;
-            this.sqliteDbFilePath.Location = new System.Drawing.Point(62, 45);
-            this.sqliteDbFilePath.Name = "sqliteDbFilePath";
-            this.sqliteDbFilePath.ReadOnly = true;
-            this.sqliteDbFilePath.Size = new System.Drawing.Size(342, 19);
-            this.sqliteDbFilePath.TabIndex = 0;
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -309,6 +254,61 @@
             this.sqliteConnectableDbPath.TabIndex = 5;
             this.sqliteConnectableDbPath.Text = "sqlite接続可能文字列";
             this.sqliteConnectableDbPath.Visible = false;
+            // 
+            // sqliteDbFilePath
+            // 
+            this.sqliteDbFilePath.BackColor = System.Drawing.Color.White;
+            this.sqliteDbFilePath.Location = new System.Drawing.Point(62, 45);
+            this.sqliteDbFilePath.Name = "sqliteDbFilePath";
+            this.sqliteDbFilePath.ReadOnly = true;
+            this.sqliteDbFilePath.Size = new System.Drawing.Size(342, 19);
+            this.sqliteDbFilePath.TabIndex = 0;
+            // 
+            // sqliteOpenFileBtn
+            // 
+            this.sqliteOpenFileBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.sqliteOpenFileBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.sqliteOpenFileBtn.Location = new System.Drawing.Point(421, 45);
+            this.sqliteOpenFileBtn.Name = "sqliteOpenFileBtn";
+            this.sqliteOpenFileBtn.Size = new System.Drawing.Size(75, 23);
+            this.sqliteOpenFileBtn.TabIndex = 1;
+            this.sqliteOpenFileBtn.Text = "参照";
+            this.sqliteOpenFileBtn.UseVisualStyleBackColor = false;
+            this.sqliteOpenFileBtn.Click += new System.EventHandler(this.sqliteOpenFileBtn_Click);
+            // 
+            // sqliteTestConnectBtn
+            // 
+            this.sqliteTestConnectBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.sqliteTestConnectBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.sqliteTestConnectBtn.Location = new System.Drawing.Point(74, 108);
+            this.sqliteTestConnectBtn.Name = "sqliteTestConnectBtn";
+            this.sqliteTestConnectBtn.Size = new System.Drawing.Size(138, 23);
+            this.sqliteTestConnectBtn.TabIndex = 2;
+            this.sqliteTestConnectBtn.Text = "テスト接続";
+            this.sqliteTestConnectBtn.UseVisualStyleBackColor = false;
+            this.sqliteTestConnectBtn.Click += new System.EventHandler(this.sqliteTestConnectBtn_Click);
+            // 
+            // sqliteSaveBtn
+            // 
+            this.sqliteSaveBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.sqliteSaveBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.sqliteSaveBtn.Location = new System.Drawing.Point(253, 108);
+            this.sqliteSaveBtn.Name = "sqliteSaveBtn";
+            this.sqliteSaveBtn.Size = new System.Drawing.Size(138, 23);
+            this.sqliteSaveBtn.TabIndex = 3;
+            this.sqliteSaveBtn.Text = "保存";
+            this.sqliteSaveBtn.UseVisualStyleBackColor = false;
+            this.sqliteSaveBtn.Click += new System.EventHandler(this.sqliteSaveBtn_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label6.Location = new System.Drawing.Point(41, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 17);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "DBファイルパス";
             // 
             // DbConnect
             // 
@@ -349,13 +349,13 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Label postgresDbConnectablePath;
+        private System.Windows.Forms.Label sqliteConnectableDbPath;
         private System.Windows.Forms.TextBox sqliteDbFilePath;
-        private System.Windows.Forms.Button sqliteOpenFileBtn;
         private System.Windows.Forms.Button sqliteSaveBtn;
         private System.Windows.Forms.Button sqliteTestConnectBtn;
+        private System.Windows.Forms.Button sqliteOpenFileBtn;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button clearBtn;
-        private System.Windows.Forms.Label dbConnectablePath;
-        private System.Windows.Forms.Label sqliteConnectableDbPath;
     }
 }

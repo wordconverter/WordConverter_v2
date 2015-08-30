@@ -107,6 +107,8 @@
     <Compile Include="Forms\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Services\IchiranInitServiceBase.cs" />
+    <Compile Include="Services\IchiranInitServiceKojinMode.cs" />
     <Compile Include="Models\InBo\DbConnectInBo.cs" />
     <Compile Include="Forms\Henshu.cs">
       <SubType>Form</SubType>
@@ -192,7 +194,7 @@
     <Compile Include="Models\Entity\WordDic.cs" />
     <Compile Include="Models\Entity\WordShinsei.cs" />
     <Compile Include="Services\IchiranBoCreateService.cs" />
-    <Compile Include="Services\IchiranInitService.cs" />
+    <Compile Include="Services\IchiranInitServiceFukusuninMode.cs" />
     <Compile Include="Services\IkkatsuRegistBtnService.cs" />
     <Compile Include="Services\IkkatsuTorokuInitService.cs" />
     <Compile Include="Services\IkkatsuTorokuReadFileService.cs" />

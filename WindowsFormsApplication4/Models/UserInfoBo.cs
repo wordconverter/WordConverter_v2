@@ -14,5 +14,6 @@ namespace WordConverter_v2.Models
         public Boolean snake { get; set; }
         public int dispNumber { get; set; }
         public string hotKey { get; set; }
+        public int startUpMode { get; set; }
     }
 }

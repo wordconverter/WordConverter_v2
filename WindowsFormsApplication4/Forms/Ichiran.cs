@@ -36,12 +36,25 @@ namespace WordConverter_v2.Forms
 
         public void ichiran_Load()
         {
-            IchiranInitService initService = new IchiranInitService();
+            IchiranInitServiceFukusuninMode initServiceFukusunin = new IchiranInitServiceFukusuninMode();
+            IchiranInitServiceKojinMode initServiceKojin = new IchiranInitServiceKojinMode();
+
             IchiranInitServiceInBo initServiceInBo = new IchiranInitServiceInBo();
             initServiceInBo.clipboardText = Clipboard.GetText();
             initServiceInBo.dispNumber = BaseForm.UserInfo.dispNumber;
-            initService.setInBo(initServiceInBo);
-            IchiranInitServiceOutBo initServiceOutBo = initService.execute();
+            initServiceFukusunin.setInBo(initServiceInBo);
+            initServiceKojin.setInBo(initServiceInBo);
+
+            IchiranInitServiceOutBo initServiceOutBo = new IchiranInitServiceOutBo();
+
+            if (BaseForm.UserInfo.startUpMode == (int)StartUpMode.複数人)
+            {
+                initServiceOutBo = initServiceFukusunin.execute();
+            }
+            else if (BaseForm.UserInfo.startUpMode == (int)StartUpMode.個人)
+            {
+                initServiceOutBo = initServiceKojin.execute();
+            }
 
             ichiranDataGridView.DataSource = initServiceOutBo.wordList;
             ichiranDataGridView.Columns["ronri_name1"].Width = 110;
