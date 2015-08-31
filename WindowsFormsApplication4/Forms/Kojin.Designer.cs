@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.hotKey = new System.Windows.Forms.TextBox();
             this.displayNumberRadioBtn1 = new System.Windows.Forms.RadioButton();
             this.displayNumberRadioBtn2 = new System.Windows.Forms.RadioButton();
@@ -41,6 +42,8 @@
             this.regist = new System.Windows.Forms.Button();
             this.clear = new System.Windows.Forms.Button();
             this.displayNumberRadioBtn4 = new System.Windows.Forms.RadioButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // hotKey
@@ -99,6 +102,8 @@
             this.pascalCaseCheckBox.TabIndex = 4;
             this.pascalCaseCheckBox.Text = "PascalCase";
             this.pascalCaseCheckBox.UseVisualStyleBackColor = true;
+            this.pascalCaseCheckBox.Validating += new System.ComponentModel.CancelEventHandler(this.pascalCaseCheckBox_Validating);
+            this.pascalCaseCheckBox.Validated += new System.EventHandler(this.pascalCaseCheckBox_Validated);
             // 
             // camelCaseCheckBox
             // 
@@ -110,6 +115,8 @@
             this.camelCaseCheckBox.TabIndex = 5;
             this.camelCaseCheckBox.Text = "camelCase";
             this.camelCaseCheckBox.UseVisualStyleBackColor = true;
+            this.camelCaseCheckBox.Validating += new System.ComponentModel.CancelEventHandler(this.camelCaseCheckBox_Validating);
+            this.camelCaseCheckBox.Validated += new System.EventHandler(this.camelCaseCheckBox_Validated);
             // 
             // snakeCaseCheckBox
             // 
@@ -121,6 +128,8 @@
             this.snakeCaseCheckBox.TabIndex = 6;
             this.snakeCaseCheckBox.Text = "SNAKE_CASE";
             this.snakeCaseCheckBox.UseVisualStyleBackColor = true;
+            this.snakeCaseCheckBox.Validating += new System.ComponentModel.CancelEventHandler(this.snakeCaseCheckBox_Validating);
+            this.snakeCaseCheckBox.Validated += new System.EventHandler(this.snakeCaseCheckBox_Validated);
             // 
             // groupBox1
             // 
@@ -154,27 +163,27 @@
             // 
             // regist
             // 
+            this.regist.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.regist.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.regist.Location = new System.Drawing.Point(57, 258);
             this.regist.Name = "regist";
             this.regist.Size = new System.Drawing.Size(90, 23);
             this.regist.TabIndex = 10;
             this.regist.Text = "登録";
-            this.regist.UseVisualStyleBackColor = true;
+            this.regist.UseVisualStyleBackColor = false;
             this.regist.Click += new System.EventHandler(this.regist_Click);
-            this.regist.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // clear
             // 
+            this.clear.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.clear.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.clear.Location = new System.Drawing.Point(176, 258);
             this.clear.Name = "clear";
             this.clear.Size = new System.Drawing.Size(90, 23);
             this.clear.TabIndex = 11;
             this.clear.Text = "クリア";
-            this.clear.UseVisualStyleBackColor = true;
+            this.clear.UseVisualStyleBackColor = false;
             this.clear.Click += new System.EventHandler(this.clear_Click);
-            this.clear.BackColor = System.Drawing.SystemColors.ButtonFace;
             // 
             // displayNumberRadioBtn4
             // 
@@ -188,10 +197,15 @@
             this.displayNumberRadioBtn4.Text = "制限なし";
             this.displayNumberRadioBtn4.UseVisualStyleBackColor = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // Kojin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(327, 316);
             this.Controls.Add(this.displayNumberRadioBtn4);
             this.Controls.Add(this.clear);
@@ -208,14 +222,13 @@
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Kojin";
+            this.Opacity = 0.98D;
             this.Text = "個人設定";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Kojin_FormClosing);
             this.Load += new System.EventHandler(this.Kojin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
-            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.Opacity = 0.98D;
 
         }
 
@@ -234,5 +247,6 @@
         private System.Windows.Forms.Button regist;
         private System.Windows.Forms.Button clear;
         private System.Windows.Forms.RadioButton displayNumberRadioBtn4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

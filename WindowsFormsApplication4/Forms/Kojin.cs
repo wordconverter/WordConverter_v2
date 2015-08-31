@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WordConverter_v2.Const;
 using WordConverter_v2.Forms;
 using WordConverter_v2.Models;
 using WordConvertTool;
@@ -63,6 +64,15 @@ namespace WordConverter_v2.Forms
                 "入力エラー",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            if (this.camelCaseCheckBox.Checked == false
+                || this.pascalCaseCheckBox.Checked == false
+                || this.snakeCaseCheckBox.Checked == false)
+            {
+                errorProvider1.SetError(this.groupBox1, MessageConst.ERR_009);
 
                 return;
             }
@@ -187,5 +197,34 @@ namespace WordConverter_v2.Forms
             this.Hide();
         }
 
+        private void pascalCaseCheckBox_Validated(object sender, EventArgs e)
+        {
+            //errorProvider1.SetError(this.groupBox1, "");
+        }
+
+        private void camelCaseCheckBox_Validated(object sender, EventArgs e)
+        {
+            //errorProvider1.SetError(this.groupBox1, "");
+        }
+
+        private void snakeCaseCheckBox_Validated(object sender, EventArgs e)
+        {
+            //errorProvider1.SetError(this.groupBox1, "");
+        }
+
+        private void pascalCaseCheckBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            errorProvider1.SetError(this.groupBox1, "");
+        }
+
+        private void camelCaseCheckBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            errorProvider1.SetError(this.groupBox1, "");
+        }
+
+        private void snakeCaseCheckBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            errorProvider1.SetError(this.groupBox1, "");
+        }
     }
 }
