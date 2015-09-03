@@ -274,6 +274,31 @@ namespace WordConverter_v2.Forms
                 return false;
             }
 
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
+                if (dataGridView.Rows[i].Cells["ronri_name2"].Value != null
+                    && !string.IsNullOrWhiteSpace(dataGridView.Rows[i].Cells["ronri_name2"].Value.ToString())
+                    && dataGridView.Rows[i].Cells["butsuri_name"].Value != null
+                    && !string.IsNullOrWhiteSpace(dataGridView.Rows[i].Cells["butsuri_name"].Value.ToString()))
+                {
+                    continue;
+                }
+
+                MessageBox.Show(
+                        "必須項目が入力されていません。",
+                        "入力エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                return false;
+
+            }
+
             DialogResult result = MessageBox.Show(
                 "選択された単語を登録してもよろしいですか？",
                 "登録確認",
@@ -561,6 +586,45 @@ namespace WordConverter_v2.Forms
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             common.tabDrawItem(ref sender, ref e);
+        }
+
+        private void tanitsuDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+        }
+
+        private void tanitsuDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            DataGridView dgv = (DataGridView)sender;
+
+            //新しい行のセルでなく、セルの内容が変更されている時だけ検証する
+            if (e.RowIndex == dgv.NewRowIndex || !dgv.IsCurrentCellDirty)
+            {
+                return;
+            }
+
+            if (dgv.Columns[e.ColumnIndex].Name == "ronri_name2" &&
+                string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["ronri_name2"].ErrorText = "値が入力されていません。";
+
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "ronri_name2" &&
+                !string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["ronri_name2"].ErrorText = "";
+
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "butsuri_name" &&
+                string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["butsuri_name"].ErrorText = "値が入力されていません。";
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "butsuri_name" &&
+                !string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["butsuri_name"].ErrorText = "";
+            }
         }
     }
 }
