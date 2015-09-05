@@ -180,9 +180,10 @@ namespace WordConverter_v2.Forms
         private void 単一登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            HenshuInBo henshuInBo = new HenshuInBo();
-            henshuInBo.clipBoardText = Clipboard.GetText();
-            Henshu henshu = new Henshu(Constant.TANITSU_TOROKU, henshuInBo);
+            Henshu henshu = Henshu.Instance;
+            henshu.Show();
+            henshu.Activate();
+            henshu.moveHenshu(Clipboard.GetText(), Constant.TANITSU_TOROKU);
         }
 
 
@@ -194,9 +195,10 @@ namespace WordConverter_v2.Forms
         private void 一括登録ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            HenshuInBo henshuInBo = new HenshuInBo();
-            henshuInBo.clipBoardText = Clipboard.GetText();
-            Henshu henshu = new Henshu(Constant.IKKATSU_TOROKU, henshuInBo);
+            Henshu henshu = Henshu.Instance;
+            henshu.Show();
+            henshu.Activate();
+            henshu.moveHenshu(Clipboard.GetText(), Constant.IKKATSU_TOROKU);
         }
 
         /// <summary>
@@ -257,10 +259,20 @@ namespace WordConverter_v2.Forms
             else
             {
                 this.Close();
-                Shinsei shinsei = Shinsei.Instance;
-                shinsei.Show();
-                shinsei.Activate();
-                shinsei.moveShinsei(Clipboard.GetText());
+                if (BaseForm.UserInfo.kengen == Constant.KANRI)
+                {
+                    Henshu henshu = Henshu.Instance;
+                    henshu.Show();
+                    henshu.Activate();
+                    henshu.moveHenshu(Clipboard.GetText(), Constant.TANITSU_TOROKU);
+                }
+                else
+                {
+                    Shinsei shinsei = Shinsei.Instance;
+                    shinsei.Show();
+                    shinsei.Activate();
+                    shinsei.moveShinsei(Clipboard.GetText());
+                }
             }
         }
 

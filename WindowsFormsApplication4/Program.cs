@@ -30,9 +30,28 @@ namespace WordConverter_v2
                 return;
             }
 
+            //ThreadExceptionイベントハンドラを追加
+            Application.ThreadException +=
+                new System.Threading.ThreadExceptionEventHandler(
+                    Application_ThreadException);
+
             Program.ExecuteDDL();
             BaseForm baseForm = new BaseForm();
             Application.Run();
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            try
+            {
+                //エラーメッセージを表示する
+                MessageBox.Show(e.Exception.Message, "エラー");
+            }
+            finally
+            {
+                //アプリケーションを終了する
+                Application.Exit();
+            }
         }
 
 

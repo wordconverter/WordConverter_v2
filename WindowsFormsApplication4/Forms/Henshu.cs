@@ -31,27 +31,33 @@ namespace WordConverter_v2.Forms
                 return _instance;
             }
         }
-
         private Henshu()
         {
             InitializeComponent();
-            this.Show();
-            this.Activate();
         }
 
-        /// <summary>
-        /// コンストラクタ（引数あり）
-        /// </summary>
-        /// <param name="selectedTanIndex"></param>
-        /// <param name="henshuInBo"></param>
-        public Henshu(int selectedTanIndex, HenshuInBo henshuInBo)
+
+        internal void moveHenshu(string clipBoardText, int selectedIndex)
         {
-            this.henshuInBo = henshuInBo;
-            InitializeComponent();
-            this.Show();
-            this.Activate();
-            this.tabControl1.SelectedIndex = selectedTanIndex;
+            this.ronrimei1TextBox.Text = clipBoardText;
+            this.tabControl1.SelectedIndex = selectedIndex;
+            
         }
+
+        ///// <summary>
+        ///// コンストラクタ（引数あり）
+        ///// </summary>
+        ///// <param name="selectedTanIndex"></param>
+        ///// <param name="henshuInBo"></param>
+        //public Henshu(int selectedTanIndex, HenshuInBo henshuInBo)
+        //{
+        //    this.henshuInBo = henshuInBo;
+        //    InitializeComponent();
+        //    this.Show();
+        //    this.Activate();
+        //    this.tabControl1.SelectedIndex = selectedTanIndex;
+        //    this.ronrimei1TextBox.Text = henshuInBo.clipBoardText;
+        //}
 
         /// <summary>
         /// 「読み込み」アクション
@@ -626,5 +632,6 @@ namespace WordConverter_v2.Forms
                 dgv.Rows[e.RowIndex].Cells["butsuri_name"].ErrorText = "";
             }
         }
+
     }
 }
