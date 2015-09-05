@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text;
 using System.Windows.Forms;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
@@ -242,19 +243,24 @@ namespace WordConverter_v2.Forms
         /// </summary>
         private void setClipBordMyValue()
         {
-            String val = "";
+            StringBuilder val = new StringBuilder();
+            int index = 0;
             foreach (DataGridViewCell c in ichiranDataGridView.SelectedCells)
             {
                 if (!String.IsNullOrEmpty(c.Value.ToString()))
                 {
-                    val += c.Value + System.Environment.NewLine;
+                    if (index > 0)
+                    {
+                        val.AppendLine();
+                    }
+                    val.Append(c.Value);
+                    index++;
                 }
             }
-            if (val.Trim() != Constant.NONE_WORD)
+            if (val.ToString().Trim() != Constant.NONE_WORD)
             {
                 this.Close();
-                val = val.Remove(val.Length - 1);
-                Clipboard.SetText(val);
+                Clipboard.SetText(val.ToString());
             }
             else
             {
