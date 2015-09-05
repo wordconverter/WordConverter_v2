@@ -96,9 +96,9 @@ namespace WordConverter_v2.Common
         this IQueryable<HenshuWordBo> source, object[] keyword)
         {
             Expression<Func<HenshuWordBo, bool>> predict = x => 1 == 1;
-            //var ronriname1 = keyword[0].ToString();
-            //// ronriname2 = keyword[1].ToString();
-            //var butsuriname = keyword[1].ToString();
+            var ronriname1 = keyword[0].ToString();
+            var butsuriname = keyword[1].ToString();
+            var data_type = keyword[2].ToString();
 
             //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
             //    !String.IsNullOrEmpty(keyword[1].ToString()) &&

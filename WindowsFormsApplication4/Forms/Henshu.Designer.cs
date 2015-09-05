@@ -37,6 +37,7 @@ namespace WordConverter_v2.Forms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.registeredPairsCbx = new System.Windows.Forms.CheckBox();
             this.dataTypeCbx = new System.Windows.Forms.ComboBox();
             this.kensu = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,13 +61,17 @@ namespace WordConverter_v2.Forms
             this.readFile = new System.Windows.Forms.Button();
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.orSettingBtn = new System.Windows.Forms.Button();
+            this.orSetthingDataGridView1 = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.registeredPairsCbx = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.orSetthingDataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +79,7 @@ namespace WordConverter_v2.Forms
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl1.HotTrack = true;
@@ -112,6 +118,16 @@ namespace WordConverter_v2.Forms
             this.tabPage1.Size = new System.Drawing.Size(737, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
+            // 
+            // registeredPairsCbx
+            // 
+            this.registeredPairsCbx.AutoSize = true;
+            this.registeredPairsCbx.Location = new System.Drawing.Point(330, 70);
+            this.registeredPairsCbx.Name = "registeredPairsCbx";
+            this.registeredPairsCbx.Size = new System.Drawing.Size(89, 16);
+            this.registeredPairsCbx.TabIndex = 27;
+            this.registeredPairsCbx.Text = "対で登録する";
+            this.registeredPairsCbx.UseVisualStyleBackColor = true;
             // 
             // dataTypeCbx
             // 
@@ -421,19 +437,43 @@ namespace WordConverter_v2.Forms
             this.filePath.Size = new System.Drawing.Size(379, 19);
             this.filePath.TabIndex = 9;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage3.Controls.Add(this.orSettingBtn);
+            this.tabPage3.Controls.Add(this.orSetthingDataGridView1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(737, 450);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "ORマッピング";
+            // 
+            // orSettingBtn
+            // 
+            this.orSettingBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.orSettingBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.orSettingBtn.Location = new System.Drawing.Point(281, 382);
+            this.orSettingBtn.Name = "orSettingBtn";
+            this.orSettingBtn.Size = new System.Drawing.Size(177, 30);
+            this.orSettingBtn.TabIndex = 1;
+            this.orSettingBtn.Text = "登録";
+            this.orSettingBtn.UseVisualStyleBackColor = false;
+            this.orSettingBtn.Click += new System.EventHandler(this.orSettingBtn_Click);
+            // 
+            // orSetthingDataGridView1
+            // 
+            this.orSetthingDataGridView1.BackgroundColor = System.Drawing.Color.AliceBlue;
+            this.orSetthingDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.orSetthingDataGridView1.Location = new System.Drawing.Point(63, 68);
+            this.orSetthingDataGridView1.Name = "orSetthingDataGridView1";
+            this.orSetthingDataGridView1.RowTemplate.Height = 21;
+            this.orSetthingDataGridView1.Size = new System.Drawing.Size(611, 287);
+            this.orSetthingDataGridView1.TabIndex = 0;
+            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // registeredPairsCbx
-            // 
-            this.registeredPairsCbx.AutoSize = true;
-            this.registeredPairsCbx.Location = new System.Drawing.Point(330, 70);
-            this.registeredPairsCbx.Name = "registeredPairsCbx";
-            this.registeredPairsCbx.Size = new System.Drawing.Size(89, 16);
-            this.registeredPairsCbx.TabIndex = 27;
-            this.registeredPairsCbx.Text = "対で登録する";
-            this.registeredPairsCbx.UseVisualStyleBackColor = true;
             // 
             // Henshu
             // 
@@ -456,6 +496,8 @@ namespace WordConverter_v2.Forms
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ikkatsuDataGridView)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.orSetthingDataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -491,5 +533,8 @@ namespace WordConverter_v2.Forms
         private Label label2;
         private ComboBox dataTypeCbx;
         private CheckBox registeredPairsCbx;
+        private TabPage tabPage3;
+        private DataGridView orSetthingDataGridView1;
+        private Button orSettingBtn;
     }
 }

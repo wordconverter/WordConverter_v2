@@ -40,11 +40,8 @@ namespace WordConverter_v2.Services
                 string key = this.inBo.clipboardText;
                 string nl = Environment.NewLine;
                 String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);
-                bool isExistWordDic = false;
                 foreach (String ronriName in keys)
                 {
-                    isExistWordDic = false;
-
                     using (var context = new MyContext())
                     {
                         IQueryable<HenshuWordBo> words = from a in context.WordDic
@@ -59,26 +56,14 @@ namespace WordConverter_v2.Services
                                                              version = (int)a.version
                                                          };
                         String condition = ronriName.Trim();
-                        HenshuWordBo[] dispWords = words.Where(x => x.ronri_name1 == condition).ToArray();
+                        HenshuWordBo[] dbWords = words.Where(x => x.ronri_name1 == condition).ToArray();
 
-                        foreach (var word in dispWords)
+                        if (dbWords.Length == 0)
                         {
                             HenshuWordBo w = new HenshuWordBo();
-                            w.word_id = word.word_id;
-                            w.ronri_name1 = word.ronri_name1;
-                            w.butsuri_name = word.butsuri_name;
-                            w.user_name = word.user_name;
-                            w.cre_date = word.cre_date;
-                            w.version = (int)word.version;
+                            w.ronri_name1 = ronriName;
                             wordList.Add(w);
-                            isExistWordDic = true;
                         }
-                    }
-                    if (!isExistWordDic)
-                    {
-                        HenshuWordBo w = new HenshuWordBo();
-                        w.ronri_name1 = ronriName;
-                        wordList.Add(w);
                     }
                 }
             }

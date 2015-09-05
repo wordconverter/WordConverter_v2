@@ -184,9 +184,9 @@ namespace WordConverter_v2.Forms
         {
             this.Close();
             Henshu henshu = Henshu.Instance;
+            henshu.moveHenshu(Clipboard.GetText(), Constant.TANITSU_TOROKU);
             henshu.Show();
             henshu.Activate();
-            henshu.moveHenshu(Clipboard.GetText(), Constant.TANITSU_TOROKU);
         }
 
 
@@ -199,9 +199,9 @@ namespace WordConverter_v2.Forms
         {
             this.Close();
             Henshu henshu = Henshu.Instance;
+            henshu.moveHenshu(Clipboard.GetText(), Constant.IKKATSU_TOROKU);
             henshu.Show();
             henshu.Activate();
-            henshu.moveHenshu(Clipboard.GetText(), Constant.IKKATSU_TOROKU);
         }
 
         /// <summary>
@@ -318,11 +318,6 @@ namespace WordConverter_v2.Forms
         {
             e.Cancel = true;
             this.Hide();
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void プロパティ作成アノテーションありToolStripMenuItem_Click(object sender, EventArgs e)

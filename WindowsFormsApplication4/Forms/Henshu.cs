@@ -36,12 +36,17 @@ namespace WordConverter_v2.Forms
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clipBoardText"></param>
+        /// <param name="selectedIndex"></param>
         internal void moveHenshu(string clipBoardText, int selectedIndex)
         {
             this.ronrimei1TextBox.Text = clipBoardText;
+            this.henshuInBo.clipBoardText = clipBoardText;
             this.tabControl1.SelectedIndex = selectedIndex;
-
+            
         }
 
 
@@ -434,7 +439,6 @@ namespace WordConverter_v2.Forms
                 ikkatsuService.setInBo(inBo);
                 IkkatsuTorokuInitServiceOutBo outBo = ikkatsuService.execute();
                 this.henshuViewDispSetthing(ref this.ikkatsuDataGridView, outBo.henshuWordBoList);
-                this.searchAction(ref this.ikkatsuDataGridView, this);
             }
         }
 
@@ -535,23 +539,42 @@ namespace WordConverter_v2.Forms
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Henshu_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;
             this.Hide();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ronrimei1TextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.ronrimei1TextBox, "");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void butsurimeiTextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.butsurimeiTextBox, "");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanitsuDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (this.tanitsuDataGridView != null && this.tanitsuDataGridView.Rows.Count > 0)
@@ -576,6 +599,11 @@ namespace WordConverter_v2.Forms
             dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = common.switchRowBackColor(dataGridView1.Rows[rowIndex]);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanitsuDataGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (tanitsuDataGridView.CurrentCellAddress.X == 0 && tanitsuDataGridView.IsCurrentCellDirty)
@@ -585,16 +613,31 @@ namespace WordConverter_v2.Forms
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
         {
             common.tabDrawItem(ref sender, ref e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanitsuDataGridView_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tanitsuDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             DataGridView dgv = (DataGridView)sender;
@@ -641,6 +684,11 @@ namespace WordConverter_v2.Forms
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dataType"></param>
+        /// <returns></returns>
         private bool isCorrectDataType(string dataType)
         {
             List<String> dataTypeList = new List<string>();
@@ -670,10 +718,19 @@ namespace WordConverter_v2.Forms
             return false;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataTypeCbx_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.dataTypeCbx, "");
         }
 
+        private void orSettingBtn_Click(object sender, EventArgs e)
+        {
+            this.orSetthingDataGridView1.DataSource = wordList;
+        }
     }
 }
