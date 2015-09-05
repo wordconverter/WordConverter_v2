@@ -41,23 +41,9 @@ namespace WordConverter_v2.Forms
         {
             this.ronrimei1TextBox.Text = clipBoardText;
             this.tabControl1.SelectedIndex = selectedIndex;
-            
+
         }
 
-        ///// <summary>
-        ///// コンストラクタ（引数あり）
-        ///// </summary>
-        ///// <param name="selectedTanIndex"></param>
-        ///// <param name="henshuInBo"></param>
-        //public Henshu(int selectedTanIndex, HenshuInBo henshuInBo)
-        //{
-        //    this.henshuInBo = henshuInBo;
-        //    InitializeComponent();
-        //    this.Show();
-        //    this.Activate();
-        //    this.tabControl1.SelectedIndex = selectedTanIndex;
-        //    this.ronrimei1TextBox.Text = henshuInBo.clipBoardText;
-        //}
 
         /// <summary>
         /// 「読み込み」アクション
@@ -159,7 +145,6 @@ namespace WordConverter_v2.Forms
             TanitsuTorokuSearchServiceInBo torokuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
             TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
             torokuSearchServiceInBo.ronrimei1TextBox = henshu.ronrimei1TextBox.Text;
-            torokuSearchServiceInBo.ronrimei2TextBox = henshu.ronrimei2TextBox.Text;
             torokuSearchServiceInBo.butsurimeiTextBox = henshu.butsurimeiTextBox.Text;
             torokuSearchService.setInBo(torokuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
@@ -175,7 +160,6 @@ namespace WordConverter_v2.Forms
         private void clearBtn_Click(object sender, EventArgs e)
         {
             this.ronrimei1TextBox.Text = "";
-            this.ronrimei2TextBox.Text = "";
             this.butsurimeiTextBox.Text = "";
         }
 
@@ -193,9 +177,9 @@ namespace WordConverter_v2.Forms
                 errorProvider1.SetError(this.ronrimei1TextBox, MessageConst.ERR_001);
                 isNgRequired = true;
             }
-            if (String.IsNullOrEmpty(this.ronrimei2TextBox.Text))
+            if (String.IsNullOrEmpty(this.dataTypeCbx.Text))
             {
-                errorProvider1.SetError(this.ronrimei2TextBox, MessageConst.ERR_001);
+                errorProvider1.SetError(this.dataTypeCbx, MessageConst.ERR_001);
                 isNgRequired = true;
             }
             if (String.IsNullOrEmpty(this.butsurimeiTextBox.Text))
@@ -210,9 +194,10 @@ namespace WordConverter_v2.Forms
             TanitsuTorokuAddServiceInBo addServiseInBo = new TanitsuTorokuAddServiceInBo();
             TanitsuTorokuAddService addService = new TanitsuTorokuAddService();
             addServiseInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
-            addServiseInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
             addServiseInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
+            addServiseInBo.dataType = this.dataTypeCbx.Text;
             addServiseInBo.tanitsuDataGridView = this.tanitsuDataGridView;
+            addServiseInBo.registeredPairsFlg = this.registeredPairsCbx.Checked;
             addService.setInBo(addServiseInBo);
             TanitsuTorokuAddServiceOutBo addServiseOutBo = addService.execute();
 
@@ -287,8 +272,8 @@ namespace WordConverter_v2.Forms
                 {
                     continue;
                 }
-                if (dataGridView.Rows[i].Cells["ronri_name2"].Value != null
-                    && !string.IsNullOrWhiteSpace(dataGridView.Rows[i].Cells["ronri_name2"].Value.ToString())
+                if (dataGridView.Rows[i].Cells["data_type"].Value != null
+                    && !string.IsNullOrWhiteSpace(dataGridView.Rows[i].Cells["data_type"].Value.ToString())
                     && dataGridView.Rows[i].Cells["butsuri_name"].Value != null
                     && !string.IsNullOrWhiteSpace(dataGridView.Rows[i].Cells["butsuri_name"].Value.ToString()))
                 {
@@ -297,6 +282,28 @@ namespace WordConverter_v2.Forms
 
                 MessageBox.Show(
                         "必須項目が入力されていません。",
+                        "入力エラー",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                return false;
+
+            }
+
+            for (int i = 0; i < dataGridView.Rows.Count; i++)
+            {
+                if (dataGridView.Rows[i].Cells[0].Value == null
+                    || (bool)dataGridView.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
+                if (this.isCorrectDataType(dataGridView.Rows[i].Cells["data_type"].Value.ToString()))
+                {
+                    continue;
+                }
+
+                MessageBox.Show(
+                        "データ型が不正です。",
                         "入力エラー",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -445,23 +452,26 @@ namespace WordConverter_v2.Forms
             this.kensu.Text = wordList.Count.ToString();
 
             dataGridView.Columns["ronri_name1"].HeaderText = "論理名1";
-            dataGridView.Columns["ronri_name2"].HeaderText = "論理名2";
             dataGridView.Columns["butsuri_name"].HeaderText = "物理名";
+            dataGridView.Columns["data_type"].HeaderText = "データ型";
             dataGridView.Columns["user_name"].HeaderText = "登録ユーザー";
             dataGridView.Columns["cre_date"].HeaderText = "登録日付";
             dataGridView.Columns["word_id"].Visible = false;
             dataGridView.Columns["version"].Visible = false;
             dataGridView.Columns["ronri_name1"].ReadOnly = true;
-            dataGridView.Columns["ronri_name2"].ReadOnly = true;
             dataGridView.Columns["butsuri_name"].ReadOnly = true;
+            dataGridView.Columns["data_type"].ReadOnly = true;
             dataGridView.Columns["user_name"].ReadOnly = true;
             dataGridView.Columns["cre_date"].ReadOnly = true;
+            dataGridView.Columns["ronri_name1"].Width = 150;
+            dataGridView.Columns["butsuri_name"].Width = 150;
+            dataGridView.Columns["data_type"].Width = 80;
             dataGridView.Columns["user_name"].Width = 100;
             dataGridView.Columns["cre_date"].Width = 130;
 
             dataGridView.Columns["ronri_name1"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.Columns["ronri_name2"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["butsuri_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["data_type"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["user_name"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["cre_date"].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
@@ -496,7 +506,7 @@ namespace WordConverter_v2.Forms
             TanitsuTorokuSearchServiceInBo torokuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
             TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
             torokuSearchServiceInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
-            torokuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
+            //torokuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
             torokuSearchServiceInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
             torokuSearchService.setInBo(torokuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
@@ -531,24 +541,10 @@ namespace WordConverter_v2.Forms
             this.Hide();
         }
 
-        private void ronrimei2TextBox_Validating(object sender, CancelEventArgs e)
-        {
-            if (!String.IsNullOrEmpty(this.ronrimei2TextBox.Text)
-                && !Regex.IsMatch(this.ronrimei2TextBox.Text, @"^\p{IsHiragana}*$"))
-            {
-                e.Cancel = true;
-                errorProvider1.SetError(this.ronrimei2TextBox, "ひらがな以外が入力されました。");
-            }
-        }
 
         private void ronrimei1TextBox_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(this.ronrimei1TextBox, "");
-        }
-
-        private void ronrimei2TextBox_Validated(object sender, EventArgs e)
-        {
-            errorProvider1.SetError(this.ronrimei2TextBox, "");
         }
 
         private void butsurimeiTextBox_Validated(object sender, EventArgs e)
@@ -575,8 +571,8 @@ namespace WordConverter_v2.Forms
         /// <param name="rowIndex"></param>
         private void columnsReadOnlyValueChange(ref DataGridView dataGridView1, int rowIndex)
         {
-            dataGridView1.Rows[rowIndex].Cells["ronri_name2"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["ronri_name2"].ReadOnly;
             dataGridView1.Rows[rowIndex].Cells["butsuri_name"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["butsuri_name"].ReadOnly;
+            dataGridView1.Rows[rowIndex].Cells["data_type"].ReadOnly = !dataGridView1.Rows[rowIndex].Cells["data_type"].ReadOnly;
             dataGridView1.Rows[rowIndex].DefaultCellStyle.BackColor = common.switchRowBackColor(dataGridView1.Rows[rowIndex]);
         }
 
@@ -609,18 +605,6 @@ namespace WordConverter_v2.Forms
                 return;
             }
 
-            if (dgv.Columns[e.ColumnIndex].Name == "ronri_name2" &&
-                string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
-            {
-                dgv.Rows[e.RowIndex].Cells["ronri_name2"].ErrorText = "値が入力されていません。";
-
-            }
-            if (dgv.Columns[e.ColumnIndex].Name == "ronri_name2" &&
-                !string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
-            {
-                dgv.Rows[e.RowIndex].Cells["ronri_name2"].ErrorText = "";
-
-            }
             if (dgv.Columns[e.ColumnIndex].Name == "butsuri_name" &&
                 string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
             {
@@ -631,6 +615,64 @@ namespace WordConverter_v2.Forms
             {
                 dgv.Rows[e.RowIndex].Cells["butsuri_name"].ErrorText = "";
             }
+            if (dgv.Columns[e.ColumnIndex].Name == "data_type" &&
+                string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["data_type"].ErrorText = "値が入力されていません。";
+
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "data_type" &&
+                !string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["data_type"].ErrorText = "";
+
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "data_type" &&
+                !this.isCorrectDataType(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["data_type"].ErrorText = "データ型が不正です。";
+
+            }
+            if (dgv.Columns[e.ColumnIndex].Name == "data_type" &&
+                this.isCorrectDataType(e.FormattedValue.ToString()))
+            {
+                dgv.Rows[e.RowIndex].Cells["data_type"].ErrorText = "";
+
+            }
+        }
+
+        private bool isCorrectDataType(string dataType)
+        {
+            List<String> dataTypeList = new List<string>();
+
+            dataTypeList.Add("String");
+            dataTypeList.Add("Integer");
+            dataTypeList.Add("int");
+            dataTypeList.Add("Boolean");
+            dataTypeList.Add("boolean");
+            dataTypeList.Add("byte");
+            dataTypeList.Add("Byte");
+            dataTypeList.Add("short");
+            dataTypeList.Add("Short");
+            dataTypeList.Add("long");
+            dataTypeList.Add("Long");
+            dataTypeList.Add("char");
+            dataTypeList.Add("float");
+            dataTypeList.Add("Float");
+            dataTypeList.Add("double");
+            dataTypeList.Add("Double");
+
+            if (dataTypeList.Contains(dataType))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private void dataTypeCbx_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(this.dataTypeCbx, "");
         }
 
     }

@@ -18,10 +18,7 @@ namespace WordConverter_v2.Services
     /// </summary>
     class IchiranInitServiceFukusuninMode : IchiranInitServiceBase, IService<IchiranInitServiceInBo, IchiranInitServiceOutBo>
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        //private IchiranInitServiceInBo inBo = new IchiranInitServiceInBo();
+     
         private static CommonFunction common = new CommonFunction();
 
         /// <summary>

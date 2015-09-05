@@ -30,13 +30,14 @@ namespace WordConverter_v2.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.dataTypeCbx = new System.Windows.Forms.ComboBox();
             this.kensu = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@ namespace WordConverter_v2.Forms
             this.searchBtn = new System.Windows.Forms.Button();
             this.clearBtn = new System.Windows.Forms.Button();
             this.butsurimeiTextBox = new System.Windows.Forms.TextBox();
-            this.ronrimei2TextBox = new System.Windows.Forms.TextBox();
             this.tanitsuDataGridView = new System.Windows.Forms.DataGridView();
             this.ronrimei1TextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -61,6 +61,7 @@ namespace WordConverter_v2.Forms
             this.openFile = new System.Windows.Forms.Button();
             this.filePath = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.registeredPairsCbx = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tanitsuDataGridView)).BeginInit();
@@ -90,6 +91,8 @@ namespace WordConverter_v2.Forms
             // 
             this.tabPage1.AutoScroll = true;
             this.tabPage1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.tabPage1.Controls.Add(this.registeredPairsCbx);
+            this.tabPage1.Controls.Add(this.dataTypeCbx);
             this.tabPage1.Controls.Add(this.kensu);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label3);
@@ -101,7 +104,6 @@ namespace WordConverter_v2.Forms
             this.tabPage1.Controls.Add(this.searchBtn);
             this.tabPage1.Controls.Add(this.clearBtn);
             this.tabPage1.Controls.Add(this.butsurimeiTextBox);
-            this.tabPage1.Controls.Add(this.ronrimei2TextBox);
             this.tabPage1.Controls.Add(this.tanitsuDataGridView);
             this.tabPage1.Controls.Add(this.ronrimei1TextBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
@@ -110,6 +112,33 @@ namespace WordConverter_v2.Forms
             this.tabPage1.Size = new System.Drawing.Size(737, 450);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "単一登録";
+            // 
+            // dataTypeCbx
+            // 
+            this.dataTypeCbx.FormattingEnabled = true;
+            this.dataTypeCbx.Items.AddRange(new object[] {
+            "String",
+            "Integer",
+            "int",
+            "Boolean",
+            "boolean",
+            "byte",
+            "Byte",
+            "short",
+            "Short",
+            "long",
+            "Long",
+            "char",
+            "float",
+            "Float",
+            "double",
+            "Double",
+            ""});
+            this.dataTypeCbx.Location = new System.Drawing.Point(163, 68);
+            this.dataTypeCbx.Name = "dataTypeCbx";
+            this.dataTypeCbx.Size = new System.Drawing.Size(131, 20);
+            this.dataTypeCbx.TabIndex = 26;
+            this.dataTypeCbx.Validated += new System.EventHandler(this.dataTypeCbx_Validated);
             // 
             // kensu
             // 
@@ -133,7 +162,7 @@ namespace WordConverter_v2.Forms
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label3.Location = new System.Drawing.Point(90, 72);
+            this.label3.Location = new System.Drawing.Point(87, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 15);
             this.label3.TabIndex = 23;
@@ -142,20 +171,20 @@ namespace WordConverter_v2.Forms
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label2.Location = new System.Drawing.Point(90, 46);
+            this.label2.Location = new System.Drawing.Point(87, 69);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 15);
+            this.label2.Size = new System.Drawing.Size(58, 15);
             this.label2.TabIndex = 22;
-            this.label2.Text = "論理名2";
+            this.label2.Text = "データ型";
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label1.Location = new System.Drawing.Point(90, 18);
+            this.label1.Location = new System.Drawing.Point(87, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 15);
             this.label1.TabIndex = 21;
-            this.label1.Text = "論理名1";
+            this.label1.Text = "論理名";
             // 
             // delete
             // 
@@ -173,7 +202,7 @@ namespace WordConverter_v2.Forms
             // 
             this.addBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.addBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.addBtn.Location = new System.Drawing.Point(416, 99);
+            this.addBtn.Location = new System.Drawing.Point(416, 103);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(96, 23);
             this.addBtn.TabIndex = 17;
@@ -197,7 +226,7 @@ namespace WordConverter_v2.Forms
             // 
             this.searchBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.searchBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.searchBtn.Location = new System.Drawing.Point(192, 99);
+            this.searchBtn.Location = new System.Drawing.Point(192, 103);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(96, 23);
             this.searchBtn.TabIndex = 15;
@@ -209,7 +238,7 @@ namespace WordConverter_v2.Forms
             // 
             this.clearBtn.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.clearBtn.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.clearBtn.Location = new System.Drawing.Point(304, 99);
+            this.clearBtn.Location = new System.Drawing.Point(304, 103);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(96, 23);
             this.clearBtn.TabIndex = 16;
@@ -219,43 +248,34 @@ namespace WordConverter_v2.Forms
             // 
             // butsurimeiTextBox
             // 
-            this.butsurimeiTextBox.Location = new System.Drawing.Point(146, 68);
+            this.butsurimeiTextBox.Location = new System.Drawing.Point(163, 41);
             this.butsurimeiTextBox.Name = "butsurimeiTextBox";
             this.butsurimeiTextBox.Size = new System.Drawing.Size(417, 19);
             this.butsurimeiTextBox.TabIndex = 14;
             this.butsurimeiTextBox.Validated += new System.EventHandler(this.butsurimeiTextBox_Validated);
-            // 
-            // ronrimei2TextBox
-            // 
-            this.ronrimei2TextBox.Location = new System.Drawing.Point(146, 42);
-            this.ronrimei2TextBox.Name = "ronrimei2TextBox";
-            this.ronrimei2TextBox.Size = new System.Drawing.Size(417, 19);
-            this.ronrimei2TextBox.TabIndex = 13;
-            this.ronrimei2TextBox.Validating += new System.ComponentModel.CancelEventHandler(this.ronrimei2TextBox_Validating);
-            this.ronrimei2TextBox.Validated += new System.EventHandler(this.ronrimei2TextBox_Validated);
             // 
             // tanitsuDataGridView
             // 
             this.tanitsuDataGridView.AllowUserToResizeColumns = false;
             this.tanitsuDataGridView.AllowUserToResizeRows = false;
             this.tanitsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.tanitsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.tanitsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.tanitsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.tanitsuDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.tanitsuDataGridView.DefaultCellStyle = dataGridViewCellStyle7;
             this.tanitsuDataGridView.Location = new System.Drawing.Point(26, 139);
             this.tanitsuDataGridView.Name = "tanitsuDataGridView";
             this.tanitsuDataGridView.RowHeadersVisible = false;
@@ -269,7 +289,7 @@ namespace WordConverter_v2.Forms
             // 
             // ronrimei1TextBox
             // 
-            this.ronrimei1TextBox.Location = new System.Drawing.Point(146, 14);
+            this.ronrimei1TextBox.Location = new System.Drawing.Point(163, 14);
             this.ronrimei1TextBox.Name = "ronrimei1TextBox";
             this.ronrimei1TextBox.Size = new System.Drawing.Size(417, 19);
             this.ronrimei1TextBox.TabIndex = 12;
@@ -338,33 +358,33 @@ namespace WordConverter_v2.Forms
             this.ikkatsuDataGridView.AllowUserToResizeColumns = false;
             this.ikkatsuDataGridView.AllowUserToResizeRows = false;
             this.ikkatsuDataGridView.BackgroundColor = System.Drawing.Color.AliceBlue;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ikkatsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("メイリオ", 7.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ikkatsuDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.ikkatsuDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ikkatsuDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ikkatsuDataGridView.DefaultCellStyle = dataGridViewCellStyle9;
             this.ikkatsuDataGridView.Location = new System.Drawing.Point(26, 139);
             this.ikkatsuDataGridView.Name = "ikkatsuDataGridView";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ikkatsuDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("メイリオ", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ikkatsuDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.ikkatsuDataGridView.RowHeadersVisible = false;
             this.ikkatsuDataGridView.RowTemplate.Height = 21;
             this.ikkatsuDataGridView.Size = new System.Drawing.Size(670, 240);
@@ -405,6 +425,16 @@ namespace WordConverter_v2.Forms
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // registeredPairsCbx
+            // 
+            this.registeredPairsCbx.AutoSize = true;
+            this.registeredPairsCbx.Location = new System.Drawing.Point(330, 70);
+            this.registeredPairsCbx.Name = "registeredPairsCbx";
+            this.registeredPairsCbx.Size = new System.Drawing.Size(89, 16);
+            this.registeredPairsCbx.TabIndex = 27;
+            this.registeredPairsCbx.Text = "対で登録する";
+            this.registeredPairsCbx.UseVisualStyleBackColor = true;
+            // 
             // Henshu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -441,7 +471,6 @@ namespace WordConverter_v2.Forms
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Button clearBtn;
         private System.Windows.Forms.TextBox ronrimei1TextBox;
-        private System.Windows.Forms.TextBox ronrimei2TextBox;
         private System.Windows.Forms.TextBox butsurimeiTextBox;
         private System.Windows.Forms.DataGridView tanitsuDataGridView;
         private System.Windows.Forms.Button ikkatsuRegistBtn;
@@ -452,7 +481,6 @@ namespace WordConverter_v2.Forms
         private System.Windows.Forms.Button delete;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -460,5 +488,8 @@ namespace WordConverter_v2.Forms
         private Label kensu;
         private Label kensuIkkatsu;
         private Label label7;
+        private Label label2;
+        private ComboBox dataTypeCbx;
+        private CheckBox registeredPairsCbx;
     }
 }

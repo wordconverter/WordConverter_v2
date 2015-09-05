@@ -41,6 +41,7 @@ namespace WordConverter_v2.Services
             word = new IchiranWordBo();
             word.ronri_name1 = reader["ronri_name1"].ToString();
             word.butsuri_name = reader["butsuri_name"].ToString();
+            word.data_type = reader["data_type"].ToString();
             wordList.Add(word);
         }
 
@@ -75,6 +76,7 @@ namespace WordConverter_v2.Services
                     word = new IchiranWordBo();
                     word.ronri_name1 = reader["ronri_name1"].ToString();
                     word.butsuri_name = reader["butsuri_name"].ToString();
+                    word.data_type = reader["data_type"].ToString();
                     wordList.Add(word);
                     return false;
                 }
@@ -84,6 +86,7 @@ namespace WordConverter_v2.Services
                     word = new IchiranWordBo();
                     word.ronri_name1 = reader["ronri_name1"].ToString();
                     word.butsuri_name = reader["butsuri_name"].ToString().ToPascalCase();
+                    word.data_type = reader["data_type"].ToString();
                     wordList.Add(word);
                     isDoneRonriNameDisp = true;
                 }
@@ -92,6 +95,7 @@ namespace WordConverter_v2.Services
                     word = new IchiranWordBo();
                     word.ronri_name1 = isDoneRonriNameDisp ? "" : reader["ronri_name1"].ToString();
                     word.butsuri_name = reader["butsuri_name"].ToString().ToCamelCase();
+                    word.data_type = reader["data_type"].ToString();
                     wordList.Add(word);
                     isDoneRonriNameDisp = true;
                 }
@@ -100,6 +104,7 @@ namespace WordConverter_v2.Services
                     word = new IchiranWordBo();
                     word.ronri_name1 = isDoneRonriNameDisp ? "" : reader["ronri_name1"].ToString();
                     word.butsuri_name = reader["butsuri_name"].ToString().ToSnakeCase();
+                    word.data_type = reader["data_type"].ToString();
                     wordList.Add(word);
                 }
             }

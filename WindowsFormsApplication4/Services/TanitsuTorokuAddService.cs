@@ -50,8 +50,8 @@ namespace WordConverter_v2.Services
                 word = new HenshuWordBo();
                 word.word_id = this.inBo.tanitsuDataGridView.Rows[i].Cells["word_id"].Value.ToString().ToIntType();
                 word.ronri_name1 = this.inBo.tanitsuDataGridView.Rows[i].Cells["ronri_name1"].Value.ToString();
-                word.ronri_name2 = common.nullAble(this.inBo.tanitsuDataGridView.Rows[i].Cells["ronri_name2"].Value);
                 word.butsuri_name = this.inBo.tanitsuDataGridView.Rows[i].Cells["butsuri_name"].Value.ToString();
+                word.data_type = this.inBo.tanitsuDataGridView.Rows[i].Cells["data_type"].Value.ToString();
                 word.user_name = common.nullAble(this.inBo.tanitsuDataGridView.Rows[i].Cells["user_name"].Value);
                 word.version = common.nullAbleInt(this.inBo.tanitsuDataGridView.Rows[i].Cells["version"].Value);
                 word.cre_date = common.nullAble(this.inBo.tanitsuDataGridView.Rows[i].Cells["cre_date"].Value);
@@ -60,11 +60,20 @@ namespace WordConverter_v2.Services
 
             word = new HenshuWordBo();
             word.ronri_name1 = this.inBo.ronrimei1TextBox;
-            word.ronri_name2 = this.inBo.ronrimei2TextBox;
             word.butsuri_name = this.inBo.butsurimeiTextBox;
+            word.data_type = this.inBo.dataType;
             wordList.Add(word);
-            outBo.wordList = wordList;
 
+            if (this.inBo.registeredPairsFlg)
+            {
+                word = new HenshuWordBo();
+                word.ronri_name1 = this.inBo.butsurimeiTextBox;
+                word.butsuri_name = this.inBo.ronrimei1TextBox;
+                word.data_type = this.inBo.dataType;
+                wordList.Add(word);
+            }
+
+            outBo.wordList = wordList;
             return outBo;
         }
     }

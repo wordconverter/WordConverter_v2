@@ -30,8 +30,8 @@ namespace WordConverter_v2.Services
                                               {
                                                   word_id = a.word_id,
                                                   ronri_name1 = a.ronri_name1,
-                                                  ronri_name2 = a.ronri_name2,
                                                   butsuri_name = a.butsuri_name,
+                                                  data_type = a.data_type,
                                                   user_name = b.user_name,
                                                   cre_date = a.cre_date,
                                                   version = (int)a.version
@@ -39,8 +39,8 @@ namespace WordConverter_v2.Services
 
                 object[] keywords = new object[3];
                 keywords[0] = this.inBo.ronrimei1TextBox;
-                keywords[1] = this.inBo.ronrimei2TextBox;
-                keywords[2] = this.inBo.butsurimeiTextBox;
+                //keywords[1] = this.inBo.ronrimei2TextBox;
+                keywords[1] = this.inBo.butsurimeiTextBox;
 
                 IQueryable<HenshuWordBo> words = ws.WordDicWhereLike(keywords);
 

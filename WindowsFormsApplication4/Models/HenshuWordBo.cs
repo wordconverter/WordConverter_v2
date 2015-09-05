@@ -6,8 +6,8 @@ namespace WordConverter_v2.Models
     {
         public long word_id { get; set; }
         public string ronri_name1 { get; set; }
-        public string ronri_name2 { get; set; }
         public string butsuri_name { get; set; }
+        public string data_type { get; set; }
         public string user_name { get; set; }
         public string cre_date { get; set; }
         public int version { get; set; }

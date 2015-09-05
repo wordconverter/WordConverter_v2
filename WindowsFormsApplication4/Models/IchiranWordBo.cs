@@ -10,5 +10,6 @@ namespace WordConverter_v2.Models
     {
         public string ronri_name1 { get; set; }
         public string butsuri_name { get; set; }
+        public string data_type { get; set; }
     }
 }

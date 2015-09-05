@@ -60,6 +60,8 @@ namespace WordConverter_v2.Forms
             ichiranDataGridView.DataSource = initServiceOutBo.wordList;
             ichiranDataGridView.Columns["ronri_name1"].Width = 110;
             ichiranDataGridView.Columns["butsuri_name"].Width = 195;
+            ichiranDataGridView.Columns["data_type"].Width = 0;
+            ichiranDataGridView.Columns["data_type"].Visible = false;
             ichiranDataGridView.ReadOnly = true;
 
             //隠していたフォームを表示する
@@ -215,6 +217,7 @@ namespace WordConverter_v2.Forms
             boCreateService.setInBo(boCreateServiceInBo);
             IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
             Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
         }
 
         /// <summary>
@@ -317,5 +320,33 @@ namespace WordConverter_v2.Forms
             this.Hide();
         }
 
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void プロパティ作成アノテーションありToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateServiceInBo.annotationFlg = true;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
+        }
+
+        private void 物理名からプロパティ作成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateServiceInBo.reverseCreateFlg = true;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
+        }
     }
 }

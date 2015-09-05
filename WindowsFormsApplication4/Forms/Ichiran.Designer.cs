@@ -33,17 +33,18 @@ namespace WordConverter_v2.Forms
             this.ichiranDataGridView = new System.Windows.Forms.DataGridView();
             this.wordList = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.申請ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.単一登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kanriUserContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.一括登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.プロパティ作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.プロパティ作成コメントありToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.一括登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formHeanderLabel = new System.Windows.Forms.Label();
             this.closeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.アプリ閉じるToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ippanUserContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.申請ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.プロパティ作成ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.物理名から作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).BeginInit();
             this.kanriUserContextMenuStrip.SuspendLayout();
             this.closeContextMenuStrip.SuspendLayout();
@@ -89,43 +90,44 @@ namespace WordConverter_v2.Forms
             this.label1.Size = new System.Drawing.Size(330, 495);
             this.label1.TabIndex = 1;
             // 
-            // 申請ToolStripMenuItem
-            // 
-            this.申請ToolStripMenuItem.Name = "申請ToolStripMenuItem";
-            this.申請ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.申請ToolStripMenuItem.Text = "申請";
-            this.申請ToolStripMenuItem.Click += new System.EventHandler(this.申請ToolStripMenuItem_Click);
-            // 
             // 単一登録ToolStripMenuItem
             // 
             this.単一登録ToolStripMenuItem.Name = "単一登録ToolStripMenuItem";
-            this.単一登録ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.単一登録ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.単一登録ToolStripMenuItem.Text = "単一登録";
             this.単一登録ToolStripMenuItem.Click += new System.EventHandler(this.単一登録ToolStripMenuItem_Click);
             // 
             // kanriUserContextMenuStrip
             // 
             this.kanriUserContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.申請ToolStripMenuItem,
+            this.プロパティ作成ToolStripMenuItem,
+            this.プロパティ作成コメントありToolStripMenuItem,
+            this.物理名から作成ToolStripMenuItem,
             this.単一登録ToolStripMenuItem,
-            this.一括登録ToolStripMenuItem,
-            this.プロパティ作成ToolStripMenuItem});
+            this.一括登録ToolStripMenuItem});
             this.kanriUserContextMenuStrip.Name = "contextMenuStrip1";
-            this.kanriUserContextMenuStrip.Size = new System.Drawing.Size(161, 92);
-            // 
-            // 一括登録ToolStripMenuItem
-            // 
-            this.一括登録ToolStripMenuItem.Name = "一括登録ToolStripMenuItem";
-            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.一括登録ToolStripMenuItem.Text = "一括登録";
-            this.一括登録ToolStripMenuItem.Click += new System.EventHandler(this.一括登録ToolStripMenuItem_Click);
+            this.kanriUserContextMenuStrip.Size = new System.Drawing.Size(293, 136);
             // 
             // プロパティ作成ToolStripMenuItem
             // 
             this.プロパティ作成ToolStripMenuItem.Name = "プロパティ作成ToolStripMenuItem";
-            this.プロパティ作成ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.プロパティ作成ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
             this.プロパティ作成ToolStripMenuItem.Text = "プロパティ作成";
             this.プロパティ作成ToolStripMenuItem.Click += new System.EventHandler(this.bo作成ToolStripMenuItem_Click);
+            // 
+            // プロパティ作成コメントありToolStripMenuItem
+            // 
+            this.プロパティ作成コメントありToolStripMenuItem.Name = "プロパティ作成コメントありToolStripMenuItem";
+            this.プロパティ作成コメントありToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.プロパティ作成コメントありToolStripMenuItem.Text = "プロパティ作成（アノテーションあり）";
+            this.プロパティ作成コメントありToolStripMenuItem.Click += new System.EventHandler(this.プロパティ作成アノテーションありToolStripMenuItem_Click);
+            // 
+            // 一括登録ToolStripMenuItem
+            // 
+            this.一括登録ToolStripMenuItem.Name = "一括登録ToolStripMenuItem";
+            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.一括登録ToolStripMenuItem.Text = "一括登録";
+            this.一括登録ToolStripMenuItem.Click += new System.EventHandler(this.一括登録ToolStripMenuItem_Click);
             // 
             // formHeanderLabel
             // 
@@ -180,15 +182,22 @@ namespace WordConverter_v2.Forms
             this.プロパティ作成ToolStripMenuItem1.Text = "プロパティ作成";
             this.プロパティ作成ToolStripMenuItem1.Click += new System.EventHandler(this.bo作成ToolStripMenuItem_Click);
             // 
+            // 物理名から作成ToolStripMenuItem
+            // 
+            this.物理名から作成ToolStripMenuItem.Name = "物理名から作成ToolStripMenuItem";
+            this.物理名から作成ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.物理名から作成ToolStripMenuItem.Text = "物理名からプロパティ作成";
+            this.物理名から作成ToolStripMenuItem.Click += new System.EventHandler(this.物理名からプロパティ作成ToolStripMenuItem_Click);
+            // 
             // Ichiran
             // 
-            this.Controls.Add(this.formHeanderLabel);
-            this.Controls.Add(this.ichiranDataGridView);
-            this.Controls.Add(this.label1);
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(330, 500);
+            this.Controls.Add(this.formHeanderLabel);
+            this.Controls.Add(this.ichiranDataGridView);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Ichiran";
             this.Text = "Ichiran";
@@ -205,7 +214,6 @@ namespace WordConverter_v2.Forms
 
         private DataGridView ichiranDataGridView;
         private DataGridViewTextBoxColumn wordList;
-        private ToolStripMenuItem 申請ToolStripMenuItem;
         private ToolStripMenuItem 単一登録ToolStripMenuItem;
         private ContextMenuStrip kanriUserContextMenuStrip;
         private Label label1;
@@ -217,6 +225,8 @@ namespace WordConverter_v2.Forms
         private ContextMenuStrip ippanUserContextMenuStrip;
         private ToolStripMenuItem 申請ToolStripMenuItem1;
         private ToolStripMenuItem プロパティ作成ToolStripMenuItem1;
+        private ToolStripMenuItem プロパティ作成コメントありToolStripMenuItem;
+        private ToolStripMenuItem 物理名から作成ToolStripMenuItem;
     }
 }
 

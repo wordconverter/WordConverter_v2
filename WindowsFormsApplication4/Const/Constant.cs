@@ -44,4 +44,5 @@ namespace WordConvTool.Const
         個人 = 1
     }
 
+
 }
