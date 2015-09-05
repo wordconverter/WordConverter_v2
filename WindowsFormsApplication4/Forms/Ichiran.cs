@@ -251,6 +251,7 @@ namespace WordConverter_v2.Forms
             if (val.Trim() != Constant.NONE_WORD)
             {
                 this.Close();
+                val = val.Remove(val.Length - 1);
                 Clipboard.SetText(val);
             }
             else

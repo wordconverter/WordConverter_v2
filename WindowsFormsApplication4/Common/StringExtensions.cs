@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -77,7 +78,11 @@ namespace WordConverter_v2.Common
                 return butsuriName;
 
             }
-            return self.ToTitleCase();
+
+            string inStr = names[0];
+            butsuriName = Char.ToUpper(inStr[0]) + inStr.Substring(1);
+
+            return butsuriName;
         }
 
         public static string ToCamelCase(this string self)
