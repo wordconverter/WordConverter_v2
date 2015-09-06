@@ -9,5 +9,7 @@ namespace WordConverter_v2.Models.InBo
     class IkkatsuTorokuReadFileServiceInBo : IBo
     {
         public string Filename { get; set; }
+
+        public bool registeredPairsIkkatsu { get; set; }
     }
 }

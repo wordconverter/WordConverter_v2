@@ -37,7 +37,7 @@ namespace WordConverter_v2.Services
         public IkkatsuTorokuReadFileServiceOutBo execute()
         {
             IkkatsuTorokuReadFileServiceOutBo outBo = new IkkatsuTorokuReadFileServiceOutBo();
-            
+
             Microsoft.Office.Interop.Excel.Application oExcelApp = null; // Excelオブジェクト
             Microsoft.Office.Interop.Excel.Workbook oExcelWBook = null;  // Excel Workbookオブジェクト
             try
@@ -69,6 +69,7 @@ namespace WordConverter_v2.Services
 
                 int ronri_name1 = 1;
                 int butsuri_name = 2;
+                int db_data_type = 3;
                 int rowId = 2;
 
                 using (var context = new MyContext())
@@ -77,6 +78,7 @@ namespace WordConverter_v2.Services
                     {
                         string ronriName = oWSheet.Cells[rowId, ronri_name1].Value;
                         string butsuriName = oWSheet.Cells[rowId, butsuri_name].Value;
+                        string dbDataType = oWSheet.Cells[rowId, db_data_type].Value;
 
                         if (!String.IsNullOrEmpty(ronriName) && !String.IsNullOrEmpty(butsuriName))
                         {
@@ -90,10 +92,23 @@ namespace WordConverter_v2.Services
 
                             WordDic word = new WordDic();
                             word.ronri_name1 = Convert.ToString(ronriName);
-                            word.butsuri_name = Convert.ToString(butsuriName).ToPascalCase();
+                            word.butsuri_name = Convert.ToString(butsuriName).ToCamelCase();
+                            word.data_type = this.getDataType(dbDataType);
                             word.cre_date = System.DateTime.Now.ToString();
                             word.user_id = BaseForm.UserInfo.userId;
                             context.WordDic.Add(word);
+
+                            if (this.inBo.registeredPairsIkkatsu)
+                            {
+                                word = new WordDic();
+                                word.butsuri_name = Convert.ToString(ronriName);
+                                word.ronri_name1 = Convert.ToString(butsuriName);
+                                word.data_type = this.getDataType(dbDataType);
+                                word.cre_date = System.DateTime.Now.ToString();
+                                word.user_id = BaseForm.UserInfo.userId;
+                                context.WordDic.Add(word);
+                            }
+
                             context.SaveChanges();
                         }
                         rowId++;
@@ -117,6 +132,16 @@ namespace WordConverter_v2.Services
 
             MessageBox.Show("正常に読み込みました。");
             return outBo;
+        }
+
+        private string getDataType(string dbDataType)
+        {
+            MyRepository rep = new MyRepository();
+            dbDataType = dbDataType.Replace("(", "");
+            dbDataType = dbDataType.Replace(")", "");
+            dbDataType = System.Text.RegularExpressions.Regex.Replace(dbDataType, @"\d", "");
+            OrMap orMap = rep.FindOrMapByDbDataType(dbDataType);
+            return orMap.data_type;
         }
     }
 }

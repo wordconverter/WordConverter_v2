@@ -66,6 +66,7 @@ namespace WordConverter_v2.Forms
             IkkatsuTorokuReadFileService readFileService = new IkkatsuTorokuReadFileService();
             IkkatsuTorokuReadFileServiceInBo readFileServiceInBo = new IkkatsuTorokuReadFileServiceInBo();
             readFileServiceInBo.Filename = this.filePath.Text;
+            readFileServiceInBo.registeredPairsIkkatsu = this.registeredPairsIkkatsuCbx.Checked;
             readFileService.setInBo(readFileServiceInBo);
             IkkatsuTorokuReadFileServiceOutBo registServiceOutBo = readFileService.execute();
 

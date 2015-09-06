@@ -69,10 +69,9 @@ namespace WordConverter_v2.Services
             sb.AppendLine("/** " + first + " */");
             if (this.inBo.annotationFlg)
             {
-                sb.AppendLine("@Column(name = \"" + first.ToSnakeCase().ToLower() + "\")");
+                sb.AppendLine("@Column(name = \"" + second.ToSnakeCase().ToLower() + "\")");
             }
-            sb.AppendLine("private " + dataType + " " + second + ";");
-            sb.AppendLine("");
+            sb.AppendLine("private " + dataType + " " + second.ToCamelCase() + ";");
             sb.AppendLine("");
         }
     }

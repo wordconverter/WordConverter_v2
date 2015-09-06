@@ -75,7 +75,16 @@ namespace WordConverter_v2
             sb.AppendLine("  , cre_date TEXT");
             sb.AppendLine("  , FOREIGN KEY (user_id) REFERENCES USER_MST(user_id)");
             sb.AppendLine("); ");
-            sb.AppendLine("");
+            sb.AppendLine("CREATE TABLE or_map( ");
+            sb.AppendLine("  or_id SERIAL PRIMARY KEY");
+            sb.AppendLine("  , data_type text");
+            sb.AppendLine("  , db_data_type text");
+            sb.AppendLine("  , project_name text");
+            sb.AppendLine("  , yuko_flg INTEGER");
+            sb.AppendLine("  , delete_flg INTEGER");
+            sb.AppendLine("  , version INTEGER");
+            sb.AppendLine("  , cre_date text");
+            sb.AppendLine(");");
             sb.AppendLine("insert ");
             sb.AppendLine("into USER_MST( ");
             sb.AppendLine("  user_id");
@@ -101,7 +110,10 @@ namespace WordConverter_v2
             sb.AppendLine("  , 0");
             sb.AppendLine("  , 0");
             sb.AppendLine("); ");
-            sb.AppendLine();
+            sb.AppendLine("insert into public.or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (1,'String','VARCHAR',null,0,0,0,null);");
+            sb.AppendLine("insert into public.or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (2,'Integer','INTEGER',null,0,0,0,null);");
+            sb.AppendLine("insert into public.or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (3,'Date','DATE',null,0,0,0,null);");
+            sb.AppendLine("insert into public.or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,0,null);");
             string postgresDdlText = sb.ToString();
 
             Program.ExecuteSqliteDDL();

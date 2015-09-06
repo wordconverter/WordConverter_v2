@@ -127,6 +127,7 @@
     <Compile Include="Forms\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\OrMap.cs" />
     <Compile Include="Services\IchiranInitServiceBase.cs" />
     <Compile Include="Services\IchiranInitServiceKojinMode.cs" />
     <Compile Include="Models\InBo\DbConnectInBo.cs" />
