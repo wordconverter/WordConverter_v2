@@ -96,65 +96,65 @@ namespace WordConverter_v2.Common
         this IQueryable<HenshuWordBo> source, object[] keyword)
         {
             Expression<Func<HenshuWordBo, bool>> predict = x => 1 == 1;
-            var ronriname1 = keyword[0].ToString();
-            var butsuriname = keyword[1].ToString();
-            var data_type = keyword[2].ToString();
+            var ronriName = keyword[0].ToString();
+            var butsuriName = keyword[1].ToString();
+            var dataType = keyword[2].ToString();
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name1.Contains(ronriname1) && x.ronri_name2.Contains(ronriname2) && x.butsuri_name.Contains(butsuriname);
-            //    return source.Where(predict);
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                !String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.ronri_name1.Contains(ronriName) && x.butsuri_name.Contains(butsuriName) && x.data_type.Contains(dataType);
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name1.Contains(ronriname1) && x.ronri_name2.Contains(ronriname2);
-            //    return source.Where(predict);
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.ronri_name1.Contains(ronriName) && x.butsuri_name.Contains(butsuriName);
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name1.Contains(ronriname1) && x.butsuri_name.Contains(butsuriname);
-            //    return source.Where(predict);
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                String.IsNullOrEmpty(keyword[1].ToString()) &&
+                !String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.ronri_name1.Contains(ronriName) && x.data_type.Contains(dataType);
+                return source.Where(predict);
+            }
 
-            //if (String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name2.Contains(ronriname2) && x.butsuri_name.Contains(butsuriname);
-            //    return source.Where(predict);
-            //}
+            if (String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                !String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.butsuri_name.Contains(butsuriName) && x.data_type.Contains(dataType);
+                return source.Where(predict);
+            }
 
-            //if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name1.Contains(ronriname1);
-            //    return source.Where(predict);
-            //}
+            if (!String.IsNullOrEmpty(keyword[0].ToString()) &&
+                String.IsNullOrEmpty(keyword[1].ToString()) &&
+                String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.ronri_name1.Contains(ronriName);
+                return source.Where(predict);
+            }
 
-            //if (String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.ronri_name2.Contains(ronriname2);
-            //    return source.Where(predict);
-            //}
+            if (String.IsNullOrEmpty(keyword[0].ToString()) &&
+                !String.IsNullOrEmpty(keyword[1].ToString()) &&
+                String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.butsuri_name.Contains(butsuriName);
+                return source.Where(predict);
+            }
 
-            //if (String.IsNullOrEmpty(keyword[0].ToString()) &&
-            //    String.IsNullOrEmpty(keyword[1].ToString()) &&
-            //    !String.IsNullOrEmpty(keyword[2].ToString()))
-            //{
-            //    predict = x => x.butsuri_name.Contains(butsuriname);
-            //    return source.Where(predict);
-            //}
+            if (String.IsNullOrEmpty(keyword[0].ToString()) &&
+                String.IsNullOrEmpty(keyword[1].ToString()) &&
+                !String.IsNullOrEmpty(keyword[2].ToString()))
+            {
+                predict = x => x.data_type.Contains(dataType);
+                return source.Where(predict);
+            }
 
             return source.Where(predict);
         }

@@ -26,6 +26,8 @@ namespace WordConverter_v2.Const
         public static string CONF_006 = "選択された単語を承認してもよろしいですか？";
         public static string CONF_007 = "選択された単語を却下してもよろしいですか？";
         public static string CONF_008 = "申請承認・却下メールを送信完了しました。";
+        public static string CONF_009 = "ログインユーザーの変更は再ログイン後に反映されます。";
+        public static string CONF_010 = "選択したユーザーを削除しますがよろしいですか？";
         
     }
 }

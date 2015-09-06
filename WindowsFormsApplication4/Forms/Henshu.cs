@@ -151,6 +151,7 @@ namespace WordConverter_v2.Forms
             TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
             torokuSearchServiceInBo.ronrimei1TextBox = henshu.ronrimei1TextBox.Text;
             torokuSearchServiceInBo.butsurimeiTextBox = henshu.butsurimeiTextBox.Text;
+            torokuSearchServiceInBo.dataType = henshu.dataTypeCbx.Text;
             torokuSearchService.setInBo(torokuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
             this.henshuViewDispSetthing(ref dataGridView, torokuSearchServiceOutBo.wordList);
@@ -166,6 +167,7 @@ namespace WordConverter_v2.Forms
         {
             this.ronrimei1TextBox.Text = "";
             this.butsurimeiTextBox.Text = "";
+            this.dataTypeCbx.Text = "";
         }
 
 
@@ -510,8 +512,8 @@ namespace WordConverter_v2.Forms
             TanitsuTorokuSearchServiceInBo torokuSearchServiceInBo = new TanitsuTorokuSearchServiceInBo();
             TanitsuTorokuSearchService torokuSearchService = new TanitsuTorokuSearchService();
             torokuSearchServiceInBo.ronrimei1TextBox = this.ronrimei1TextBox.Text;
-            //torokuSearchServiceInBo.ronrimei2TextBox = this.ronrimei2TextBox.Text;
             torokuSearchServiceInBo.butsurimeiTextBox = this.butsurimeiTextBox.Text;
+            torokuSearchServiceInBo.dataType = this.dataTypeCbx.Text;
             torokuSearchService.setInBo(torokuSearchServiceInBo);
             TanitsuTorokuSearchServiceOutBo torokuSearchServiceOutBo = torokuSearchService.execute();
             this.henshuViewDispSetthing(ref dataGridView, torokuSearchServiceOutBo.wordList);
@@ -694,6 +696,7 @@ namespace WordConverter_v2.Forms
             List<String> dataTypeList = new List<string>();
 
             dataTypeList.Add("String");
+            dataTypeList.Add("string");
             dataTypeList.Add("Integer");
             dataTypeList.Add("int");
             dataTypeList.Add("Boolean");
@@ -730,7 +733,7 @@ namespace WordConverter_v2.Forms
 
         private void orSettingBtn_Click(object sender, EventArgs e)
         {
-            this.orSetthingDataGridView1.DataSource = wordList;
+            //this.orSetthingDataGridView1.DataSource = wordList;
         }
     }
 }

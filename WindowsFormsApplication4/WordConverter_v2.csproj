@@ -209,7 +209,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Entity\UserMst.cs" />
-    <Compile Include="Models\Dao\UserRepository.cs" />
+    <Compile Include="Models\Dao\MyRepository.cs" />
     <Compile Include="Models\Dao\MyContext.cs" />
     <Compile Include="Models\Entity\WordDic.cs" />
     <Compile Include="Models\Entity\WordShinsei.cs" />

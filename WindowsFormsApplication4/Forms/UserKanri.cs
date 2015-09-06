@@ -55,15 +55,26 @@ namespace WordConverter_v2.Forms
         /// <param name="e"></param>
         private void search_Click(object sender, EventArgs e)
         {
-            this.searchAction(ref userKanriDataGridView1, this);
+            this.searchAction(ref userKanriDataGridView1, this, false);
 
         }
 
-        private void searchAction(ref DataGridView userKanriDataGridView1, UserKanri userKanri)
+        /// <summary>
+        /// 検索アクション
+        /// </summary>
+        /// <param name="userKanriDataGridView1"></param>
+        /// <param name="userKanri"></param>
+        /// <param name="isDoneRegist"></param>
+        private void searchAction(ref DataGridView userKanriDataGridView1, UserKanri userKanri, bool isDoneRegist)
         {
             errorProvider1.SetError(userKanri.empId, "");
             errorProvider1.SetError(userKanri.userName, "");
             errorProvider1.SetError(userKanri.kengen, "");
+
+            if (!isDoneRegist && !this.searchPreCheck(userKanriDataGridView1))
+            {
+                return;
+            }
 
             UserKanriSearchServiceInBo userSearchServiceInBo = new UserKanriSearchServiceInBo();
             UserKanriSearchService userSearchService = new UserKanriSearchService();
@@ -79,7 +90,39 @@ namespace WordConverter_v2.Forms
         }
 
         /// <summary>
-        /// 
+        /// 検索前チェック
+        /// </summary>
+        /// <param name="userKanriDataGridView1"></param>
+        /// <returns></returns>
+        private bool searchPreCheck(DataGridView userKanriDataGridView1)
+        {
+            for (int i = 0; i < userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString().ToIntType() == 0)
+                {
+                    MyRepository rep = new MyRepository();
+                    bool isExistUser = rep.IsExistUser(userKanriDataGridView1.Rows[i].Cells["emp_id"].Value.ToString().ToKeyType());
+                    if (isExistUser)
+                    {
+                        continue;
+                    }
+                    DialogResult result = MessageBox.Show(
+                        "追加した単語がクリアされますがよろしいですか？",
+                        "確認",
+                        MessageBoxButtons.OKCancel,
+                        MessageBoxIcon.Question);
+
+                    if (result == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// ユーザー管理データグリッドを設定
         /// </summary>
         /// <param name="dataGridView1"></param>
         private void userKanriViewSetthing(ref DataGridView dataGridView1)
@@ -132,7 +175,7 @@ namespace WordConverter_v2.Forms
         }
 
         /// <summary>
-        /// 
+        /// 権限コンボボックスを作成
         /// </summary>
         /// <param name="dataGridView1"></param>
         private void setKengenComboBox(ref DataGridView dataGridView1)
@@ -171,52 +214,15 @@ namespace WordConverter_v2.Forms
         }
 
         /// <summary>
-        /// 
+        /// 追加ボタンクリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void add_Click(object sender, EventArgs e)
         {
-            bool isNgRequired = false;
-            if (String.IsNullOrEmpty(this.empId.Text))
-            {
-                errorProvider1.SetError(this.empId, MessageConst.ERR_001);
-                isNgRequired = true;
-            }
-            if (String.IsNullOrEmpty(this.userName.Text))
-            {
-                errorProvider1.SetError(this.userName, MessageConst.ERR_001);
-                isNgRequired = true;
-            }
-            if (String.IsNullOrEmpty(this.kengen.Text) || this.kengen.Text.ToIntType() == 2)
-            {
-                errorProvider1.SetError(this.kengen, MessageConst.ERR_001);
-                isNgRequired = true;
-            }
-            if (isNgRequired)
+            if (!this.addPreCheck(this))
             {
                 return;
-            }
-
-            UserRepository rep = new UserRepository();
-            UserMst mailUser = rep.FindMailingListUser();
-
-            if (!String.IsNullOrEmpty(mailUser.user_name) && this.kengen.SelectedIndex == (int)KengenKbn.メーリングリスト)
-            {
-                errorProvider1.SetError(this.kengen, MessageConst.ERR_008);
-                return;
-            }
-
-            checkValList = new List<bool>();
-            for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
-            {
-                if (this.userKanriDataGridView1.Rows[i].Cells[0].Value != null &&
-                    (bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value != false)
-                {
-                    checkValList.Add((bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value);
-                    continue;
-                }
-                checkValList.Add(false);
             }
 
             UserKanriAddServiceInBo userAddServiceInBo = new UserKanriAddServiceInBo();
@@ -242,6 +248,57 @@ namespace WordConverter_v2.Forms
             this.userKanriViewSetthing(ref this.userKanriDataGridView1);
             this.setCheckValList(ref this.userKanriDataGridView1);
 
+        }
+
+        /// <summary>
+        /// 追加前チェック
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        private bool addPreCheck(UserKanri form)
+        {
+            bool isNgRequired = false;
+            if (String.IsNullOrEmpty(form.empId.Text))
+            {
+                errorProvider1.SetError(form.empId, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(form.userName.Text))
+            {
+                errorProvider1.SetError(form.userName, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (String.IsNullOrEmpty(form.kengen.Text) || form.kengen.Text.ToIntType() == 2)
+            {
+                errorProvider1.SetError(form.kengen, MessageConst.ERR_001);
+                isNgRequired = true;
+            }
+            if (isNgRequired)
+            {
+                return false;
+            }
+
+            MyRepository rep = new MyRepository();
+            UserMst mailUser = rep.FindMailingListUser();
+
+            if (!String.IsNullOrEmpty(mailUser.user_name) && form.kengen.SelectedIndex == (int)KengenKbn.メーリングリスト)
+            {
+                errorProvider1.SetError(form.kengen, MessageConst.ERR_008);
+                return false;
+            }
+
+            checkValList = new List<bool>();
+            for (int i = 0; i < form.userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (form.userKanriDataGridView1.Rows[i].Cells[0].Value != null &&
+                    (bool)form.userKanriDataGridView1.Rows[i].Cells[0].Value != false)
+                {
+                    checkValList.Add((bool)form.userKanriDataGridView1.Rows[i].Cells[0].Value);
+                    continue;
+                }
+                checkValList.Add(false);
+            }
+            return true;
         }
 
         /// <summary>
@@ -278,7 +335,7 @@ namespace WordConverter_v2.Forms
         }
 
         /// <summary>
-        /// 
+        /// 登録ボタンクリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -305,17 +362,26 @@ namespace WordConverter_v2.Forms
             }
 
             MessageBox.Show(MessageConst.CONF_004);
-            this.searchAction(ref userKanriDataGridView1, this);
+            if (BaseForm.UserInfo.empId == userRegistServiceOutBo.empId)
+            {
+                MessageBox.Show(MessageConst.CONF_009);
+            }
+            bool isDoneRegist = true;
+            this.searchAction(ref userKanriDataGridView1, this, isDoneRegist);
         }
 
+
         /// <summary>
-        /// 
+        /// 削除ボタンクリックイベント
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void delete_Click(object sender, EventArgs e)
         {
-            bool isExistCheck = false;
+            if (!this.deletePreCheck(this))
+            {
+                return;
+            }
             for (int i = 0; i < this.userKanriDataGridView1.Rows.Count; i++)
             {
                 if (this.userKanriDataGridView1.Rows[i].Cells[0].Value == null
@@ -323,9 +389,31 @@ namespace WordConverter_v2.Forms
                 {
                     continue;
                 }
+                MyRepository rep = new MyRepository();
+                rep.DeleteUserByUserId(this.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString().ToKeyType());
+            }
+            MessageBox.Show(MessageConst.CONF_005);
+            this.searchAction(ref userKanriDataGridView1, this, false);
+        }
+
+        /// <summary>
+        /// 削除前チェック
+        /// </summary>
+        /// <param name="userKanri"></param>
+        /// <returns></returns>
+        private bool deletePreCheck(UserKanri userKanri)
+        {
+            bool isExistCheck = false;
+            for (int i = 0; i < userKanri.userKanriDataGridView1.Rows.Count; i++)
+            {
+                if (userKanri.userKanriDataGridView1.Rows[i].Cells[0].Value == null
+                    || (bool)this.userKanriDataGridView1.Rows[i].Cells[0].Value == false)
+                {
+                    continue;
+                }
                 using (var context = new MyContext())
                 {
-                    long condtion = Convert.ToInt64(this.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString());
+                    long condtion = Convert.ToInt64(userKanri.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString());
                     var u = context.UserMst.Single(x => x.user_id == condtion);
                     u.delete_flg = 1;
                     u.cre_date = System.DateTime.Now.ToString();
@@ -341,10 +429,19 @@ namespace WordConverter_v2.Forms
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
-                return;
+                return false;
             }
-            MessageBox.Show(MessageConst.CONF_005);
-            this.searchAction(ref userKanriDataGridView1, this);
+            DialogResult result = MessageBox.Show(
+                MessageConst.CONF_010,
+                "確認",
+                MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Question);
+
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -367,6 +464,11 @@ namespace WordConverter_v2.Forms
             }
         }
 
+        /// <summary>
+        /// 追加モードか判定
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <returns></returns>
         private bool isAddMode(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.Rows.Count; i++)
@@ -485,7 +587,7 @@ namespace WordConverter_v2.Forms
 
         private void UserKanri_Load(object sender, EventArgs e)
         {
-            this.searchAction(ref userKanriDataGridView1, this);
+            this.searchAction(ref userKanriDataGridView1, this, false);
         }
 
     }

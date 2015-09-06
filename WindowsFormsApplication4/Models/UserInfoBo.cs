@@ -15,5 +15,6 @@ namespace WordConverter_v2.Models
         public int dispNumber { get; set; }
         public string hotKey { get; set; }
         public int startUpMode { get; set; }
+        public int empId { get; set; }
     }
 }

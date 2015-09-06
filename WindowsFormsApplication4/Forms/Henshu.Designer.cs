@@ -135,8 +135,9 @@ namespace WordConverter_v2.Forms
             this.dataTypeCbx.Items.AddRange(new object[] {
             "String",
             "Integer",
-            "int",
             "Boolean",
+            "string",
+            "int",
             "boolean",
             "byte",
             "Byte",

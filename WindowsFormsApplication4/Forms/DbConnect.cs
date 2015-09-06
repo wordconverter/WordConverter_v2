@@ -197,7 +197,7 @@ namespace WordConverter_v2.Forms
                     cmd.ExecuteReader();
 
                     common.setSqliteDbContextPath(sb.ToString());
-                    UserRepository rep = new UserRepository();
+                    MyRepository rep = new MyRepository();
                     UserMst fromUser = rep.FindUserMstByUserId(999);
 
                     MessageBox.Show("DB接続に成功しました！！");

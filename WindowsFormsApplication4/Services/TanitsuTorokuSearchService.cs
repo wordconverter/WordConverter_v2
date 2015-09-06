@@ -37,9 +37,10 @@ namespace WordConverter_v2.Services
                                                   version = (int)a.version
                                               };
 
-                object[] keywords = new object[2];
+                object[] keywords = new object[3];
                 keywords[0] = this.inBo.ronrimei1TextBox;
                 keywords[1] = this.inBo.butsurimeiTextBox;
+                keywords[2] = this.inBo.dataType;
 
                 IQueryable<HenshuWordBo> words = ws.WordDicWhereLike(keywords);
 

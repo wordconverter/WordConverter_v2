@@ -7,6 +7,7 @@ using WordConverter_v2.Models.Entity;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 using System.Linq;
+using WordConverter_v2.Forms;
 
 namespace WordConverter_v2.Services
 {
@@ -40,7 +41,8 @@ namespace WordConverter_v2.Services
                     if (upUser.Count() == 1)
                     {
                         var u = context.UserMst.Single(x => x.user_id == condtion);
-                        u.emp_id = this.inBo.userKanriDataGridView1.Rows[i].Cells["emp_id"].Value.ToString().ToIntType();
+                        int empId = this.inBo.userKanriDataGridView1.Rows[i].Cells["emp_id"].Value.ToString().ToIntType();
+                        u.emp_id = empId;
                         u.user_name = Convert.ToString(this.inBo.userKanriDataGridView1.Rows[i].Cells["user_name"].Value);
                         u.kengen = this.inBo.userKanriDataGridView1.Rows[i].Cells["kengen"].Value.ToString().ToIntType();
                         u.sanka_kahi = (bool)this.inBo.userKanriDataGridView1.Rows[i].Cells["sanka_kahi"].Value ? 0 : 1;
@@ -49,6 +51,10 @@ namespace WordConverter_v2.Services
                         u.password = this.inBo.userKanriDataGridView1.Rows[i].Cells["password"].Value.ToString();
                         u.cre_date = System.DateTime.Now.ToString();
                         context.SaveChanges();
+                        if (BaseForm.UserInfo.empId == empId)
+                        {
+                            outBo.empId = empId;
+                        }
                         continue;
                     }
                     UserMst user = new UserMst();

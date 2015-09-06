@@ -8,7 +8,7 @@ using WordConvTool.Const;
 
 namespace WordConverter_v2.Models.Dao
 {
-    public class UserRepository
+    public class MyRepository
     {
         private MyContext context = new MyContext();
 
@@ -20,6 +20,25 @@ namespace WordConverter_v2.Models.Dao
         public UserMst FindUserMstByUserId(long userId)
         {
             return context.UserMst.ToList().Single(x => x.user_id == userId && x.delete_flg == 0);
+        }
+
+        public bool DeleteUserByUserId(long userId)
+        {
+            var u = context.UserMst.Single(x => x.user_id == userId);
+            u.delete_flg = 1;
+            u.cre_date = System.DateTime.Now.ToString();
+            context.SaveChanges();
+            return true;
+        }
+
+        public bool IsExistUser(long empId)
+        {
+            IEnumerable<UserMst> users = context.UserMst.ToList().Where(x => x.emp_id == empId && x.delete_flg == 0);
+            if (users.Count() == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         public UserMst FindMailingListUser()

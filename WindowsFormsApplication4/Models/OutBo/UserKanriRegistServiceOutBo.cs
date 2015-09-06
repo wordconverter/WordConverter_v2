@@ -9,5 +9,6 @@ namespace WordConverter_v2.Models.OutBo
     public class UserKanriRegistServiceOutBo : IBo
     {
         public string errorMessage { get; set; }
+        public int empId { get; set; }
     }
 }

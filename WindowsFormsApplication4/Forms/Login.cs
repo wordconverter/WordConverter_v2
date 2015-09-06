@@ -90,6 +90,7 @@ namespace WordConverter_v2.Forms
 
                     userInfo.kengen = w[0].kengen;
                     userInfo.userId = w[0].user_id;
+                    userInfo.empId = w[0].emp_id;
                     userInfo.hotKey = WordConverter_v2.Settings1.Default.HotKey;
                     BaseForm bForm = new BaseForm(userInfo);
 
