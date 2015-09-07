@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,6 +37,15 @@ namespace WordConverter_v2
             //    new System.Threading.ThreadExceptionEventHandler(
             //        Application_ThreadException);
 
+
+            //Program.ExecutePostgresDDL();
+            //Program.ExecuteSqliteDDL();
+            BaseForm baseForm = new BaseForm();
+            Application.Run();
+        }
+
+        private static void ExecutePostgresDDL()
+        {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("CREATE TABLE USER_MST( ");
             sb.AppendLine("  user_id SERIAL PRIMARY KEY");
@@ -116,9 +126,16 @@ namespace WordConverter_v2
             sb.AppendLine("insert into public.or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,0,null);");
             string postgresDdlText = sb.ToString();
 
-            Program.ExecuteSqliteDDL();
-            BaseForm baseForm = new BaseForm();
-            Application.Run();
+            CommonFunction common = new CommonFunction();
+            string dbConnectionString = common.getDbConnectionString();
+            using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
+            {
+                cn.Open();
+                NpgsqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = postgresDdlText;
+                cmd.ExecuteNonQuery();
+                cn.Close();
+            }
         }
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

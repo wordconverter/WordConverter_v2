@@ -713,6 +713,9 @@ namespace WordConverter_v2.Forms
             dataTypeList.Add("Float");
             dataTypeList.Add("double");
             dataTypeList.Add("Double");
+            dataTypeList.Add("Timestamp");
+            dataTypeList.Add("Date");
+            dataTypeList.Add("enum");
 
             if (dataTypeList.Contains(dataType))
             {
