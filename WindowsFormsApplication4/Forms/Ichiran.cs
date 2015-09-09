@@ -204,21 +204,6 @@ namespace WordConverter_v2.Forms
             henshu.Activate();
         }
 
-        /// <summary>
-        /// コンテキストメニュー（Bo作成）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void bo作成ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
-            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
-            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
-            boCreateService.setInBo(boCreateServiceInBo);
-            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
-            Clipboard.SetText(registServiceOutBo.boText);
-            this.Close();
-        }
 
         /// <summary>
         /// データグリッドビューバインド完了イベント
@@ -320,12 +305,29 @@ namespace WordConverter_v2.Forms
             this.Hide();
         }
 
+        /// <summary>
+        /// コンテキストメニュー（Bo作成）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void プロパティ作成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateServiceInBo.shoriMode = PropertyShoriMode.プロパティ作成;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
+        }
+
         private void プロパティ作成アノテーションありToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IchiranBoCreateService boCreateService = new IchiranBoCreateService();
             IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
             boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
-            boCreateServiceInBo.annotationFlg = true;
+            boCreateServiceInBo.shoriMode = PropertyShoriMode.プロパティ作成アノテーションあり;
             boCreateService.setInBo(boCreateServiceInBo);
             IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
             Clipboard.SetText(registServiceOutBo.boText);
@@ -337,7 +339,19 @@ namespace WordConverter_v2.Forms
             IchiranBoCreateService boCreateService = new IchiranBoCreateService();
             IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
             boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
-            boCreateServiceInBo.reverseCreateFlg = true;
+            boCreateServiceInBo.shoriMode = PropertyShoriMode.物理名からプロパティ作成;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
+        }
+
+        private void 物理名からプロパティ作成アノテーションありToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateServiceInBo.shoriMode = PropertyShoriMode.物理名からプロパティ作成アノテーションあり;
             boCreateService.setInBo(boCreateServiceInBo);
             IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
             Clipboard.SetText(registServiceOutBo.boText);

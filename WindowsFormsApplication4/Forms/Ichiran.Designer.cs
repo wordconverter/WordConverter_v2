@@ -37,6 +37,7 @@ namespace WordConverter_v2.Forms
             this.kanriUserContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.プロパティ作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.プロパティ作成コメントありToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.物理名から作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.一括登録ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.formHeanderLabel = new System.Windows.Forms.Label();
             this.closeContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -44,7 +45,7 @@ namespace WordConverter_v2.Forms
             this.ippanUserContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.申請ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.プロパティ作成ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.物理名から作成ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.ichiranDataGridView)).BeginInit();
             this.kanriUserContextMenuStrip.SuspendLayout();
             this.closeContextMenuStrip.SuspendLayout();
@@ -93,7 +94,7 @@ namespace WordConverter_v2.Forms
             // 単一登録ToolStripMenuItem
             // 
             this.単一登録ToolStripMenuItem.Name = "単一登録ToolStripMenuItem";
-            this.単一登録ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.単一登録ToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
             this.単一登録ToolStripMenuItem.Text = "単一登録";
             this.単一登録ToolStripMenuItem.Click += new System.EventHandler(this.単一登録ToolStripMenuItem_Click);
             // 
@@ -103,29 +104,37 @@ namespace WordConverter_v2.Forms
             this.プロパティ作成ToolStripMenuItem,
             this.プロパティ作成コメントありToolStripMenuItem,
             this.物理名から作成ToolStripMenuItem,
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem,
             this.単一登録ToolStripMenuItem,
             this.一括登録ToolStripMenuItem});
             this.kanriUserContextMenuStrip.Name = "contextMenuStrip1";
-            this.kanriUserContextMenuStrip.Size = new System.Drawing.Size(293, 136);
+            this.kanriUserContextMenuStrip.Size = new System.Drawing.Size(353, 158);
             // 
             // プロパティ作成ToolStripMenuItem
             // 
             this.プロパティ作成ToolStripMenuItem.Name = "プロパティ作成ToolStripMenuItem";
-            this.プロパティ作成ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.プロパティ作成ToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
             this.プロパティ作成ToolStripMenuItem.Text = "プロパティ作成";
-            this.プロパティ作成ToolStripMenuItem.Click += new System.EventHandler(this.bo作成ToolStripMenuItem_Click);
+            this.プロパティ作成ToolStripMenuItem.Click += new System.EventHandler(this.プロパティ作成ToolStripMenuItem_Click);
             // 
             // プロパティ作成コメントありToolStripMenuItem
             // 
             this.プロパティ作成コメントありToolStripMenuItem.Name = "プロパティ作成コメントありToolStripMenuItem";
-            this.プロパティ作成コメントありToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.プロパティ作成コメントありToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
             this.プロパティ作成コメントありToolStripMenuItem.Text = "プロパティ作成（アノテーションあり）";
             this.プロパティ作成コメントありToolStripMenuItem.Click += new System.EventHandler(this.プロパティ作成アノテーションありToolStripMenuItem_Click);
+            // 
+            // 物理名から作成ToolStripMenuItem
+            // 
+            this.物理名から作成ToolStripMenuItem.Name = "物理名から作成ToolStripMenuItem";
+            this.物理名から作成ToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
+            this.物理名から作成ToolStripMenuItem.Text = "物理名からプロパティ作成";
+            this.物理名から作成ToolStripMenuItem.Click += new System.EventHandler(this.物理名からプロパティ作成ToolStripMenuItem_Click);
             // 
             // 一括登録ToolStripMenuItem
             // 
             this.一括登録ToolStripMenuItem.Name = "一括登録ToolStripMenuItem";
-            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.一括登録ToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
             this.一括登録ToolStripMenuItem.Text = "一括登録";
             this.一括登録ToolStripMenuItem.Click += new System.EventHandler(this.一括登録ToolStripMenuItem_Click);
             // 
@@ -180,14 +189,14 @@ namespace WordConverter_v2.Forms
             this.プロパティ作成ToolStripMenuItem1.Name = "プロパティ作成ToolStripMenuItem1";
             this.プロパティ作成ToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.プロパティ作成ToolStripMenuItem1.Text = "プロパティ作成";
-            this.プロパティ作成ToolStripMenuItem1.Click += new System.EventHandler(this.bo作成ToolStripMenuItem_Click);
+            this.プロパティ作成ToolStripMenuItem1.Click += new System.EventHandler(this.プロパティ作成ToolStripMenuItem_Click);
             // 
-            // 物理名から作成ToolStripMenuItem
+            // 物理名からプロパティ作成アノテーションありToolStripMenuItem
             // 
-            this.物理名から作成ToolStripMenuItem.Name = "物理名から作成ToolStripMenuItem";
-            this.物理名から作成ToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
-            this.物理名から作成ToolStripMenuItem.Text = "物理名からプロパティ作成";
-            this.物理名から作成ToolStripMenuItem.Click += new System.EventHandler(this.物理名からプロパティ作成ToolStripMenuItem_Click);
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem.Name = "物理名からプロパティ作成アノテーションありToolStripMenuItem";
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem.Size = new System.Drawing.Size(352, 22);
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem.Text = "物理名からプロパティ作成（アノテーションあり）";
+            this.物理名からプロパティ作成アノテーションありToolStripMenuItem.Click += new System.EventHandler(this.物理名からプロパティ作成アノテーションありToolStripMenuItem_Click);
             // 
             // Ichiran
             // 
@@ -227,6 +236,7 @@ namespace WordConverter_v2.Forms
         private ToolStripMenuItem プロパティ作成ToolStripMenuItem1;
         private ToolStripMenuItem プロパティ作成コメントありToolStripMenuItem;
         private ToolStripMenuItem 物理名から作成ToolStripMenuItem;
+        private ToolStripMenuItem 物理名からプロパティ作成アノテーションありToolStripMenuItem;
     }
 }
 

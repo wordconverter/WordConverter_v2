@@ -42,37 +42,39 @@ namespace WordConverter_v2.Services
                 if (!String.IsNullOrEmpty(ronriName) && !String.IsNullOrEmpty(butsuriName))
                 {
                     StringBuilder sb = new StringBuilder();
-                    if (this.inBo.reverseCreateFlg)
+                    switch (this.inBo.shoriMode)
                     {
-                        this.makeWord(sb, butsuriName, ronriName, dataType);
-                    }
-                    else
-                    {
-                        this.makeWord(sb, ronriName, butsuriName, dataType);
+                        case WordConvTool.Const.PropertyShoriMode.プロパティ作成:
+                            sb.AppendLine("/** " + ronriName + " */");
+                            sb.AppendLine("private " + dataType + " " + butsuriName.ToCamelCase() + ";");
+                            sb.AppendLine("");
+                            break;
+
+                        case WordConvTool.Const.PropertyShoriMode.プロパティ作成アノテーションあり:
+                            sb.AppendLine("/** " + ronriName + " */");
+                            sb.AppendLine("@Column(name = \"" + butsuriName.ToSnakeCase().ToLower() + "\")");
+                            sb.AppendLine("private " + dataType + " " + butsuriName.ToCamelCase() + ";");
+                            sb.AppendLine("");
+                            break;
+
+                        case WordConvTool.Const.PropertyShoriMode.物理名からプロパティ作成:
+                            sb.AppendLine("/** " + butsuriName + " */");
+                            sb.AppendLine("private " + dataType + " " + ronriName.ToCamelCase() + ";");
+                            sb.AppendLine("");
+                            break;
+
+                        case WordConvTool.Const.PropertyShoriMode.物理名からプロパティ作成アノテーションあり:
+                            sb.AppendLine("/** " + butsuriName + " */");
+                            sb.AppendLine("@Column(name = \"" + ronriName + "\")");
+                            sb.AppendLine("private " + dataType + " " + ronriName.ToCamelCase() + ";");
+                            sb.AppendLine("");
+                            break;
                     }
                     str += sb.ToString();
                 }
             }
             outBo.boText = str;
             return outBo;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <param name="first"></param>
-        /// <param name="second"></param>
-        /// <param name="dataType"></param>
-        private void makeWord(StringBuilder sb, string first, string second, string dataType)
-        {
-            sb.AppendLine("/** " + first + " */");
-            if (this.inBo.annotationFlg)
-            {
-                sb.AppendLine("@Column(name = \"" + second.ToSnakeCase().ToLower() + "\")");
-            }
-            sb.AppendLine("private " + dataType + " " + second.ToCamelCase() + ";");
-            sb.AppendLine("");
         }
     }
 }

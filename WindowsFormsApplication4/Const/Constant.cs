@@ -44,5 +44,13 @@ namespace WordConvTool.Const
         個人 = 1
     }
 
+    public enum PropertyShoriMode
+    {
+        プロパティ作成 = 0,
+        プロパティ作成アノテーションあり = 1,
+        物理名からプロパティ作成 = 2,
+        物理名からプロパティ作成アノテーションあり = 3
+    }
+
 
 }
