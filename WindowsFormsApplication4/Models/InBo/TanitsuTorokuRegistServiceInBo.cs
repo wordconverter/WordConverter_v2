@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using WordConvTool.Service;
+﻿using System.Windows.Forms;
+using WordConverter_v2.Interface;
 
 namespace WordConverter_v2.Models.InBo
 {

@@ -1,7 +1,7 @@
-﻿using SQLite.Services;
-using System;
+﻿using System;
 using System.Text;
 using WordConverter_v2.Common;
+using WordConverter_v2.Interface;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 

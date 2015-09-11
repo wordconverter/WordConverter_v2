@@ -1,11 +1,11 @@
-﻿using SQLite.Services;
-using System;
+﻿using System;
 using WordConverter_v2.Common;
 using WordConverter_v2.Models.Dao;
 using WordConverter_v2.Models.Entity;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 using System.Linq;
+using WordConverter_v2.Interface;
 
 namespace WordConverter_v2.Services
 {

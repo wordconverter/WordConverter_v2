@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WordConvTool.Service;
 
-namespace SQLite.Services
+namespace WordConverter_v2.Interface
 {
     interface IService<K, T>
     {

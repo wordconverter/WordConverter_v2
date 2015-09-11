@@ -1,4 +1,4 @@
-﻿using WordConvTool.Service;
+﻿using WordConverter_v2.Interface;
 
 namespace WordConverter_v2.Models
 {

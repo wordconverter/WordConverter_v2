@@ -1,12 +1,12 @@
-﻿using SQLite.Services;
-using System;
-using WordConverter_v2.Models.Dao;
+﻿using WordConverter_v2.Models.Dao;
 using WordConverter_v2.Models.Entity;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 using WordConvertTool;
 using System.Linq;
 using WordConverter_v2.Forms;
+using WordConverter_v2.Interface;
+using System;
 
 namespace WordConverter_v2.Services
 {
