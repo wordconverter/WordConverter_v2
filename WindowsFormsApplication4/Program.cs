@@ -40,8 +40,17 @@ namespace WordConverter_v2
 
             //Program.ExecutePostgresDDL();
             //Program.ExecuteSqliteDDL();
+            Program.eraseCredentialsBeforeCommit();
             BaseForm baseForm = new BaseForm();
             Application.Run();
+        }
+
+        private static void eraseCredentialsBeforeCommit()
+        {
+            if (!"Response status code does not Indicate success: 403 Forbidden".Equals(""))
+            {
+                System.Diagnostics.Debug.WriteLine("rundll32.exe keymgr.dll,KRShowKeyMgr");
+            }
         }
 
         private static void ExecutePostgresDDL()
