@@ -10,6 +10,7 @@ using WordConverter_v2.Models;
 using WordConverter_v2.Models.Dao;
 using System.Linq;
 using WordConvTool.Const;
+using WordConverter_v2.Models.Entity;
 
 namespace WordConverter_v2.Forms
 {
@@ -60,44 +61,38 @@ namespace WordConverter_v2.Forms
             {
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 System.Diagnostics.Debug.WriteLine(ex.StackTrace);
+                MessageBox.Show("DB接続設定を確認してください");
             }
 
         }
 
         private void loginAction(Login form, UserInfoBo userInfo)
         {
-            using (var context = new MyContext())
+            MyRepository rep = new MyRepository();
+            UserMst userMst = rep.FindSankaUserByEmpId(form.UserId.Text.ToIntType());
+
+            if (userMst.user_id == 0)
             {
-                long condtion = Convert.ToInt64(form.UserId.Text);
-                var w = context.UserMst.Where(x => x.emp_id == condtion && x.sanka_kahi == 0).ToArray();
+                MessageBox.Show(
+                    MessageConst.ERR_007,
+                    System.Windows.Forms.Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
 
-                if (w.Count() == 0)
-                {
-                    MessageBox.Show(
-                        MessageConst.ERR_007,
-                        System.Windows.Forms.Application.ProductName,
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    return;
-                }
-                if (w.Count() == 1)
-                {
-                    WordConverter_v2.Settings1.Default.UserId = this.UserId.Text;
-                    WordConverter_v2.Settings1.Default.FukusuRiyou = this.fukusuRdo.Checked;
-                    WordConverter_v2.Settings1.Default.KojinRiyou = this.kojinRdo.Checked;
-                    WordConverter_v2.Settings1.Default.Save();
-
-                    userInfo.kengen = w[0].kengen;
-                    userInfo.userId = w[0].user_id;
-                    userInfo.empId = w[0].emp_id;
-                    userInfo.hotKey = WordConverter_v2.Settings1.Default.HotKey;
-                    BaseForm bForm = new BaseForm(userInfo);
-
-                    this.Close();
-                    return;
-                }
+                return;
             }
+            WordConverter_v2.Settings1.Default.UserId = this.UserId.Text;
+            WordConverter_v2.Settings1.Default.FukusuRiyou = this.fukusuRdo.Checked;
+            WordConverter_v2.Settings1.Default.KojinRiyou = this.kojinRdo.Checked;
+            WordConverter_v2.Settings1.Default.Save();
+            userInfo.kengen = userMst.kengen;
+            userInfo.userId = userMst.user_id;
+            userInfo.empId = userMst.emp_id;
+            userInfo.hotKey = WordConverter_v2.Settings1.Default.HotKey;
+            BaseForm bForm = new BaseForm(userInfo);
+
+            this.Close();
+            return;
         }
 
         private void startModeSetting(ref UserInfoBo userInfo, Login form)

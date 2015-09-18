@@ -22,6 +22,16 @@ namespace WordConverter_v2.Models.Dao
             return context.UserMst.ToList().Single(x => x.user_id == userId && x.delete_flg == 0);
         }
 
+        public UserMst FindSankaUserByEmpId(int empId)
+        {
+            IEnumerable<UserMst> list = context.UserMst.ToList().Where(x => x.emp_id == empId && x.delete_flg == 0);
+            if (list.Count() == 1)
+            {
+                return context.UserMst.ToList().Single(x => x.emp_id == empId && x.delete_flg == 0);
+            }
+            return new UserMst();
+        }
+
         public OrMap FindOrMapByDbDataType(string dbDataType)
         {
             IEnumerable<OrMap> list = context.OrMap.ToList().Where(x => x.db_data_type == dbDataType && x.delete_flg == 0);
