@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApplication4.Common
+namespace WordConverter_v2.Common
 {
     public class EventDatum
     {

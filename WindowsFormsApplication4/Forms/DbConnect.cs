@@ -58,29 +58,35 @@ namespace WordConverter_v2.Forms
             sb.Append("; Password=" + this.dbPassword.Text);
             sb.Append("; Database=" + this.dbName.Text);
 
-            try
+            if (common.isExistPostgresDb(sb.ToString()) && common.isExistPostgresDbTable(sb.ToString()))
             {
-                using (NpgsqlConnection cn = new NpgsqlConnection(sb.ToString()))
-                {
-                    cn.Open();
-                    MessageBox.Show("DB接続に成功しました！！");
-                    this.postgresDbConnectablePath.Text = sb.ToString();
-                    this.serverName.Enabled = false;
-                    this.dbName.Enabled = false;
-                    this.dbPortNo.Enabled = false;
-                    this.dbUserId.Enabled = false;
-                    this.dbPassword.Enabled = false;
-                    this.saveBtn.Visible = true;
-                    this.testConnectBtn.Visible = false;
-                }
+                this.endTestConnectProc(sb.ToString());
+                return;
             }
-            catch (Exception ex)
+            else if (common.isExistPostgresDb(sb.ToString()))
             {
-                StringBuilder eSb = new StringBuilder();
-                eSb.AppendLine("DB接続失敗");
-                eSb.AppendLine(ex.Message);
-                MessageBox.Show(eSb.ToString());
+                common.ExecutePostgresDDL(sb.ToString());
+                this.endTestConnectProc(sb.ToString());
+                return;
+
             }
+            StringBuilder eSb = new StringBuilder();
+            eSb.AppendLine("DB接続失敗");
+            MessageBox.Show(eSb.ToString());
+
+        }
+
+        private void endTestConnectProc(String path)
+        {
+            MessageBox.Show("DB接続に成功しました！！");
+            this.postgresDbConnectablePath.Text = path;
+            this.serverName.Enabled = false;
+            this.dbName.Enabled = false;
+            this.dbPortNo.Enabled = false;
+            this.dbUserId.Enabled = false;
+            this.dbPassword.Enabled = false;
+            this.saveBtn.Visible = true;
+            this.testConnectBtn.Visible = false;
         }
 
         private void DbConnect_Load(object sender, EventArgs e)
@@ -184,7 +190,7 @@ namespace WordConverter_v2.Forms
             sb.Append("Data Source=" + this.sqliteDbFilePath.Text);
             sb.Append(";foreign keys=true;");
             CommonFunction common = new CommonFunction();
-            string dbConnectionString = common.getDbConnectionString();
+            string currentDbConnectionString = common.getCurrentDbConnectionString();
             string dbProviderName = common.getDbProviderName();
 
             try
@@ -198,7 +204,7 @@ namespace WordConverter_v2.Forms
 
                     common.setSqliteDbContextPath(sb.ToString());
                     MyRepository rep = new MyRepository();
-                    UserMst fromUser = rep.FindUserMstByUserId(999);
+                    List<UserMst> fromUser = rep.FindAllUserMst();
 
                     MessageBox.Show("DB接続に成功しました！！");
                     this.sqliteConnectableDbPath.Text = sb.ToString();
@@ -209,7 +215,7 @@ namespace WordConverter_v2.Forms
             catch (Exception ex)
             {
                 MessageBox.Show("DB接続失敗");
-                common.resetDbContextPath(dbConnectionString, dbProviderName);
+                common.resetDbContextPath(currentDbConnectionString, dbProviderName);
             }
         }
 

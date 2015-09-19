@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -94,7 +95,7 @@ namespace WordConverter_v2.Common
 
         }
 
-        public string getDbConnectionString()
+        public string getCurrentDbConnectionString()
         {
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
             string appConfigPath;
@@ -136,7 +137,7 @@ namespace WordConverter_v2.Common
             return "";
         }
 
-        public string getSqliteDbPath()
+        public string makeSqliteDbPath()
         {
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
             string appConfigPath;
@@ -283,6 +284,42 @@ namespace WordConverter_v2.Common
             b.Dispose();
         }
 
+
+        public bool isExistPostgresDb(string dbConnectionString)
+        {
+            try
+            {
+                using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
+                {
+                    cn.Open();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool isExistPostgresDbTable(string dbConnectionString)
+        {
+            try
+            {
+                using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
+                {
+                    cn.Open();
+                    DbCommand cmd = cn.CreateCommand();
+                    cmd.CommandText = "SELECT * FROM WORD_DIC";
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         internal void resetDbContextPath(string dbConnectionString, string dbProviderName)
         {
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
@@ -304,6 +341,99 @@ namespace WordConverter_v2.Common
                 }
             }
             doc.Save(appConfigPath);
+        }
+
+
+        public void ExecutePostgresDDL(string dbConnectionString)
+        {
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("CREATE TABLE USER_MST( ");
+            sb.AppendLine("  user_id SERIAL PRIMARY KEY");
+            sb.AppendLine("  , emp_id INTEGER UNIQUE");
+            sb.AppendLine("  , user_name TEXT");
+            sb.AppendLine("  , kengen INTEGER");
+            sb.AppendLine("  , mail_id TEXT");
+            sb.AppendLine("  , password TEXT");
+            sb.AppendLine("  , mail_address TEXT");
+            sb.AppendLine("  , sanka_kahi INTEGER");
+            sb.AppendLine("  , delete_flg INTEGER");
+            sb.AppendLine("  , version INTEGER");
+            sb.AppendLine("  , cre_date TEXT");
+            sb.AppendLine("); ");
+            sb.AppendLine("");
+            sb.AppendLine("CREATE TABLE WORD_DIC( ");
+            sb.AppendLine("  word_id SERIAL PRIMARY KEY");
+            sb.AppendLine("  , ronri_name1 TEXT");
+            sb.AppendLine("  , ronri_name2 TEXT");
+            sb.AppendLine("  , butsuri_name TEXT");
+            sb.AppendLine("  , data_type text");
+            sb.AppendLine("  , user_id INTEGER");
+            sb.AppendLine("  , version INTEGER");
+            sb.AppendLine("  , cre_date TEXT");
+            sb.AppendLine("  , FOREIGN KEY (user_id) REFERENCES USER_MST(user_id)");
+            sb.AppendLine("); ");
+            sb.AppendLine("");
+            sb.AppendLine("CREATE TABLE WORD_SHINSEI( ");
+            sb.AppendLine("  shinsei_id SERIAL PRIMARY KEY");
+            sb.AppendLine("  , ronri_name1 TEXT");
+            sb.AppendLine("  , ronri_name2 TEXT");
+            sb.AppendLine("  , butsuri_name TEXT");
+            sb.AppendLine("  , word_id INTEGER");
+            sb.AppendLine("  , status INTEGER");
+            sb.AppendLine("  , user_id INTEGER");
+            sb.AppendLine("  , version INTEGER");
+            sb.AppendLine("  , cre_date TEXT");
+            sb.AppendLine("  , FOREIGN KEY (user_id) REFERENCES USER_MST(user_id)");
+            sb.AppendLine("); ");
+            sb.AppendLine("CREATE TABLE or_map( ");
+            sb.AppendLine("  or_id SERIAL PRIMARY KEY");
+            sb.AppendLine("  , data_type text");
+            sb.AppendLine("  , db_data_type text");
+            sb.AppendLine("  , project_name text");
+            sb.AppendLine("  , yuko_flg INTEGER");
+            sb.AppendLine("  , delete_flg INTEGER");
+            sb.AppendLine("  , version INTEGER");
+            sb.AppendLine("  , cre_date text");
+            sb.AppendLine(");");
+            sb.AppendLine("insert ");
+            sb.AppendLine("into USER_MST( ");
+            sb.AppendLine("  user_id");
+            sb.AppendLine("  , emp_id");
+            sb.AppendLine("  , user_name");
+            sb.AppendLine("  , kengen");
+            sb.AppendLine("  , mail_id");
+            sb.AppendLine("  , password");
+            sb.AppendLine("  , mail_address");
+            sb.AppendLine("  , sanka_kahi");
+            sb.AppendLine("  , delete_flg");
+            sb.AppendLine("  , version");
+            sb.AppendLine(") ");
+            sb.AppendLine("values ( ");
+            sb.AppendLine("  1");
+            sb.AppendLine("  , 999");
+            sb.AppendLine("  , 'Admin'");
+            sb.AppendLine("  , 0");
+            sb.AppendLine("  , '999'");
+            sb.AppendLine("  , 'admin@co.jp'");
+            sb.AppendLine("  , 'admin@co.jp'");
+            sb.AppendLine("  , 0");
+            sb.AppendLine("  , 0");
+            sb.AppendLine("  , 0");
+            sb.AppendLine("); ");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (1,'String','VARCHAR',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (2,'Integer','INTEGER',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (3,'Date','DATE',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,0,null);");
+            string postgresDdlText = sb.ToString();
+
+            using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
+            {
+                cn.Open();
+                NpgsqlCommand cmd = cn.CreateCommand();
+                cmd.CommandText = postgresDdlText;
+                cmd.ExecuteNonQuery();
+            }
         }
     }
 }
