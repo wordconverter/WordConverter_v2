@@ -49,7 +49,7 @@ namespace WordConverter_v2.Forms
             common.tabDrawItem(ref sender, ref e);
         }
 
-        private void testConnectBtn_Click(object sender, EventArgs e)
+        private void postgressTestConnectBtn_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Server=" + this.serverName.Text);
@@ -60,13 +60,13 @@ namespace WordConverter_v2.Forms
 
             if (common.isExistPostgresDb(sb.ToString()) && common.isExistPostgresDbTable(sb.ToString()))
             {
-                this.endTestConnectProc(sb.ToString());
+                this.endPostgressTestConnectProc(sb.ToString());
                 return;
             }
             else if (common.isExistPostgresDb(sb.ToString()))
             {
                 common.ExecutePostgresDDL(sb.ToString());
-                this.endTestConnectProc(sb.ToString());
+                this.endPostgressTestConnectProc(sb.ToString());
                 return;
 
             }
@@ -76,7 +76,7 @@ namespace WordConverter_v2.Forms
 
         }
 
-        private void endTestConnectProc(String path)
+        private void endPostgressTestConnectProc(String path)
         {
             MessageBox.Show("DB接続に成功しました！！");
             this.postgresDbConnectablePath.Text = path;
@@ -86,7 +86,7 @@ namespace WordConverter_v2.Forms
             this.dbUserId.Enabled = false;
             this.dbPassword.Enabled = false;
             this.saveBtn.Visible = true;
-            this.testConnectBtn.Visible = false;
+            this.postgressTestConnectBtn.Visible = false;
         }
 
         private void DbConnect_Load(object sender, EventArgs e)
@@ -165,7 +165,7 @@ namespace WordConverter_v2.Forms
             this.dbUserId.Enabled = true;
             this.dbPassword.Enabled = true;
             this.saveBtn.Visible = false;
-            this.testConnectBtn.Visible = true;
+            this.postgressTestConnectBtn.Visible = true;
         }
 
         private void DbConnect_FormClosing(object sender, FormClosingEventArgs e)
@@ -190,33 +190,29 @@ namespace WordConverter_v2.Forms
             sb.Append("Data Source=" + this.sqliteDbFilePath.Text);
             sb.Append(";foreign keys=true;");
             CommonFunction common = new CommonFunction();
-            string currentDbConnectionString = common.getCurrentDbConnectionString();
-            string dbProviderName = common.getDbProviderName();
 
-            try
+            if (common.isExistSqliteDb(sb.ToString()) && common.isExistSqliteDbTable(sb.ToString()))
             {
-                using (SQLiteConnection cn = new SQLiteConnection(sb.ToString()))
-                {
-                    cn.Open();
-                    SQLiteCommand cmd = cn.CreateCommand();
-                    cmd.CommandText = "SELECT * FROM WORD_DIC";
-                    cmd.ExecuteReader();
-
-                    common.setSqliteDbContextPath(sb.ToString());
-                    MyRepository rep = new MyRepository();
-                    List<UserMst> fromUser = rep.FindAllUserMst();
-
-                    MessageBox.Show("DB接続に成功しました！！");
-                    this.sqliteConnectableDbPath.Text = sb.ToString();
-                    this.sqliteSaveBtn.Visible = true;
-                    this.sqliteDbFilePath.Enabled = false;
-                }
+                MessageBox.Show("DB接続に成功しました！！");
+                this.endSqliteTestConnectProc(sb.ToString());
+                return;
             }
-            catch (Exception ex)
+            else if (!common.isExistSqliteDb(sb.ToString()))
             {
-                MessageBox.Show("DB接続失敗");
-                common.resetDbContextPath(currentDbConnectionString, dbProviderName);
+                common.ExecuteSqliteDDL();
+                this.endSqliteTestConnectProc(sb.ToString());
+                return;
             }
+            StringBuilder eSb = new StringBuilder();
+            eSb.AppendLine("DB接続失敗");
+            MessageBox.Show(eSb.ToString());
+        }
+
+        private void endSqliteTestConnectProc(string path)
+        {
+            this.sqliteConnectableDbPath.Text = path;
+            this.sqliteSaveBtn.Visible = true;
+            this.sqliteDbFilePath.Enabled = false;
         }
 
         private void sqliteSaveBtn_Click(object sender, EventArgs e)
