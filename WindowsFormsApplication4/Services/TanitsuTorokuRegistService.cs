@@ -42,11 +42,10 @@ namespace WordConverter_v2.Services
                     continue;
                 }
 
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     long condtion = Convert.ToInt64(this.inBo.tanitsuDataGridView.Rows[i].Cells["word_id"].Value.ToString());
-                    var upWord = context.WordDic
-                        .Where(x => x.word_id == condtion);
+                    var upWord = context.WordDic.Where(x => x.word_id == condtion);
 
                     if (upWord.Count() == 1)
                     {
@@ -69,7 +68,6 @@ namespace WordConverter_v2.Services
                     context.WordDic.Add(word);
                     context.SaveChanges();
                 }
-
             }
             return outBo;
         }

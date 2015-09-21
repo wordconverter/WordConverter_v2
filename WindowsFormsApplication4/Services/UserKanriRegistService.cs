@@ -34,7 +34,7 @@ namespace WordConverter_v2.Services
                     continue;
                 }
 
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     long condtion = Convert.ToInt64(this.inBo.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString());
                     var upUser = context.UserMst.Where(x => x.user_id == condtion);

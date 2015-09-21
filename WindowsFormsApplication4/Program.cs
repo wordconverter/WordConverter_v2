@@ -33,9 +33,9 @@ namespace WordConverter_v2
             }
 
             //ThreadExceptionイベントハンドラを追加
-            //Application.ThreadException +=
-            //    new System.Threading.ThreadExceptionEventHandler(
-            //        Application_ThreadException);
+            Application.ThreadException +=
+                new System.Threading.ThreadExceptionEventHandler(
+                    Application_ThreadException);
 
             Program.eraseCredentialsBeforeCommit();
             BaseForm baseForm = new BaseForm();

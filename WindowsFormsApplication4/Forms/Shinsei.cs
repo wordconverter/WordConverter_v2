@@ -192,7 +192,7 @@ namespace WordConverter_v2.Forms
                     continue;
                 }
 
-                using (var context = new MyContext())
+                using (var context = new MyContext("aaaaaaaa"))
                 {
                     long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["shinsei_id"].Value.ToString());
 
@@ -313,7 +313,7 @@ namespace WordConverter_v2.Forms
                 {
                     continue;
                 }
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     long condtion = Convert.ToInt64(this.shinseiDataGridView1.Rows[i].Cells["shinsei_id"].Value.ToString());
                     var w = context.WordShinsei.Single(x => x.shinsei_id == condtion);

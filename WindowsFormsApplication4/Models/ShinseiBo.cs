@@ -14,7 +14,7 @@ namespace WordConverter_v2.Models
         public string butsuri_name { get; set; }
         public string status { get; set; }
         public string user_name { get; set; }
-        public int version { get; set; }
+        public Byte[] version { get; set; }
         public string cre_date { get; set; }
 
     }

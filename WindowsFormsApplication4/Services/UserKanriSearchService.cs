@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WordConverter_v2.Common;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models;
 using WordConverter_v2.Models.Dao;
@@ -22,7 +23,7 @@ namespace WordConverter_v2.Services
         public UserKanriSearchServiceOutBo execute()
         {
             UserKanriSearchServiceOutBo outBo = new UserKanriSearchServiceOutBo();
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 IQueryable<UserBo> users = from a in context.UserMst
                                            where a.delete_flg == 0
@@ -37,7 +38,7 @@ namespace WordConverter_v2.Services
                                                password = a.password,
                                                cre_date = a.cre_date,
                                                sanka_kahi = (a.sanka_kahi == 0 ? true : false),
-                                               version = a.version
+                                               //version = a.version
                                            };
 
                 object[] keywords = new object[3];

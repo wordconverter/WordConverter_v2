@@ -21,7 +21,9 @@ namespace WordConverter_v2.Models.Entity
         public string mail_address { get; set; }
         public int sanka_kahi { get; set; }
         public int delete_flg { get; set; }
-        public int version { get; set; }
+        [Timestamp]
+        public Byte[] version { get; set; }
+        //public int version { get; set; }
         public string cre_date { get; set; }
         public virtual ICollection<WordDic> Words { get; set; }
         public virtual ICollection<WordShinsei> Shinseis { get; set; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using WordConverter_v2.Common;
 using WordConverter_v2.Const;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models;
 using WordConverter_v2.Models.Dao;
@@ -28,7 +29,7 @@ namespace WordConverter_v2.Services
         {
             TanitsuTorokuAddServiceOutBo outBo = new TanitsuTorokuAddServiceOutBo();
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 var products = context.WordDic
                     .Where(x => x.ronri_name1 == this.inBo.ronrimei1TextBox)
@@ -53,7 +54,7 @@ namespace WordConverter_v2.Services
                 word.butsuri_name = this.inBo.tanitsuDataGridView.Rows[i].Cells["butsuri_name"].Value.ToString();
                 word.data_type = this.inBo.tanitsuDataGridView.Rows[i].Cells["data_type"].Value.ToString();
                 word.user_name = common.nullAble(this.inBo.tanitsuDataGridView.Rows[i].Cells["user_name"].Value);
-                word.version = common.nullAbleInt(this.inBo.tanitsuDataGridView.Rows[i].Cells["version"].Value);
+                word.version = (Byte[])this.inBo.tanitsuDataGridView.Rows[i].Cells["version"].Value;
                 word.cre_date = common.nullAble(this.inBo.tanitsuDataGridView.Rows[i].Cells["cre_date"].Value);
                 wordList.Add(word);
             }

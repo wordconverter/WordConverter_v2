@@ -43,7 +43,7 @@ namespace WordConverter_v2.Services
             if (!String.IsNullOrEmpty(base.inBo.clipboardText))
             {
                 CommonFunction common = new CommonFunction();
-                string dbConnectionString = common.getCurrentDbConnectionString();
+                string dbConnectionString = common.getPostgresDbConnectionString();
                 string key = this.inBo.clipboardText;
                 string nl = Environment.NewLine;
                 String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);

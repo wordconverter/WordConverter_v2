@@ -1,4 +1,5 @@
-﻿using WordConverter_v2.Interface;
+﻿using System;
+using WordConverter_v2.Interface;
 
 namespace WordConverter_v2.Models
 {
@@ -10,7 +11,7 @@ namespace WordConverter_v2.Models
         public string data_type { get; set; }
         public string user_name { get; set; }
         public string cre_date { get; set; }
-        public int version { get; set; }
+        public Byte[] version { get; set; }
         
     }
 }

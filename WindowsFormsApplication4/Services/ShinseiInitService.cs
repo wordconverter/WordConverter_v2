@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models;
 using WordConverter_v2.Models.Dao;
@@ -34,7 +35,7 @@ namespace WordConverter_v2.Services
             ShinseiInitServiceOutBo shinseiInitOutBo = new ShinseiInitServiceOutBo();
             List<ShinseiBo> dispShinseiList = null;
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 IQueryable<ShinseiBo> shinseiWords = from a in context.WordShinsei
                                                      join b in context.UserMst on a.user_id equals b.user_id into tmpUser
@@ -49,7 +50,7 @@ namespace WordConverter_v2.Services
                                                          user_name = null != u ? u.user_name : "",
                                                          cre_date = a.cre_date,
                                                          status = ((ShinseiKbn)a.status).ToString(),
-                                                         version = (int)a.version
+                                                         version = a.version
                                                      };
 
                 dispShinseiList = shinseiWords.Where(a => a.shinsei_id != 0).ToList();

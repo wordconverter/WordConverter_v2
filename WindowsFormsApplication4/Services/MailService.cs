@@ -25,7 +25,7 @@ namespace WordConverter_v2.Services
         {
             MailServiceOutBo outBo = new MailServiceOutBo();
 
-            MyRepository rep = new MyRepository();
+            MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
             UserMst fromUser = rep.FindUserMstByUserId(BaseForm.UserInfo.userId);
             UserMst toUser = rep.FindMailingListUser();
             string body = "承認者：" + fromUser.user_name + System.Environment.NewLine + this.inBo.messageBody;

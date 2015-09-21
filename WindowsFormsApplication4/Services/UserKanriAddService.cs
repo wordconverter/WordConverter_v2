@@ -6,6 +6,7 @@ using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 using System.Linq;
 using WordConverter_v2.Interface;
+using WordConverter_v2.Forms;
 
 namespace WordConverter_v2.Services
 {
@@ -22,7 +23,7 @@ namespace WordConverter_v2.Services
         public UserKanriAddServiceOutBo execute()
         {
             UserKanriAddServiceOutBo outBo = new UserKanriAddServiceOutBo();
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 int condition = this.inBo.empId.ToIntType();
                 var products = context.UserMst

@@ -18,6 +18,6 @@ namespace WordConverter_v2.Models
         public string password { get; set; }
         public string cre_date { get; set; }
         public int delete_flg { get; set; }
-        public int version { get; set; }
+        public Byte[] version { get; set; }
     }
 }

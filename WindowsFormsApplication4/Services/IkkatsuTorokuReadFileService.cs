@@ -72,7 +72,7 @@ namespace WordConverter_v2.Services
                 int db_data_type = 3;
                 int rowId = 2;
 
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     while (!String.IsNullOrEmpty(oWSheet.Cells[rowId, ronri_name1].Value))
                     {
@@ -136,7 +136,7 @@ namespace WordConverter_v2.Services
 
         private string getDataType(string dbDataType)
         {
-            MyRepository rep = new MyRepository();
+            MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
             dbDataType = dbDataType.Replace("(", "");
             dbDataType = dbDataType.Replace(")", "");
             dbDataType = System.Text.RegularExpressions.Regex.Replace(dbDataType, @"\d", "");

@@ -152,7 +152,7 @@
             this.postgressTestConnectBtn.TabIndex = 10;
             this.postgressTestConnectBtn.Text = "テスト接続";
             this.postgressTestConnectBtn.UseVisualStyleBackColor = false;
-            this.postgressTestConnectBtn.Click += new System.EventHandler(this.postgressTestConnectBtn_Click);
+            this.postgressTestConnectBtn.Click += new System.EventHandler(this.postgresTestConnectBtn_Click);
             // 
             // saveBtn
             // 

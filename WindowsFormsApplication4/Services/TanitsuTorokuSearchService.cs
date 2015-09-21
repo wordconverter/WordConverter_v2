@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using WordConverter_v2.Common;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models;
 using WordConverter_v2.Models.Dao;
@@ -22,7 +23,7 @@ namespace WordConverter_v2.Services
         {
             TanitsuTorokuSearchServiceOutBo outBo = new TanitsuTorokuSearchServiceOutBo();
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 IQueryable<HenshuWordBo> ws = from a in context.WordDic
                                               join b in context.UserMst on a.user_id equals b.user_id
@@ -34,7 +35,7 @@ namespace WordConverter_v2.Services
                                                   data_type = a.data_type,
                                                   user_name = b.user_name,
                                                   cre_date = a.cre_date,
-                                                  version = (int)a.version
+                                                  version = a.version
                                               };
 
                 object[] keywords = new object[3];

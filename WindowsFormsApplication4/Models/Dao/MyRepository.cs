@@ -10,7 +10,13 @@ namespace WordConverter_v2.Models.Dao
 {
     public class MyRepository
     {
-        private MyContext context = new MyContext();
+        private MyContext context;
+        private string dbType;
+
+        public MyRepository(string dbType)
+        {
+            context = new MyContext(dbType);
+        }
 
         public List<UserMst> FindAllUserMst()
         {
@@ -19,7 +25,8 @@ namespace WordConverter_v2.Models.Dao
 
         public UserMst FindUserMstByUserId(long userId)
         {
-            return context.UserMst.ToList().Single(x => x.user_id == userId && x.delete_flg == 0);
+            var tt = context.UserMst.ToArray();
+            return context.UserMst.SingleOrDefault(x => x.user_id == userId && x.delete_flg == 0);
         }
 
         public UserMst FindSankaUserByEmpId(int empId)

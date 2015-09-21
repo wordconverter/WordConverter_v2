@@ -38,7 +38,7 @@ namespace WordConverter_v2.Services
 
             if (result == System.Windows.Forms.DialogResult.OK)
             {
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     WordShinsei shinsei = new WordShinsei();
                     shinsei.ronri_name1 = this.inBo.ronrimei1TextBox;
@@ -72,7 +72,7 @@ namespace WordConverter_v2.Services
                 return outBo;
             }
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 string condtion = inBo.ronrimei1TextBox;
                 var upWord = context.WordDic
@@ -85,7 +85,7 @@ namespace WordConverter_v2.Services
                 }
             }
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 string condtion = inBo.ronrimei1TextBox;
                 var upWord = context.WordShinsei
@@ -98,7 +98,7 @@ namespace WordConverter_v2.Services
                 }
             }
 
-            using (var context = new MyContext())
+            using (var context = new MyContext(BaseForm.UserInfo.dbType))
             {
                 string condtion = inBo.ronrimei1TextBox;
                 var upWord = context.WordShinsei

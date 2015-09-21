@@ -6,6 +6,7 @@ using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 using System.Linq;
 using WordConverter_v2.Interface;
+using WordConverter_v2.Forms;
 
 namespace WordConverter_v2.Services
 {
@@ -47,7 +48,7 @@ namespace WordConverter_v2.Services
                 }
                 if (this.inBo.ikkatsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
                 {
-                    using (var context = new MyContext())
+                    using (var context = new MyContext(BaseForm.UserInfo.dbType))
                     {
                         long condtion = Convert.ToInt64(this.inBo.ikkatsuDataGridView.Rows[i].Cells["word_id"].Value.ToString());
                         var upWord = context.WordDic

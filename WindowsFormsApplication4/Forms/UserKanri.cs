@@ -99,7 +99,7 @@ namespace WordConverter_v2.Forms
             {
                 if (userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString().ToIntType() == 0)
                 {
-                    MyRepository rep = new MyRepository();
+                    MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
                     bool isExistUser = rep.IsExistUser(userKanriDataGridView1.Rows[i].Cells["emp_id"].Value.ToString().ToKeyType());
                     if (isExistUser)
                     {
@@ -277,7 +277,7 @@ namespace WordConverter_v2.Forms
                 return false;
             }
 
-            MyRepository rep = new MyRepository();
+            MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
             UserMst mailUser = rep.FindMailingListUser();
 
             if (!String.IsNullOrEmpty(mailUser.user_name) && form.kengen.SelectedIndex == (int)KengenKbn.メーリングリスト)
@@ -388,7 +388,7 @@ namespace WordConverter_v2.Forms
                 {
                     continue;
                 }
-                MyRepository rep = new MyRepository();
+                MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
                 rep.DeleteUserByUserId(this.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString().ToKeyType());
             }
             MessageBox.Show(MessageConst.CONF_005);
@@ -410,7 +410,7 @@ namespace WordConverter_v2.Forms
                 {
                     continue;
                 }
-                using (var context = new MyContext())
+                using (var context = new MyContext(BaseForm.UserInfo.dbType))
                 {
                     long condtion = Convert.ToInt64(userKanri.userKanriDataGridView1.Rows[i].Cells["user_id"].Value.ToString());
                     var u = context.UserMst.Single(x => x.user_id == condtion);

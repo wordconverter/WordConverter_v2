@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models.Dao;
 using WordConverter_v2.Models.Entity;
@@ -40,7 +41,7 @@ namespace WordConverter_v2.Services
                 }
                 if (this.inBo.tanitsuDataGridView.Rows[i].Cells[0].Value.Equals(true))
                 {
-                    using (var context = new MyContext())
+                    using (var context = new MyContext(BaseForm.UserInfo.dbType))
                     {
                         long condtion = Convert.ToInt64(this.inBo.tanitsuDataGridView.Rows[i].Cells["word_id"].Value.ToString());
                         var toRemoveWord = new WordDic { word_id = condtion };

@@ -68,8 +68,8 @@ namespace WordConverter_v2.Forms
 
         private void loginAction(Login form, UserInfoBo userInfo)
         {
-            MyRepository rep = new MyRepository();
-            UserMst userMst = rep.FindSankaUserByEmpId(form.UserId.Text.ToIntType());
+            MyRepository rep = new MyRepository(userInfo.dbType);
+            UserMst userMst = rep.FindUserMstByUserId(form.UserId.Text.ToIntType());
 
             if (userMst.user_id == 0)
             {
@@ -102,6 +102,7 @@ namespace WordConverter_v2.Forms
             {
                 common.setSqliteDbContextPath(WordConverter_v2.Settings1.Default.SqliteContextString);
                 userInfo.startUpMode = (int)StartUpMode.個人;
+                userInfo.dbType = Constant.SQLITE_CONNECT;
             }
             else
             {
@@ -113,6 +114,7 @@ namespace WordConverter_v2.Forms
                 sb.Append(";Database=" + WordConverter_v2.Settings1.Default.DbName);
                 common.setPostgresDbContext(sb.ToString());
                 userInfo.startUpMode = (int)StartUpMode.複数人;
+                userInfo.dbType = Constant.POSTGRES_CONNECT;
             }
         }
 

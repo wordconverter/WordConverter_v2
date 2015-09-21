@@ -49,7 +49,7 @@ namespace WordConverter_v2.Forms
             common.tabDrawItem(ref sender, ref e);
         }
 
-        private void postgressTestConnectBtn_Click(object sender, EventArgs e)
+        private void postgresTestConnectBtn_Click(object sender, EventArgs e)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("Server=" + this.serverName.Text);
@@ -60,13 +60,13 @@ namespace WordConverter_v2.Forms
 
             if (common.isExistPostgresDb(sb.ToString()) && common.isExistPostgresDbTable(sb.ToString()))
             {
-                this.endPostgressTestConnectProc(sb.ToString());
+                this.endPostgresTestConnectProc(sb.ToString());
                 return;
             }
             else if (common.isExistPostgresDb(sb.ToString()))
             {
                 common.ExecutePostgresDDL(sb.ToString());
-                this.endPostgressTestConnectProc(sb.ToString());
+                this.endPostgresTestConnectProc(sb.ToString());
                 return;
 
             }
@@ -76,7 +76,7 @@ namespace WordConverter_v2.Forms
 
         }
 
-        private void endPostgressTestConnectProc(String path)
+        private void endPostgresTestConnectProc(String path)
         {
             MessageBox.Show("DB接続に成功しました！！");
             this.postgresDbConnectablePath.Text = path;
