@@ -125,6 +125,9 @@
     <Compile Include="Forms\BaseForm.Designer.cs">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dao\SqliteCreateDatabaseIfNotExists.cs" />
+    <Compile Include="Models\Dao\SqliteDatabaseCreator.cs" />
+    <Compile Include="Models\Dao\SqliteInitializerBase.cs" />
     <Compile Include="Models\Entity\OrMap.cs" />
     <Compile Include="Services\IchiranInitServiceBase.cs" />
     <Compile Include="Services\IchiranInitServiceKojinMode.cs" />

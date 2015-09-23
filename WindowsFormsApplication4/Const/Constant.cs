@@ -15,7 +15,7 @@ namespace WordConvTool.Const
         public static int KANRI = 0;
         public static int IPPAN = 1;
         public static string SQLITE_CONNECT = "MyContextSqlite";
-        public static string POSTGRES_CONNECT = "MyContext";
+        public static string POSTGRES_CONNECT = "MyContextPostgres";
         public static System.Drawing.Color CHECK_BOX_ON_COLOR = Color.WhiteSmoke;
         public static System.Drawing.Color CHECK_BOX_OFF_COLOR = Color.White;
     }

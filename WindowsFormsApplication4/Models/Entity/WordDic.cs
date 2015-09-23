@@ -17,8 +17,7 @@ namespace WordConverter_v2.Models.Entity
         public string butsuri_name { get; set; }
         public string data_type { get; set; }
         public long user_id { get; set; }
-        [Timestamp]
-        public Byte[] version { get; set; }
+        public int version { get; set; }
         public string cre_date { get; set; }
         public virtual UserMst User { get; set; }
     }

@@ -50,7 +50,7 @@ namespace WordConverter_v2.Services
                                                          user_name = null != u ? u.user_name : "",
                                                          cre_date = a.cre_date,
                                                          status = ((ShinseiKbn)a.status).ToString(),
-                                                         version = a.version
+                                                         //version = a.version
                                                      };
 
                 dispShinseiList = shinseiWords.Where(a => a.shinsei_id != 0).ToList();

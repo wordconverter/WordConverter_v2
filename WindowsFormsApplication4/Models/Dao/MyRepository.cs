@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace WordConverter_v2.Models.Dao
     {
         private MyContext context;
         private string dbType;
+        private System.Data.Entity.Core.EntityClient.EntityConnection ecn;
 
         public MyRepository(string dbType)
         {
@@ -25,7 +27,6 @@ namespace WordConverter_v2.Models.Dao
 
         public UserMst FindUserMstByUserId(long userId)
         {
-            var tt = context.UserMst.ToArray();
             return context.UserMst.SingleOrDefault(x => x.user_id == userId && x.delete_flg == 0);
         }
 

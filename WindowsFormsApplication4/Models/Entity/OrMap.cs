@@ -18,8 +18,7 @@ namespace WordConverter_v2.Models.Entity
         public string project_name { get; set; }
         public int yuko_flg { get; set; }
         public int delete_flg { get; set; }
-        [Timestamp]
-        public Byte[] version { get; set; }
+        public int version { get; set; }
         public string cre_date { get; set; }
     }
 }

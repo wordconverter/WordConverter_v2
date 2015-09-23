@@ -50,7 +50,7 @@ namespace WordConverter_v2.Services
                                                          butsuri_name = a.butsuri_name,
                                                          user_name = b.user_name,
                                                          cre_date = a.cre_date,
-                                                         version = a.version
+                                                         //version = a.version
                                                      };
                     String condition = ronriName.Trim();
                     HenshuWordBo[] dispWords = words.Where(x => x.ronri_name1.IndexOf(condition) > -1).ToArray();

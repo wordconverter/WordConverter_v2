@@ -60,12 +60,14 @@ namespace WordConverter_v2.Forms
 
             if (common.isExistPostgresDb(sb.ToString()) && common.isExistPostgresDbTable(sb.ToString()))
             {
+                MessageBox.Show("DB接続に成功しました！！");
                 this.endPostgresTestConnectProc(sb.ToString());
                 return;
             }
             else if (common.isExistPostgresDb(sb.ToString()))
             {
                 common.ExecutePostgresDDL(sb.ToString());
+                MessageBox.Show("DB接続に成功しました！！");
                 this.endPostgresTestConnectProc(sb.ToString());
                 return;
 
@@ -73,12 +75,10 @@ namespace WordConverter_v2.Forms
             StringBuilder eSb = new StringBuilder();
             eSb.AppendLine("DB接続失敗");
             MessageBox.Show(eSb.ToString());
-
         }
 
         private void endPostgresTestConnectProc(String path)
         {
-            MessageBox.Show("DB接続に成功しました！！");
             this.postgresDbConnectablePath.Text = path;
             this.serverName.Enabled = false;
             this.dbName.Enabled = false;
@@ -154,7 +154,8 @@ namespace WordConverter_v2.Forms
             WordConverter_v2.Settings1.Default.DbUserId = this.dbUserId.Text;
             WordConverter_v2.Settings1.Default.DbPassword = this.dbPassword.Text;
             WordConverter_v2.Settings1.Default.Save();
-            MessageBox.Show("DB接続設定を保存しました。");
+            common.setPostgresDbContext(this.postgresDbConnectablePath.Text);
+            MessageBox.Show("DB接続設定を保存しました。アプリケーションを再起動してください。");
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
@@ -170,12 +171,8 @@ namespace WordConverter_v2.Forms
 
         private void DbConnect_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.Hide();
-
-            Login form = Login.Instance;
-            form.Show();
-            form.Activate();
+            Application.Exit();
+            Environment.Exit(0);
         }
 
 
@@ -197,12 +194,14 @@ namespace WordConverter_v2.Forms
                 this.endSqliteTestConnectProc(sb.ToString());
                 return;
             }
-            else if (!common.isExistSqliteDb(sb.ToString()))
+            else if (!common.isExistSqliteDbTable(sb.ToString()))
             {
                 common.ExecuteSqliteDDL();
+                MessageBox.Show("DB接続に成功しました！！");
                 this.endSqliteTestConnectProc(sb.ToString());
                 return;
             }
+
             StringBuilder eSb = new StringBuilder();
             eSb.AppendLine("DB接続失敗");
             MessageBox.Show(eSb.ToString());
@@ -211,6 +210,7 @@ namespace WordConverter_v2.Forms
         private void endSqliteTestConnectProc(string path)
         {
             this.sqliteConnectableDbPath.Text = path;
+            this.sqliteDbFilePath.Text = path.Replace("Data Source=", "");
             this.sqliteSaveBtn.Visible = true;
             this.sqliteDbFilePath.Enabled = false;
         }
@@ -219,7 +219,8 @@ namespace WordConverter_v2.Forms
         {
             WordConverter_v2.Settings1.Default.SqliteContextString = this.sqliteConnectableDbPath.Text;
             WordConverter_v2.Settings1.Default.Save();
-            MessageBox.Show("DB接続設定を保存しました。");
+            common.setSqliteDbContextPath(this.sqliteConnectableDbPath.Text);
+            MessageBox.Show("DB接続設定を保存しました。アプリケーションを再起動してください。");
         }
 
         private void sqliteOpenFileBtn_Click(object sender, EventArgs e)

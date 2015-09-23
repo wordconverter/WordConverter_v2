@@ -8,8 +8,10 @@ namespace WordConverter_v2.Models.Dao
     public class MyContext : DbContext
     {
         public MyContext(string connection)
-            : base(connection)
+            : base(@connection)
         {
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DbSet<UserMst> UserMst { get; set; }
@@ -19,6 +21,7 @@ namespace WordConverter_v2.Models.Dao
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            Database.SetInitializer<MyContext>(null);
             modelBuilder.HasDefaultSchema("public");
         }
     }

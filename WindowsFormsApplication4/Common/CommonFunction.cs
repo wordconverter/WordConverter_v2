@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Common;
+using System.Data.Entity.Core.EntityClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -203,7 +204,7 @@ namespace WordConverter_v2.Common
             {
                 if (n.Name == "add")
                 {
-                    if (n.Attributes.GetNamedItem("name").Value == "MyContext")
+                    if (n.Attributes.GetNamedItem("name").Value == "MyContextPostgres")
                     {
                         n.Attributes.GetNamedItem("connectionString").Value = path;
                         n.Attributes.GetNamedItem("providerName").Value = "Npgsql";
@@ -372,21 +373,21 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("  , mail_address TEXT");
                 sb.AppendLine("  , sanka_kahi INTEGER");
                 sb.AppendLine("  , delete_flg INTEGER");
-                sb.AppendLine("  , version TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+                sb.AppendLine("  , version INTEGER");
                 sb.AppendLine("  , cre_date TEXT");
                 sb.AppendLine("); ");
-                sb.AppendLine("CREATE TABLE WORD_DIC( ");
+                sb.AppendLine("CREATE TABLE word_dic( ");
                 sb.AppendLine("  word_id INTEGER PRIMARY KEY AUTOINCREMENT");
                 sb.AppendLine("  , ronri_name1 TEXT");
                 sb.AppendLine("  , ronri_name2 TEXT");
                 sb.AppendLine("  , butsuri_name TEXT");
                 sb.AppendLine("  , data_type text");
                 sb.AppendLine("  , user_id INTEGER");
-                sb.AppendLine("  , version TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+                sb.AppendLine("  , version INTEGER");
                 sb.AppendLine("  , cre_date TEXT");
                 sb.AppendLine("  , FOREIGN KEY (user_id) REFERENCES USER_MST(user_id)");
                 sb.AppendLine("); ");
-                sb.AppendLine("CREATE TABLE WORD_SHINSEI( ");
+                sb.AppendLine("CREATE TABLE word_shinsei( ");
                 sb.AppendLine("  shinsei_id INTEGER PRIMARY KEY AUTOINCREMENT");
                 sb.AppendLine("  , ronri_name1 TEXT");
                 sb.AppendLine("  , ronri_name2 TEXT");
@@ -394,22 +395,22 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("  , word_id INTEGER");
                 sb.AppendLine("  , status INTEGER");
                 sb.AppendLine("  , user_id INTEGER");
-                sb.AppendLine("  , version TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+                sb.AppendLine("  , version INTEGER");
                 sb.AppendLine("  , cre_date TEXT");
                 sb.AppendLine("  , FOREIGN KEY (user_id) REFERENCES USER_MST(user_id)");
                 sb.AppendLine("); ");
-                sb.AppendLine("CREATE TABLE OR_MAP( ");
+                sb.AppendLine("CREATE TABLE or_map( ");
                 sb.AppendLine("  or_id INTEGER PRIMARY KEY AUTOINCREMENT");
                 sb.AppendLine("  , data_type INTEGER UNIQUE");
                 sb.AppendLine("  , db_data_type TEXT");
                 sb.AppendLine("  , project_name TEXT");
                 sb.AppendLine("  , yuko_flg INTEGER");
                 sb.AppendLine("  , delete_flg INTEGER");
-                sb.AppendLine("  , version TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
+                sb.AppendLine("  , version INTEGER");
                 sb.AppendLine("  , cre_date TEXT");
                 sb.AppendLine("); ");
                 sb.AppendLine("INSERT ");
-                sb.AppendLine("INTO USER_MST( ");
+                sb.AppendLine("INTO user_mst( ");
                 sb.AppendLine("  user_id");
                 sb.AppendLine("  , emp_id");
                 sb.AppendLine("  , user_name");
@@ -419,7 +420,7 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("  , mail_address");
                 sb.AppendLine("  , sanka_kahi");
                 sb.AppendLine("  , delete_flg");
-                //sb.AppendLine("  , version");
+                sb.AppendLine("  , version");
                 sb.AppendLine("  , cre_date");
                 sb.AppendLine(") ");
                 sb.AppendLine("VALUES ( ");
@@ -432,7 +433,7 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("  , 'admin@co.jp'");
                 sb.AppendLine("  , 0");
                 sb.AppendLine("  , 0");
-                //sb.AppendLine("  , 0");
+                sb.AppendLine("  , 0");
                 sb.AppendLine("  , NULL");
                 sb.AppendLine("); ");
                 string sqliteDdlText = sb.ToString();
@@ -542,9 +543,6 @@ namespace WordConverter_v2.Common
                 using (SQLiteConnection cn = new SQLiteConnection(path))
                 {
                     cn.Open();
-                    SQLiteCommand cmd = cn.CreateCommand();
-                    cmd.CommandText = "SELECT * FROM WORD_DIC";
-                    cmd.ExecuteReader();
                     return true;
                 }
             }
@@ -564,11 +562,6 @@ namespace WordConverter_v2.Common
                     SQLiteCommand cmd = cn.CreateCommand();
                     cmd.CommandText = "SELECT * FROM WORD_DIC";
                     cmd.ExecuteReader();
-
-                    CommonFunction common = new CommonFunction();
-                    common.setSqliteDbContextPath(path);
-                    MyRepository rep = new MyRepository(Constant.SQLITE_CONNECT);
-                    UserMst fromUser = rep.FindUserMstByUserId(1);
                     return true;
                 }
             }
