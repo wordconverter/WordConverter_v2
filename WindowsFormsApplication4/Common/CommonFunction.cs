@@ -401,7 +401,7 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("); ");
                 sb.AppendLine("CREATE TABLE or_map( ");
                 sb.AppendLine("  or_id INTEGER PRIMARY KEY AUTOINCREMENT");
-                sb.AppendLine("  , data_type INTEGER UNIQUE");
+                sb.AppendLine("  , data_type TEXT UNIQUE");
                 sb.AppendLine("  , db_data_type TEXT");
                 sb.AppendLine("  , project_name TEXT");
                 sb.AppendLine("  , yuko_flg INTEGER");
@@ -436,6 +436,10 @@ namespace WordConverter_v2.Common
                 sb.AppendLine("  , 0");
                 sb.AppendLine("  , NULL");
                 sb.AppendLine("); ");
+                sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (1,'String','VARCHAR',null,0,0,0,null);");
+                sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (2,'Integer','INTEGER',null,0,0,0,null);");
+                sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (3,'Date','DATE',null,0,0,0,null);");
+                sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,0,null);");
                 string sqliteDdlText = sb.ToString();
                 var cmd = new System.Data.SQLite.SQLiteCommand(sqliteDdlText, cn);
                 cmd.ExecuteNonQuery();
@@ -521,10 +525,10 @@ namespace WordConverter_v2.Common
             sb.AppendLine("  , 0");
             sb.AppendLine("  , transaction_timestamp()");
             sb.AppendLine("); ");
-            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (1,'String','VARCHAR',null,0,0,transaction_timestamp(),null);");
-            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (2,'Integer','INTEGER',null,0,0,transaction_timestamp(),null);");
-            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (3,'Date','DATE',null,0,0,transaction_timestamp(),null);");
-            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,transaction_timestamp(),null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (1,'String','VARCHAR',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (2,'Integer','INTEGER',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (3,'Date','DATE',null,0,0,0,null);");
+            sb.AppendLine("insert into or_map(or_id,data_type,db_data_type,project_name,yuko_flg,delete_flg,version,cre_date) values (4,'Timestamp','TIMESTAMP',null,0,0,0,null);");
             string postgresDdlText = sb.ToString();
 
             using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
