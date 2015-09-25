@@ -60,14 +60,12 @@ namespace WordConverter_v2.Forms
 
             if (common.isExistPostgresDb(sb.ToString()) && common.isExistPostgresDbTable(sb.ToString()))
             {
-                MessageBox.Show("DB接続に成功しました！！");
                 this.endPostgresTestConnectProc(sb.ToString());
                 return;
             }
             else if (common.isExistPostgresDb(sb.ToString()))
             {
                 common.ExecutePostgresDDL(sb.ToString());
-                MessageBox.Show("DB接続に成功しました！！");
                 this.endPostgresTestConnectProc(sb.ToString());
                 return;
 
@@ -79,6 +77,7 @@ namespace WordConverter_v2.Forms
 
         private void endPostgresTestConnectProc(String path)
         {
+            MessageBox.Show("DB接続に成功しました！！");
             this.postgresDbConnectablePath.Text = path;
             this.serverName.Enabled = false;
             this.dbName.Enabled = false;
