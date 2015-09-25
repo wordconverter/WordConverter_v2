@@ -198,7 +198,7 @@ namespace WordConverter_v2.Forms
             {
                 common.ExecuteSqliteDDL();
                 MessageBox.Show("DB接続に成功しました！！");
-                this.endSqliteTestConnectProc(sb.ToString());
+                this.endSqliteTestConnectProc(this.getSqliteDbFilePath());
                 return;
             }
 
