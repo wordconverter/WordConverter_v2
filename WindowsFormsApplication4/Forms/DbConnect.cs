@@ -190,14 +190,12 @@ namespace WordConverter_v2.Forms
 
             if (common.isExistSqliteDb(sb.ToString()) && common.isExistSqliteDbTable(sb.ToString()))
             {
-                MessageBox.Show("DB接続に成功しました！！");
                 this.endSqliteTestConnectProc(sb.ToString());
                 return;
             }
             else if (!common.isExistSqliteDbTable(sb.ToString()))
             {
                 common.ExecuteSqliteDDL();
-                MessageBox.Show("DB接続に成功しました！！");
                 this.endSqliteTestConnectProc(this.getSqliteDbFilePath());
                 return;
             }
@@ -209,6 +207,7 @@ namespace WordConverter_v2.Forms
 
         private void endSqliteTestConnectProc(string path)
         {
+            MessageBox.Show("DB接続に成功しました！！");
             this.sqliteConnectableDbPath.Text = path;
             this.sqliteDbFilePath.Text = path.Replace("Data Source=", "");
             this.sqliteSaveBtn.Visible = true;
