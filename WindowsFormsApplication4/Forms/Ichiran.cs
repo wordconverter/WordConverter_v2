@@ -232,17 +232,17 @@ namespace WordConverter_v2.Forms
         private void setClipBordMyValue()
         {
             StringBuilder val = new StringBuilder();
-            int index = 0;
-            foreach (DataGridViewCell c in ichiranDataGridView.SelectedCells)
+            for (int i = 1; i < ichiranDataGridView.SelectedCells.Count; i++)
             {
+                int j = ichiranDataGridView.SelectedCells.Count - i;
+                DataGridViewCell c = ichiranDataGridView.SelectedCells[j];
                 if (!String.IsNullOrEmpty(c.Value.ToString()))
                 {
-                    if (index > 0)
+                    if (i > 1)
                     {
                         val.AppendLine();
                     }
                     val.Append(c.Value);
-                    index++;
                 }
             }
             if (val.ToString().Trim() != Constant.NONE_WORD)

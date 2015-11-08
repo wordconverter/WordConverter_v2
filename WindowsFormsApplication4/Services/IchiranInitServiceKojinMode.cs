@@ -25,13 +25,13 @@ namespace WordConverter_v2.Services
             List<IchiranWordBo> wordList = new List<IchiranWordBo>();
             IchiranWordBo word = new IchiranWordBo();
 
-            if (!String.IsNullOrEmpty(base.inBo.clipboardText))
+            string key = this.inBo.clipboardText;
+            String[] keys = key.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+            if (!String.IsNullOrEmpty(key) && !String.IsNullOrEmpty(keys[0]))
             {
                 CommonFunction common = new CommonFunction();
                 string dbConnectionString = common.getSqliteDbConnectionString();
-                string key = this.inBo.clipboardText;
-                string nl = Environment.NewLine;
-                String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);
 
                 if (keys.Count() == 1)
                 {
@@ -50,18 +50,40 @@ namespace WordConverter_v2.Services
                 }
                 else
                 {
+                    Dictionary<String, String> dict = new Dictionary<String, String>();
                     using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
                     {
                         SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandMultiple(cn, keys);
+                        List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                this.makeMultipleWordList(reader, ref wordList, ref word);
+                                dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
                             }
                         }
                         cn.Close();
                     }
+                    if (dict.Count != 0)
+                    {
+                        int keyIndex = 0;
+                        while (!String.IsNullOrEmpty(keys[keyIndex]))
+                        {
+                            word = new IchiranWordBo();
+                            word.ronri_name1 = keys[keyIndex];
+                            if (dict.ContainsKey(keys[keyIndex]))
+                            {
+                                word.butsuri_name = dict[keys[keyIndex]];
+                            }
+                            else
+                            {
+                                word.butsuri_name = "-";
+                            }
+                            wordList.Add(word);
+                            keyIndex++;
+                        }
+                    }
+                    //this.makeMultipleWordList(dbConnectionString, keys, word, wordList);
                 }
             }
             this.makeIchiranDispList(ref outBo, this.inBo, wordList, word);

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Data.SQLite;
 using System.Linq;
 using WordConverter_v2.Common;
 using WordConverter_v2.Forms;
@@ -35,13 +36,43 @@ namespace WordConverter_v2.Services
             outBo.wordList = this.toIchiranDispList(wordList, this.inBo.dispNumber);
         }
 
-        protected void makeMultipleWordList(DbDataReader reader, ref List<IchiranWordBo> wordList, ref IchiranWordBo word)
+        protected void makeMultipleWordList(String dbConnectionString,
+            String[] keys, IchiranWordBo word, List<IchiranWordBo> wordList)
         {
-            word = new IchiranWordBo();
-            word.ronri_name1 = reader["ronri_name1"].ToString();
-            word.butsuri_name = reader["butsuri_name"].ToString();
-            word.data_type = reader["data_type"].ToString();
-            wordList.Add(word);
+            Dictionary<String, String> dict = new Dictionary<String, String>();
+            using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
+            {
+                SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandMultiple(cn, keys);
+                List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
+                    }
+                }
+                cn.Close();
+            }
+            if (dict.Count == 0)
+            {
+                return;
+            }
+            int keyIndex = 0;
+            while (!String.IsNullOrEmpty(keys[keyIndex]))
+            {
+                word = new IchiranWordBo();
+                word.ronri_name1 = keys[keyIndex];
+                if (dict.ContainsKey(keys[keyIndex]))
+                {
+                    word.butsuri_name = dict[keys[keyIndex]];
+                }
+                else
+                {
+                    word.butsuri_name = "-";
+                }
+                wordList.Add(word);
+                keyIndex++;
+            }
         }
 
         protected DbCommand setQueryCommandMultiple(DbConnection cn, string[] keys)

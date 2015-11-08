@@ -18,7 +18,7 @@ namespace WordConverter_v2.Services
     /// </summary>
     class IchiranInitServiceFukusuninMode : IchiranInitServiceBase, IService<IchiranInitServiceInBo, IchiranInitServiceOutBo>
     {
-     
+
         private static CommonFunction common = new CommonFunction();
 
         /// <summary>
@@ -65,17 +65,38 @@ namespace WordConverter_v2.Services
                 }
                 else
                 {
+                    Dictionary<String, String> dict = new Dictionary<String, String>();
                     using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
                     {
                         NpgsqlCommand cmd = (NpgsqlCommand)this.setQueryCommandMultiple(cn, keys);
+                        List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                this.makeMultipleWordList(reader, ref wordList, ref word);
+                                dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
                             }
                         }
                         cn.Close();
+                    }
+                    if (dict.Count != 0)
+                    {
+                        int keyIndex = 0;
+                        while (!String.IsNullOrEmpty(keys[keyIndex]))
+                        {
+                            word = new IchiranWordBo();
+                            word.ronri_name1 = keys[keyIndex];
+                            if (dict.ContainsKey(keys[keyIndex]))
+                            {
+                                word.butsuri_name = dict[keys[keyIndex]];
+                            }
+                            else
+                            {
+                                word.butsuri_name = "-";
+                            }
+                            wordList.Add(word);
+                            keyIndex++;
+                        }
                     }
                 }
             }
