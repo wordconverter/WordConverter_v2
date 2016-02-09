@@ -135,9 +135,11 @@ namespace WordConverter_v2.Common
             string condition = "";
             foreach (object obj in self)
             {
-                if (!String.IsNullOrEmpty((string)obj))
+                string val = (string)obj;
+                val = val.Trim();
+                if (!String.IsNullOrEmpty(val))
                 {
-                    condition += "\'" + obj + "\'" + ",";
+                    condition += "\'" + val + "\'" + ",";
                 }
             }
             char[] trimChars = { ',' };

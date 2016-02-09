@@ -232,19 +232,28 @@ namespace WordConverter_v2.Forms
         private void setClipBordMyValue()
         {
             StringBuilder val = new StringBuilder();
-            for (int i = 1; i < ichiranDataGridView.SelectedCells.Count; i++)
+            if (ichiranDataGridView.SelectedCells.Count == 1)
             {
-                int j = ichiranDataGridView.SelectedCells.Count - i;
-                DataGridViewCell c = ichiranDataGridView.SelectedCells[j];
-                if (!String.IsNullOrEmpty(c.Value.ToString()))
+                DataGridViewCell c = ichiranDataGridView.SelectedCells[0];
+                val.Append(c.Value);
+            }
+            else
+            {
+                for (int i = 1; i < ichiranDataGridView.SelectedCells.Count; i++)
                 {
-                    if (i > 1)
+                    int j = ichiranDataGridView.SelectedCells.Count - i;
+                    DataGridViewCell c = ichiranDataGridView.SelectedCells[j];
+                    if (!String.IsNullOrEmpty(c.Value.ToString()))
                     {
-                        val.AppendLine();
+                        if (i > 1)
+                        {
+                            val.AppendLine();
+                        }
+                        val.Append(c.Value);
                     }
-                    val.Append(c.Value);
                 }
             }
+            
             if (val.ToString().Trim() != Constant.NONE_WORD)
             {
                 this.Close();
