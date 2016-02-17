@@ -67,7 +67,7 @@ namespace WordConverter_v2.Services
                     if (dict.Count != 0)
                     {
                         int keyIndex = 0;
-                        while (!String.IsNullOrEmpty(keys[keyIndex]))
+                        while (keyIndex < keys.Length && !String.IsNullOrEmpty(keys[keyIndex]))
                         {
                             word = new IchiranWordBo();
                             word.ronri_name1 = keys[keyIndex];
