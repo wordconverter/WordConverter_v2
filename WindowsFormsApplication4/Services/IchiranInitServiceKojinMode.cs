@@ -59,7 +59,10 @@ namespace WordConverter_v2.Services
                         {
                             while (reader.Read())
                             {
-                                dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
+                                if (!dict.ContainsKey(reader["ronri_name1"].ToString()))
+                                {
+                                    dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
+                                }
                             }
                         }
                         cn.Close();

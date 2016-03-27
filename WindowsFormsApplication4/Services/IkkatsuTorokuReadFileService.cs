@@ -141,6 +141,10 @@ namespace WordConverter_v2.Services
             dbDataType = dbDataType.Replace(")", "");
             dbDataType = System.Text.RegularExpressions.Regex.Replace(dbDataType, @"\d", "");
             OrMap orMap = rep.FindOrMapByDbDataType(dbDataType);
+            if (String.IsNullOrEmpty(orMap.data_type))
+            {
+                return "String";
+            }
             return orMap.data_type;
         }
     }
