@@ -366,5 +366,17 @@ namespace WordConverter_v2.Forms
             Clipboard.SetText(registServiceOutBo.boText);
             this.Close();
         }
+
+        private void ゲッター作成ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            IchiranBoCreateService boCreateService = new IchiranBoCreateService();
+            IchiranBoCreateServiceInBo boCreateServiceInBo = new IchiranBoCreateServiceInBo();
+            boCreateServiceInBo.ichiranDataGridView = this.ichiranDataGridView;
+            boCreateServiceInBo.shoriMode = PropertyShoriMode.ゲッター作成;
+            boCreateService.setInBo(boCreateServiceInBo);
+            IchiranBoCreateServiceOutBo registServiceOutBo = boCreateService.execute();
+            Clipboard.SetText(registServiceOutBo.boText);
+            this.Close();
+        }
     }
 }

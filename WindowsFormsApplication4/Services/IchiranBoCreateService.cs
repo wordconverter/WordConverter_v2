@@ -69,6 +69,11 @@ namespace WordConverter_v2.Services
                             sb.AppendLine("private " + dataType + " " + ronriName.ToCamelCase() + ";");
                             sb.AppendLine("");
                             break;
+
+                        case WordConvTool.Const.PropertyShoriMode.ゲッター作成:
+                            sb.AppendLine("get" + butsuriName + "();");
+                            sb.AppendLine("");
+                            break;
                     }
                     str += sb.ToString();
                 }
