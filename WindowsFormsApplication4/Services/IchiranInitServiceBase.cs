@@ -36,55 +36,59 @@ namespace WordConverter_v2.Services
             outBo.wordList = this.toIchiranDispList(wordList, this.inBo.dispNumber);
         }
 
-        protected void makeMultipleWordList(String dbConnectionString,
-            String[] keys, IchiranWordBo word, List<IchiranWordBo> wordList)
-        {
-            Dictionary<String, String> dict = new Dictionary<String, String>();
-            using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
-            {
-                SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandMultiple(cn, keys);
-                List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
-                    }
-                }
-                cn.Close();
-            }
-            if (dict.Count == 0)
-            {
-                return;
-            }
-            int keyIndex = 0;
-            while (!String.IsNullOrEmpty(keys[keyIndex]))
-            {
-                word = new IchiranWordBo();
-                word.ronri_name1 = keys[keyIndex];
-                if (dict.ContainsKey(keys[keyIndex]))
-                {
-                    word.butsuri_name = dict[keys[keyIndex]];
-                }
-                else
-                {
-                    word.butsuri_name = "-";
-                }
-                wordList.Add(word);
-                keyIndex++;
-            }
-        }
+        //protected void makeMultipleWordList(String dbConnectionString,
+        //    String[] keys, IchiranWordBo word, List<IchiranWordBo> wordList)
+        //{
+        //    Dictionary<String, String> dict = new Dictionary<String, String>();
+        //    using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
+        //    {
+        //        SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandMultiple(cn, keys);
+        //        List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
+        //        using (var reader = cmd.ExecuteReader())
+        //        {
+        //            while (reader.Read())
+        //            {
+        //                dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
+        //            }
+        //        }
+        //        cn.Close();
+        //    }
+        //    if (dict.Count == 0)
+        //    {
+        //        return;
+        //    }
+        //    int keyIndex = 0;
+        //    while (!String.IsNullOrEmpty(keys[keyIndex]))
+        //    {
+        //        word = new IchiranWordBo();
+        //        word.ronri_name1 = keys[keyIndex];
+        //        if (dict.ContainsKey(keys[keyIndex]))
+        //        {
+        //            word.butsuri_name = dict[keys[keyIndex]];
+        //        }
+        //        else
+        //        {
+        //            word.butsuri_name = "-";
+        //        }
+        //        wordList.Add(word);
+        //        keyIndex++;
+        //    }
+        //}
 
-        protected DbCommand setQueryCommandMultiple(DbConnection cn, string[] keys)
+        protected DbCommand setQueryCommandMultiple(DbConnection cn, List<string> keys)
         {
             cn.Open();
             DbCommand cmd = cn.CreateCommand();
-            string condition = keys.CommaSeparatedValue();
+
+            string[] sdim;
+            sdim = (string[])keys.ToArray();
+
+            string condition = sdim.CommaSeparatedValue();
             cmd.CommandText = "SELECT * FROM WORD_DIC where ronri_name1 in (" + condition + ")";
             return cmd;
         }
 
-        protected DbCommand setQueryCommandSingle(DbConnection cn, string[] keys)
+        protected DbCommand setQueryCommandSingle(DbConnection cn, List<string> keys)
         {
             cn.Open();
             DbCommand cmd = cn.CreateCommand();

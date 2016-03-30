@@ -35,7 +35,6 @@ namespace WordConverter_v2.Services
                                                   data_type = a.data_type,
                                                   user_name = b.user_name,
                                                   cre_date = a.cre_date,
-                                                  //version = a.version
                                               };
 
                 object[] keywords = new object[3];

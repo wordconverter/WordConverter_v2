@@ -89,6 +89,11 @@ namespace WordConverter_v2.Models.Dao
             return context.WordDic.ToList();
         }
 
+        public List<WordDic> FindDispWordDic(List<String> inP)
+        {
+            return context.WordDic.Where(x => inP.Contains(x.ronri_name1)).ToList();
+        }
+
         public void InsertWordDic(WordDic entity)
         {
             context.WordDic.Add(entity);

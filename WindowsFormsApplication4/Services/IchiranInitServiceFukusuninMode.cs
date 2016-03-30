@@ -47,12 +47,13 @@ namespace WordConverter_v2.Services
                 string key = this.inBo.clipboardText;
                 string nl = Environment.NewLine;
                 String[] keys = key.Split(new string[] { nl }, StringSplitOptions.None);
+                List<string> list = this.makeList(keys);
 
                 if (keys.Count() == 1)
                 {
                     using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
                     {
-                        NpgsqlCommand cmd = (NpgsqlCommand)this.setQueryCommandSingle(cn, keys);
+                        NpgsqlCommand cmd = (NpgsqlCommand)this.setQueryCommandSingle(cn, list);
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -68,7 +69,7 @@ namespace WordConverter_v2.Services
                     Dictionary<String, String> dict = new Dictionary<String, String>();
                     using (NpgsqlConnection cn = new NpgsqlConnection(dbConnectionString))
                     {
-                        NpgsqlCommand cmd = (NpgsqlCommand)this.setQueryCommandMultiple(cn, keys);
+                        NpgsqlCommand cmd = (NpgsqlCommand)this.setQueryCommandMultiple(cn, list);
                         List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
                         using (var reader = cmd.ExecuteReader())
                         {
@@ -82,13 +83,13 @@ namespace WordConverter_v2.Services
                     if (dict.Count != 0)
                     {
                         int keyIndex = 0;
-                        while (!String.IsNullOrEmpty(keys[keyIndex]))
+                        while (!String.IsNullOrEmpty(list[keyIndex]))
                         {
                             word = new IchiranWordBo();
-                            word.ronri_name1 = keys[keyIndex];
-                            if (dict.ContainsKey(keys[keyIndex]))
+                            word.ronri_name1 = list[keyIndex];
+                            if (dict.ContainsKey(list[keyIndex]))
                             {
-                                word.butsuri_name = dict[keys[keyIndex]];
+                                word.butsuri_name = dict[list[keyIndex]];
                             }
                             else
                             {
@@ -102,6 +103,31 @@ namespace WordConverter_v2.Services
             }
             this.makeIchiranDispList(ref outBo, this.inBo, wordList, word);
             return outBo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        private List<string> makeList(String[] keys)
+        {
+
+            List<string> list = new List<string>();
+            list.AddRange(keys);
+
+            List<string> ret = new List<string>();
+
+            foreach (String str in list)
+            {
+                if (String.IsNullOrEmpty(str))
+                {
+                    continue;
+                }
+                ret.Add(str);
+            }
+
+            return ret;
         }
     }
 }

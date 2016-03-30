@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using WordConverter_v2.Common;
+using WordConverter_v2.Forms;
 using WordConverter_v2.Interface;
 using WordConverter_v2.Models;
+using WordConverter_v2.Models.Dao;
+using WordConverter_v2.Models.Entity;
 using WordConverter_v2.Models.InBo;
 using WordConverter_v2.Models.OutBo;
 
@@ -27,17 +31,18 @@ namespace WordConverter_v2.Services
 
             string key = this.inBo.clipboardText;
             String[] keys = key.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+            List<string> list = this.makeList(keys);
 
-            if (!String.IsNullOrEmpty(key) && !String.IsNullOrEmpty(keys[0]))
+            if (!String.IsNullOrEmpty(key) && !String.IsNullOrEmpty(list[0]))
             {
                 CommonFunction common = new CommonFunction();
                 string dbConnectionString = common.getSqliteDbConnectionString();
 
-                if (keys.Count() == 1)
+                if (list.Count() == 1)
                 {
                     using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
                     {
-                        SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandSingle(cn, keys);
+                        SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandSingle(cn, list);
                         using (var reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -51,22 +56,16 @@ namespace WordConverter_v2.Services
                 else
                 {
                     Dictionary<String, String> dict = new Dictionary<String, String>();
-                    using (SQLiteConnection cn = new SQLiteConnection(dbConnectionString))
+                    MyRepository rep = new MyRepository(BaseForm.UserInfo.dbType);
+                    List<WordDic> dbWordList = rep.FindDispWordDic(list);
+                    foreach (WordDic wordD in dbWordList)
                     {
-                        SQLiteCommand cmd = (SQLiteCommand)this.setQueryCommandMultiple(cn, keys);
-                        List<IchiranWordBo> dbWordList = new List<IchiranWordBo>();
-                        using (var reader = cmd.ExecuteReader())
+                        if (!dict.ContainsKey(wordD.ronri_name1))
                         {
-                            while (reader.Read())
-                            {
-                                if (!dict.ContainsKey(reader["ronri_name1"].ToString()))
-                                {
-                                    dict.Add(reader["ronri_name1"].ToString(), reader["butsuri_name"].ToString());
-                                }
-                            }
+                            dict.Add(wordD.ronri_name1, wordD.butsuri_name);
                         }
-                        cn.Close();
                     }
+
                     if (dict.Count != 0)
                     {
                         int keyIndex = 0;
@@ -86,11 +85,36 @@ namespace WordConverter_v2.Services
                             keyIndex++;
                         }
                     }
-                    //this.makeMultipleWordList(dbConnectionString, keys, word, wordList);
                 }
             }
             this.makeIchiranDispList(ref outBo, this.inBo, wordList, word);
             return outBo;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        private List<string> makeList(String[] keys)
+        {
+
+            List<string> list = new List<string>();
+            list.AddRange(keys);
+
+            List<string> ret = new List<string>();
+
+            foreach (String str in list)
+            {
+                if (String.IsNullOrEmpty(str))
+                {
+                    continue;
+                }
+                ret.Add(str.Trim());
+            }
+
+            return ret;
         }
     }
 }
