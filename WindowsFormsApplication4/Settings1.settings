@@ -36,10 +36,10 @@
       <Value Profile="(Default)">5432</Value>
     </Setting>
     <Setting Name="FukusuRiyou" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="KojinRiyou" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="SqliteContextString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

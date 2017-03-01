@@ -42,8 +42,8 @@ namespace WordConvTool.Const
 
     public enum StartUpMode
     {
-        複数人 = 0,
-        個人 = 1
+        複数人 = 1,
+        個人 = 0
     }
 
     public enum PropertyShoriMode

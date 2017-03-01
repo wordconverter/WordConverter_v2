@@ -76,17 +76,19 @@
             // kojinRdo
             // 
             this.kojinRdo.AutoSize = true;
-            this.kojinRdo.Location = new System.Drawing.Point(190, 58);
+            this.kojinRdo.Checked = true;
+            this.kojinRdo.Location = new System.Drawing.Point(101, 58);
             this.kojinRdo.Name = "kojinRdo";
             this.kojinRdo.Size = new System.Drawing.Size(71, 16);
             this.kojinRdo.TabIndex = 14;
+            this.kojinRdo.TabStop = true;
             this.kojinRdo.Text = "個人利用";
             this.kojinRdo.UseVisualStyleBackColor = true;
             // 
             // fukusuRdo
             // 
             this.fukusuRdo.AutoSize = true;
-            this.fukusuRdo.Location = new System.Drawing.Point(99, 58);
+            this.fukusuRdo.Location = new System.Drawing.Point(185, 58);
             this.fukusuRdo.Name = "fukusuRdo";
             this.fukusuRdo.Size = new System.Drawing.Size(83, 16);
             this.fukusuRdo.TabIndex = 15;
